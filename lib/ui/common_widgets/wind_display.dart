@@ -1,15 +1,25 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:simple_animations/simple_animations.dart';
 
 class WindDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          AnimatedContainer(
-            duration: Duration(milliseconds: 300),
-            transform: Matrix4.rotationZ(2 * pi * 270 / 360),
-            child: Icon(Icons.arrow_upward),
+          PlayAnimation<double>(
+            duration: Duration(milliseconds: 2000),
+            curve: Curves.bounceInOut,
+            tween: Tween<double>(
+                begin: Random().nextDouble() % 2 * pi, end: pi / 4),
+            builder: (BuildContext context, Widget child, double value) {
+              return Transform.rotate(
+                angle: value,
+                child: Icon(Icons.arrow_upward),
+              );
+            },
           ),
           Column(
             children: <Widget>[

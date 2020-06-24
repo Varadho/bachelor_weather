@@ -1,4 +1,5 @@
 import 'package:bachelorweather/model/weather.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TemperatureDisplay extends StatelessWidget {
@@ -17,7 +18,7 @@ class TemperatureDisplay extends StatelessWidget {
       children: <Widget>[
         RichText(
           text: TextSpan(
-            text: "${info.feelsLike}",
+            text: "${info.feelsLike} ",
             style: TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 24,
@@ -34,12 +35,20 @@ class TemperatureDisplay extends StatelessWidget {
           ),
         ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Icon(Icons.arrow_upward),
-            Text("${info.tempMax}"),
-            Expanded(child: Container()),
-            Icon(Icons.arrow_downward),
-            Text("${info.tempMin}"),
+            Row(
+              children: <Widget>[
+                Icon(Icons.arrow_upward),
+                Text("${info.tempMax}"),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                Icon(Icons.arrow_downward),
+                Text("${info.tempMin}"),
+              ],
+            ),
           ],
         ),
       ],
