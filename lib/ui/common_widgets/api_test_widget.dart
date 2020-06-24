@@ -1,5 +1,6 @@
 import 'package:bachelorweather/model/weather.dart';
 import 'package:bachelorweather/utility/api_helper.dart';
+import 'package:bachelorweather/utility/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class ApiTestWidget extends StatefulWidget {
@@ -20,6 +21,7 @@ class _ApiTestWidgetState extends State<ApiTestWidget> {
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: RaisedButton(
+              color: buttonColor,
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Text(

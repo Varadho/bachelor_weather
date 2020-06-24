@@ -1,4 +1,5 @@
 import 'package:bachelorweather/ui/weather_home_page.dart';
+import 'package:bachelorweather/utility/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Comfortable Weather',
       theme: ThemeData(
+        textTheme: TextTheme(button: TextStyle(color: textColor)),
         primarySwatch: Colors.blue,
       ),
       home: WeatherHomePage(),

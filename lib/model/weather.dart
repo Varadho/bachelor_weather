@@ -13,7 +13,7 @@ class Weather {
   final int clouds;
   final int sunrise, sunset;
 
-  Weather({
+  const Weather({
     this.coordinates,
     this.country,
     this.characteristic,
@@ -46,7 +46,14 @@ class Weather {
 
 @JsonSerializable()
 class Info {
-  final double temperature, tempMin, tempMax;
+  @JsonKey(name: 'temp')
+  final double temperature;
+  @JsonKey(name: 'temp_min')
+  final double tempMin;
+  @JsonKey(name: 'temp_max')
+  final double tempMax;
+  @JsonKey(name: 'feels_like')
+  final double feelsLike;
   final int pressure;
   final int humidity;
 
@@ -54,6 +61,7 @@ class Info {
     this.temperature,
     this.tempMin,
     this.tempMax,
+    this.feelsLike,
     this.pressure,
     this.humidity,
   });
@@ -63,7 +71,7 @@ class Info {
   Map<String, dynamic> toJson() => _$InfoToJson(this);
   @override
   String toString() {
-    return 'Info{temperature: $temperature, tempMin: $tempMin, tempMax: $tempMax, pressure: $pressure, humidity: $humidity}';
+    return 'Info{temperature: $temperature, tempMin: $tempMin, tempMax: $tempMax, feelsLike: $feelsLike, pressure: $pressure, humidity: $humidity}';
   }
 }
 
