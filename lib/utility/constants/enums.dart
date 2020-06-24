@@ -2,10 +2,9 @@ import 'package:bachelorweather/ui/bloc_page.dart';
 import 'package:bachelorweather/ui/inherited_page.dart';
 import 'package:bachelorweather/ui/provider_page.dart';
 import 'package:bachelorweather/ui/redux_page.dart';
+import 'package:bachelorweather/ui/ss_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'file:///D:/Source%20Code/bachelor_weather/lib/ui/ss_page.dart';
 
 enum StateMethod {
   ///setState

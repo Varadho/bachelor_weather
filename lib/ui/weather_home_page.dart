@@ -1,3 +1,4 @@
+import 'package:bachelorweather/ui/common_widgets/api_test_widget.dart';
 import 'package:bachelorweather/utility/constants/colors.dart';
 import 'package:bachelorweather/utility/constants/enums.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,8 @@ class WeatherHomePage extends StatelessWidget {
                   for (var method in StateMethod.values)
                     HomeTile(
                       stateMethod: method,
-                    )
+                    ),
+                  ApiTestWidget(),
                 ],
               ),
             ),
