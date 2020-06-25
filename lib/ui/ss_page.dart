@@ -1,4 +1,6 @@
+import 'package:bachelorweather/ui/common_widgets/atmospheric_display.dart';
 import 'package:bachelorweather/ui/common_widgets/location_display.dart';
+import 'package:bachelorweather/ui/common_widgets/rain_display.dart';
 import 'package:bachelorweather/ui/common_widgets/sun_time_display.dart';
 import 'package:bachelorweather/ui/common_widgets/temperature_display.dart';
 import 'package:bachelorweather/ui/common_widgets/wind_display.dart';
@@ -20,7 +22,9 @@ class _SSPageState extends State<SSPage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           LocationDisplay(),
+          AtmosphericDisplay(),
           TemperatureDisplay(),
+          RainDisplay(),
           WindDisplay(),
           SunTimeDisplay(),
         ],

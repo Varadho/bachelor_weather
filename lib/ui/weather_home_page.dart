@@ -13,6 +13,7 @@ class WeatherHomePage extends StatelessWidget {
           children: <Widget>[
             Center(
               child: ListView(
+                physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 children: <Widget>[
                   for (var method in StateMethod.values)
@@ -34,19 +35,34 @@ class HomeTile extends StatelessWidget {
   const HomeTile({Key key, this.stateMethod}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => ListTile(
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Icon(
-            stateMethod.icon,
-            color: iconColor,
-            size: 40,
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        child: Container(
+          decoration: BoxDecoration(
+            color: cardColor,
+            border: Border(
+              bottom: BorderSide(color: borderColor, width: 2),
+              left: BorderSide(color: borderColor, width: 2),
+            ),
+          ),
+          child: ListTile(
+            leading: Card(
+              elevation: 4,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(
+                  stateMethod.icon,
+                  color: iconColor,
+                  size: 40,
+                ),
+              ),
+            ),
+            title: Text(
+              stateMethod.name,
+              style: TextStyle(fontWeight: FontWeight.w300, fontSize: 24),
+            ),
+            onTap: () => Navigator.of(context).push(stateMethod.route),
           ),
         ),
-        title: Text(
-          stateMethod.name,
-          style: TextStyle(fontWeight: FontWeight.w300, fontSize: 24),
-        ),
-        onTap: () => Navigator.of(context).push(stateMethod.route),
       );
 }

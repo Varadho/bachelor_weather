@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'weather.g.dart';
@@ -40,8 +42,12 @@ class Weather {
       );
   @override
   String toString() {
-    return 'Weather{coordinates: $coordinates, country: $country, info: $info, wind: $wind, characteristic: $characteristic, description: $description, visibility: $visibility, clouds: $clouds, sunrise: $sunrise, sunset: $sunset}';
+    return '{Weather:{coordinates: $coordinates, country: $country, info: '
+        '$info, wind: $wind, characteristic: $characteristic, description: '
+        '$description, visibility: $visibility, clouds: $clouds, sunrise: $sunrise, sunset: $sunset}}';
   }
+
+  Map<String, dynamic> toJson() => jsonDecode(this.toString());
 }
 
 @JsonSerializable()
