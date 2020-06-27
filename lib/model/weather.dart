@@ -7,6 +7,8 @@ part 'weather.g.dart';
 class Weather {
   final Coordinates coordinates;
   final String country;
+  final String cityName;
+  final int cityID;
   final Info info;
   final Wind wind;
   final String characteristic;
@@ -15,7 +17,11 @@ class Weather {
   final int clouds;
   final int sunrise, sunset;
 
+  List<dynamic> get location => [cityName, coordinates, country];
+
   const Weather({
+    this.cityName,
+    this.cityID,
     this.coordinates,
     this.country,
     this.characteristic,
@@ -31,6 +37,8 @@ class Weather {
   factory Weather.fromJson(Map<String, dynamic> json) => Weather(
         coordinates: Coordinates.fromJson(json['coord']),
         country: json['sys']['country'],
+        cityName: json['name'],
+        cityID: json['id'] as int,
         info: Info.fromJson(json['main']),
         wind: Wind.fromJson(json['wind']),
         characteristic: json['weather'][0]['main'],
@@ -42,7 +50,8 @@ class Weather {
       );
   @override
   String toString() {
-    return '{Weather:{coordinates: $coordinates, country: $country, info: '
+    return '{Weather:{coordinates: $coordinates, country: $country, '
+        'cityName: $cityName, cityID: $cityID, info: '
         '$info, wind: $wind, characteristic: $characteristic, description: '
         '$description, visibility: $visibility, clouds: $clouds, sunrise: $sunrise, sunset: $sunset}}';
   }
