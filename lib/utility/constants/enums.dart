@@ -62,11 +62,14 @@ extension Utility on StateMethod {
     }
   }
 
-  MaterialPageRoute get route {
+  PageRoute get route {
     switch (this) {
       case StateMethod.SS:
-        return MaterialPageRoute(
-          builder: (context) => SSPage(),
+        return PageRouteBuilder(
+          transitionDuration: const Duration(milliseconds: 700),
+          pageBuilder: (context, animation, secondaryAnimation) => SSPage(
+            transitionAnimation: animation,
+          ),
         );
       case StateMethod.INHERITED:
         return MaterialPageRoute(
@@ -84,6 +87,8 @@ extension Utility on StateMethod {
         return MaterialPageRoute(
           builder: (context) => BlocPage(),
         );
+      default:
+        return null;
     }
   }
 }

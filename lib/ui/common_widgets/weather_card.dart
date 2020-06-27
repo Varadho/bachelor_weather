@@ -7,15 +7,15 @@ class WeatherCard extends StatelessWidget {
   const WeatherCard({Key key, this.child}) : super(key: key);
   @override
   Widget build(BuildContext context) => Card(
-        margin: const EdgeInsets.symmetric(horizontal: 64, vertical: 12),
+        margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         elevation: 8.0,
         borderOnForeground: true,
-        shape: OutlineInputBorder(
-          borderSide: BorderSide(color: borderColor, width: 2),
-          borderRadius: BorderRadius.circular(16),
-          gapPadding: 15,
+        shape: ContinuousRectangleBorder(
+          side: BorderSide(color: borderColor, width: 2),
+          borderRadius: BorderRadius.circular(42),
         ),
         shadowColor: shadowColor,
+        clipBehavior: Clip.antiAlias,
         color: cardColor,
         child: child,
       );

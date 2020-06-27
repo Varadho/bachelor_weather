@@ -18,6 +18,7 @@ class TemperatureDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     return WeatherCard(
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Icon(
