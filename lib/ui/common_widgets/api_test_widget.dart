@@ -29,7 +29,7 @@ class _ApiTestWidgetState extends State<ApiTestWidget> {
                   style: TextStyle(fontSize: 24),
                 ),
               ),
-              onPressed: () => ApiHelper().getLocationData("irrelevant").then(
+              onPressed: () => ApiHelper().getLocationData("Gießen").then(
                     (value) => setState(
                       () => weather = value,
                     ),

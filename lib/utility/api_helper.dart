@@ -5,12 +5,18 @@ import 'package:http/http.dart' as http;
 
 class ApiHelper {
   static const String baseUrl =
-      'https://api.openweathermap.org/data/2.5/weather?q=Boston&units=metric';
+      'https://api.openweathermap.org/data/2.5/weather';
+
+  static const String cityQuery = ' ?q=';
+
+  static const String units = '&units=metric';
 
   static const String apiKey = '&appid=573837f4c28160cee116989fa116e4dc';
 
   Future<Weather> getLocationData(String location) async {
-    var body = (await http.get(Uri.parse('$baseUrl$apiKey'))).body;
+    var body =
+        (await http.get(Uri.parse('$baseUrl$cityQuery$location$units$apiKey')))
+            .body;
     print("Body: $body");
     var json = jsonDecode(body);
     return Weather.fromJson(json);
