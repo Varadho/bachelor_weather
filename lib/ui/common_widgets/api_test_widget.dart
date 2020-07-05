@@ -30,10 +30,12 @@ class _ApiTestWidgetState extends State<ApiTestWidget> {
                 ),
               ),
               onPressed: () => ApiHelper().getLocationData("Gießen").then(
-                    (value) => setState(
-                      () => weather = value,
-                    ),
-                  ),
+                (value) {
+                  setState(
+                    () => weather = value,
+                  );
+                },
+              ),
             ),
           ),
           Text(

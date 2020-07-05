@@ -17,6 +17,9 @@ class WeatherCard extends StatelessWidget {
         shadowColor: shadowColor,
         clipBehavior: Clip.antiAlias,
         color: cardColor,
-        child: child,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: child,
+        ),
       );
 }

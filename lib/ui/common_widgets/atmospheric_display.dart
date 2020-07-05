@@ -1,26 +1,32 @@
-import 'package:bachelorweather/model/weather.dart';
+import 'package:bachelorweather/model/atmospheric_data.dart';
 import 'package:bachelorweather/ui/common_widgets/weather_card.dart';
 import 'package:flutter/material.dart';
 
 class AtmosphericDisplay extends StatelessWidget {
-  final Info atmosphericInfo;
+  final AtmosphericData _atmosphere;
 
-  const AtmosphericDisplay({Key key, this.atmosphericInfo}) : super(key: key);
+  const AtmosphericDisplay(
+    this._atmosphere, {
+    Key key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return WeatherCard(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
+        child: GridView(
+          shrinkWrap: true,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 8,
+              crossAxisSpacing: 12,
+              childAspectRatio: 5 / 2),
           children: <Widget>[
-            Container(
-              height: 120,
-              width: 200,
-              child: Center(child: Text("Atmospheric Display")),
-            ),
+            Text("Pressure: ${_atmosphere.pressure}"),
+            Text("Visibility: ${_atmosphere.visibility}"),
+            Text("Humidity: ${_atmosphere.humidity}"),
+            Text("Clouds: ${_atmosphere.clouds}"),
           ],
         ),
       ),

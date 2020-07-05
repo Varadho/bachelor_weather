@@ -1,5 +1,8 @@
 import 'dart:convert';
 
+import 'package:bachelorweather/model/atmospheric_data.dart';
+import 'package:bachelorweather/model/location.dart';
+import 'package:bachelorweather/model/temperatures.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'weather.g.dart';
@@ -17,7 +20,26 @@ class Weather {
   final int clouds;
   final int sunrise, sunset;
 
-  List<dynamic> get location => [cityName, coordinates, country];
+  Location get location => Location(
+        cityID: cityID,
+        country: country,
+        cityName: cityName,
+        coordinates: coordinates,
+      );
+
+  AtmosphericData get atmosphere => AtmosphericData(
+        pressure: info.pressure,
+        humidity: info.humidity,
+        visibility: visibility,
+        clouds: clouds,
+      );
+
+  Temperatures get temperature => Temperatures(
+        avg: info.temperature,
+        feelsLike: info.feelsLike,
+        min: info.tempMin,
+        max: info.tempMax,
+      );
 
   const Weather({
     this.cityName,

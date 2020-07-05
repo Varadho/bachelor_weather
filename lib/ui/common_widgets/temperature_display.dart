@@ -1,18 +1,13 @@
-import 'package:bachelorweather/model/weather.dart';
+import 'package:bachelorweather/model/temperatures.dart';
 import 'package:bachelorweather/ui/common_widgets/weather_card.dart';
 import 'package:bachelorweather/utility/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class TemperatureDisplay extends StatelessWidget {
-  Info info = Info(
-    temperature: 27.0,
-    feelsLike: 28.46,
-    tempMax: 28.33,
-    tempMin: 25.56,
-    humidity: 74,
-    pressure: 1005,
-  );
+  final Temperatures _temperatures;
+
+  const TemperatureDisplay(this._temperatures, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,14 +25,14 @@ class TemperatureDisplay extends StatelessWidget {
             children: <Widget>[
               RichText(
                 text: TextSpan(
-                  text: "${info.feelsLike} ",
+                  text: "${_temperatures?.feelsLike} ",
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 24,
                   ),
                   children: [
                     TextSpan(
-                      text: "(${info.temperature})",
+                      text: "(${_temperatures?.avg})",
                       style: TextStyle(
                         fontWeight: FontWeight.w300,
                         fontSize: 16,
@@ -52,7 +47,7 @@ class TemperatureDisplay extends StatelessWidget {
                   Row(
                     children: <Widget>[
                       Icon(Icons.arrow_upward),
-                      Text("${info.tempMax}"),
+                      Text("${_temperatures.max.toStringAsFixed(2)}"),
                     ],
                   ),
                   Container(
@@ -61,7 +56,7 @@ class TemperatureDisplay extends StatelessWidget {
                   Row(
                     children: <Widget>[
                       Icon(Icons.arrow_downward),
-                      Text("${info.tempMin}"),
+                      Text("${_temperatures.min.toStringAsFixed(2)}"),
                     ],
                   ),
                 ],
