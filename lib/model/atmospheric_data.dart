@@ -1,9 +1,8 @@
 class AtmosphericData {
-  final int pressure, visibility, humidity, clouds;
+  final int pressure, humidity, clouds;
 
   AtmosphericData({
     this.pressure,
-    this.visibility,
     this.humidity,
     this.clouds,
   });

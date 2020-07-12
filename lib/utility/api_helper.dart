@@ -18,7 +18,6 @@ class ApiHelper {
       var body = (await http
               .get(Uri.parse('$baseUrl$cityQuery$location$units$apiKey')))
           .body;
-      print("Body: $body");
       var json = jsonDecode(body);
       return Weather.fromJson(json);
     } catch (e) {

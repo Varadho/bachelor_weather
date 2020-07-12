@@ -16,7 +16,6 @@ class Weather {
   final Wind wind;
   final String characteristic;
   final String description;
-  final int visibility;
   final int clouds;
   final int sunrise, sunset;
 
@@ -30,7 +29,6 @@ class Weather {
   AtmosphericData get atmosphere => AtmosphericData(
         pressure: info.pressure,
         humidity: info.humidity,
-        visibility: visibility,
         clouds: clouds,
       );
 
@@ -49,7 +47,6 @@ class Weather {
     this.characteristic,
     this.description,
     this.info,
-    this.visibility,
     this.wind,
     this.clouds,
     this.sunrise,
@@ -65,7 +62,6 @@ class Weather {
         wind: Wind.fromJson(json['wind']),
         characteristic: json['weather'][0]['main'],
         description: json['weather'][0]['description'],
-        visibility: json['visibility'] as int,
         clouds: json['clouds']['all'] as int,
         sunrise: json['sys']['sunrise'] as int,
         sunset: json['sys']['sunset'] as int,
@@ -75,7 +71,7 @@ class Weather {
     return '{Weather:{coordinates: $coordinates, country: $country, '
         'cityName: $cityName, cityID: $cityID, info: '
         '$info, wind: $wind, characteristic: $characteristic, description: '
-        '$description, visibility: $visibility, clouds: $clouds, sunrise: $sunrise, sunset: $sunset}}';
+        '$description, clouds: $clouds, sunrise: $sunrise, sunset: $sunset}}';
   }
 
   Map<String, dynamic> toJson() => jsonDecode(this.toString());

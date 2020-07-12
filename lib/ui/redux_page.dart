@@ -12,7 +12,7 @@ class ReduxPage extends StatefulWidget {
 class _ReduxPageState extends State<ReduxPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
-        backgroundColor: backGroundColor,
+        backgroundColor: backgroundColor1,
         body: Center(
           child: Text(StateMethod.REDUX.name),
         ),

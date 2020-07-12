@@ -1,6 +1,6 @@
 import 'package:bachelorweather/model/temperatures.dart';
 import 'package:bachelorweather/ui/common_widgets/weather_card.dart';
-import 'package:bachelorweather/utility/constants/colors.dart';
+import 'package:bachelorweather/utility/constants/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -16,23 +16,23 @@ class TemperatureDisplay extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Icon(
-            FontAwesomeIcons.temperatureHigh,
-            size: 40,
-            color: iconColor,
+          Padding(
+            padding: const EdgeInsets.only(left: 12.0),
+            child: Icon(
+              FontAwesomeIcons.temperatureHigh,
+              size: 45,
+              color: Colors.orange.shade100,
+            ),
           ),
           Column(
             children: <Widget>[
               RichText(
                 text: TextSpan(
-                  text: "${_temperatures?.feelsLike} ",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 24,
-                  ),
+                  text: "${_temperatures?.feelsLike}°C ",
+                  style: headingStyle,
                   children: [
                     TextSpan(
-                      text: "(${_temperatures?.avg})",
+                      text: "(${_temperatures?.avg}°C)",
                       style: TextStyle(
                         fontWeight: FontWeight.w300,
                         fontSize: 16,
@@ -44,20 +44,35 @@ class TemperatureDisplay extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Icon(Icons.arrow_upward),
-                      Text("${_temperatures.max.toStringAsFixed(2)}"),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 8.0,
+                      horizontal: 12,
+                    ),
+                    child: Row(
+                      children: <Widget>[
+                        Icon(FontAwesomeIcons.longArrowAltUp),
+                        Text(
+                          "${_temperatures.max.toStringAsFixed(2)}°C ",
+                          style: dataStyle,
+                        ),
+                      ],
+                    ),
                   ),
-                  Container(
-                    width: 30,
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Icon(Icons.arrow_downward),
-                      Text("${_temperatures.min.toStringAsFixed(2)}"),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 8.0,
+                      horizontal: 12,
+                    ),
+                    child: Row(
+                      children: <Widget>[
+                        Icon(FontAwesomeIcons.longArrowAltDown),
+                        Text(
+                          "${_temperatures.min.toStringAsFixed(2)}°C ",
+                          style: dataStyle,
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),

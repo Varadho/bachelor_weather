@@ -1,4 +1,5 @@
 import 'package:bachelorweather/ui/common_widgets/weather_card.dart';
+import 'package:bachelorweather/utility/constants/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class SunTimeDisplay extends StatelessWidget {
@@ -10,8 +11,6 @@ class SunTimeDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("Sunrise: $_sunrise");
-    print("Sunset: $_sunset");
     return WeatherCard(
       child: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -21,10 +20,23 @@ class SunTimeDisplay extends StatelessWidget {
           children: <Widget>[
             Column(
               children: <Widget>[
-                Icon(Icons.arrow_upward),
-                Text(
-                  "Sunrise ${DateTime.fromMillisecondsSinceEpoch(_sunrise * 1000).hour}"
-                  ":${DateTime.fromMillisecondsSinceEpoch(_sunrise * 1000).minute}",
+                Icon(
+                  Icons.arrow_upward,
+                  size: 30,
+                  color: Colors.white,
+                ),
+                RichText(
+                  text: TextSpan(
+                    text: "Sunrise ",
+                    style: TextStyle(fontSize: 16),
+                    children: <InlineSpan>[
+                      TextSpan(
+                          style: dataStyle,
+                          text:
+                              "${DateTime.fromMillisecondsSinceEpoch(_sunrise * 1000).hour}"
+                              ":${DateTime.fromMillisecondsSinceEpoch(_sunrise * 1000).minute < 10 ? "0" : ""}${DateTime.fromMillisecondsSinceEpoch(_sunrise * 1000).minute}")
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -38,10 +50,23 @@ class SunTimeDisplay extends StatelessWidget {
             ),
             Column(
               children: <Widget>[
-                Icon(Icons.arrow_downward),
-                Text(
-                  "Sunset ${DateTime.fromMillisecondsSinceEpoch(_sunset * 1000).hour}"
-                  ":${DateTime.fromMillisecondsSinceEpoch(_sunset * 1000).minute < 10 ? "0" : ""}${DateTime.fromMillisecondsSinceEpoch(_sunset * 1000).minute}",
+                Icon(
+                  Icons.arrow_downward,
+                  size: 30,
+                  color: Colors.white,
+                ),
+                RichText(
+                  text: TextSpan(
+                    text: "Sunset ",
+                    style: TextStyle(fontSize: 16),
+                    children: <InlineSpan>[
+                      TextSpan(
+                          style: dataStyle,
+                          text:
+                              "${DateTime.fromMillisecondsSinceEpoch(_sunset * 1000).hour}"
+                              ":${DateTime.fromMillisecondsSinceEpoch(_sunset * 1000).minute < 10 ? "0" : ""}${DateTime.fromMillisecondsSinceEpoch(_sunset * 1000).minute}")
+                    ],
+                  ),
                 ),
               ],
             ),

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class WeatherHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
-        backgroundColor: backGroundColor,
+        backgroundColor: backgroundColor1,
         body: Stack(
           fit: StackFit.expand,
           alignment: Alignment.centerLeft,

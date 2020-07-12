@@ -12,7 +12,7 @@ class ProviderPage extends StatefulWidget {
 class _ProviderPageState extends State<ProviderPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
-        backgroundColor: backGroundColor,
+        backgroundColor: backgroundColor1,
         body: Center(
           child: Text(StateMethod.PROVIDERS.name),
         ),

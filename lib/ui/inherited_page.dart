@@ -12,7 +12,7 @@ class InheritedPage extends StatefulWidget {
 class _InheritedPageState extends State<InheritedPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
-        backgroundColor: backGroundColor,
+        backgroundColor: backgroundColor1,
         body: Center(
           child: Text(StateMethod.INHERITED.name),
         ),

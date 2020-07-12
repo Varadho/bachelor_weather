@@ -12,7 +12,7 @@ class BlocPage extends StatefulWidget {
 class _BlocPageState extends State<BlocPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
-        backgroundColor: backGroundColor,
+        backgroundColor: backgroundColor1,
         body: Center(
           child: Text(StateMethod.BLOC.name),
         ),

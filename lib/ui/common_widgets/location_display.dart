@@ -1,5 +1,6 @@
 import 'package:bachelorweather/model/location.dart';
 import 'package:bachelorweather/ui/common_widgets/weather_card.dart';
+import 'package:bachelorweather/utility/constants/text_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,8 +11,11 @@ class LocationDisplay extends StatelessWidget {
     this._location, {
     Key key,
   }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    String northOrSouth = _location.coordinates.lat > 0 ? 'North' : 'South';
+    String eastOrWest = _location.coordinates.lon > 0 ? 'East' : 'West';
     return WeatherCard(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -23,24 +27,24 @@ class LocationDisplay extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 _location?.cityName ?? "City Name",
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 24,
-                  color: Colors.white,
-                ),
+                style: headingStyle,
               ),
             ),
             Row(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Text(_location?.coordinates?.lat?.toStringAsFixed(2) ??
-                    "Latitude"),
-                Container(
-                  width: MediaQuery.of(context).size.width / 5,
+                Text(
+                  '${_location.coordinates.lat.abs().toStringAsFixed(2)}° $northOrSouth',
+                  style: subtitleStyle,
                 ),
-                Text(_location?.coordinates?.lon?.toStringAsFixed(2) ??
-                    "Longitude")
+                Container(
+                  width: MediaQuery.of(context).size.width / 6,
+                ),
+                Text(
+                  '${_location.coordinates.lon.abs().toStringAsFixed(2)}° $eastOrWest',
+                  style: subtitleStyle,
+                )
               ],
             ),
           ],
