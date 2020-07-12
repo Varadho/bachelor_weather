@@ -1,3 +1,4 @@
+import 'package:bachelorweather/model/weather.dart';
 import 'package:bachelorweather/ui/bloc_page.dart';
 import 'package:bachelorweather/ui/inherited_page.dart';
 import 'package:bachelorweather/ui/provider_page.dart';
@@ -62,15 +63,16 @@ extension Utility on StateMethod {
     }
   }
 
-  PageRoute get route {
+  dynamic get route {
     switch (this) {
       case StateMethod.SS:
-        return PageRouteBuilder(
-          transitionDuration: const Duration(milliseconds: 700),
-          pageBuilder: (context, animation, secondaryAnimation) => SSPage(
-            transitionAnimation: animation,
-          ),
-        );
+        return (Weather argument) => PageRouteBuilder(
+              transitionDuration: const Duration(milliseconds: 700),
+              pageBuilder: (context, animation, secondaryAnimation) => SSPage(
+                transitionAnimation: animation,
+                initialWeather: argument,
+              ),
+            );
       case StateMethod.INHERITED:
         return MaterialPageRoute(
           builder: (context) => InheritedPage(),

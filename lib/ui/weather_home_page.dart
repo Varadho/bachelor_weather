@@ -34,6 +34,7 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
                   for (var method in StateMethod.values)
                     HomeTile(
                       stateMethod: method,
+                      currentWeather: selectedWeather,
                     ),
                   ApiTestWidget(
                     cityName: selectedWeather?.cityName,
@@ -43,83 +44,101 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
             ),
           ],
         ),
-        drawer: Drawer(
-          child: ListView(
-            padding: const EdgeInsets.all(0),
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(40.0),
-                child: Column(
-                  children: [
-                    Icon(
-                      Icons.not_listed_location,
-                      size: 80,
-                    ),
-                    Text(
-                      "Select location to load",
-                      style: dataStyle,
-                    ),
-                  ],
-                ),
+        drawer: _customDrawer(),
+      );
+
+  Widget _customDrawer() => Drawer(
+        child: ListView(
+          padding: const EdgeInsets.all(0),
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(40.0),
+              child: Column(
+                children: [
+                  Icon(
+                    Icons.not_listed_location,
+                    size: 80,
+                  ),
+                  Text(
+                    "Select location to load",
+                    style: dataStyle,
+                  ),
+                ],
               ),
-              ListTile(
-                leading: Icon(Icons.location_on),
-                title: Text(
-                  "Gießen",
-                  style: dataStyle,
-                ),
-                onTap: () => _loadWeatherData("Gießen"),
+            ),
+            ListTile(
+              leading: Icon(Icons.location_on),
+              title: Text(
+                "Gießen",
+                style: dataStyle,
               ),
-              ListTile(
-                leading: Icon(Icons.location_on),
-                title: Text(
-                  "Köln",
-                  style: dataStyle,
-                ),
-                onTap: () => _loadWeatherData("Köln"),
+              onTap: () => _loadWeatherData("Gießen"),
+            ),
+            ListTile(
+              leading: Icon(Icons.location_on),
+              title: Text(
+                "Köln",
+                style: dataStyle,
               ),
-              ListTile(
-                leading: Icon(Icons.location_on),
-                title: Text(
-                  "Hamburg",
-                  style: dataStyle,
-                ),
-                onTap: () => _loadWeatherData("Hamburg"),
+              onTap: () => _loadWeatherData("Köln"),
+            ),
+            ListTile(
+              leading: Icon(Icons.location_on),
+              title: Text(
+                "Hamburg",
+                style: dataStyle,
               ),
-              ListTile(
-                leading: Icon(Icons.location_on),
-                title: Text(
-                  "Frankfurt",
-                  style: dataStyle,
-                ),
-                onTap: () => _loadWeatherData("Gießen"),
+              onTap: () => _loadWeatherData("Hamburg"),
+            ),
+            ListTile(
+              leading: Icon(Icons.location_on),
+              title: Text(
+                "Frankfurt",
+                style: dataStyle,
               ),
-              ListTile(
-                leading: Icon(Icons.location_on),
-                title: Text(
-                  "Los Angeles",
-                  style: dataStyle,
-                ),
-                onTap: () => _loadWeatherData("Los Angeles"),
+              onTap: () => _loadWeatherData("Frankfurt"),
+            ),
+            ListTile(
+              leading: Icon(Icons.location_on),
+              title: Text(
+                "Los Angeles",
+                style: dataStyle,
               ),
-              ListTile(
-                leading: Icon(Icons.location_on),
-                title: Text(
-                  "New York",
-                  style: dataStyle,
-                ),
-                onTap: () => _loadWeatherData("New York"),
+              onTap: () => _loadWeatherData("Los Angeles"),
+            ),
+            ListTile(
+              leading: Icon(Icons.location_on),
+              title: Text(
+                "New York",
+                style: dataStyle,
               ),
-              ListTile(
-                leading: Icon(Icons.location_on),
-                title: Text(
-                  "Tokyo",
-                  style: dataStyle,
-                ),
-                onTap: () => _loadWeatherData("Tokyo"),
-              )
-            ],
-          ),
+              onTap: () => _loadWeatherData("New York"),
+            ),
+            ListTile(
+              leading: Icon(Icons.location_on),
+              title: Text(
+                "Tokyo",
+                style: dataStyle,
+              ),
+              onTap: () => _loadWeatherData("Tokyo"),
+            ),
+            ListTile(
+              leading: Icon(Icons.location_on),
+              title: Text(
+                "Kapstadt",
+                style: dataStyle,
+              ),
+              onTap: () => _loadWeatherData("Kapstadt"),
+            ),
+            ListTile(
+              leading: Icon(Icons.location_on),
+              title: Text(
+                "Teheran",
+                style: dataStyle,
+              ),
+              onTap: () => _loadWeatherData("Teheran"),
+            ),
+          ],
         ),
       );
 
@@ -133,8 +152,10 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
 
 class HomeTile extends StatelessWidget {
   final StateMethod stateMethod;
+  final Weather currentWeather;
 
-  const HomeTile({Key key, this.stateMethod}) : super(key: key);
+  const HomeTile({Key key, this.stateMethod, this.currentWeather})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) => Padding(
@@ -163,7 +184,8 @@ class HomeTile extends StatelessWidget {
               stateMethod.name,
               style: TextStyle(fontWeight: FontWeight.w300, fontSize: 24),
             ),
-            onTap: () => Navigator.of(context).push(stateMethod.route),
+            onTap: () =>
+                Navigator.of(context).push(stateMethod.route(currentWeather)),
           ),
         ),
       );
