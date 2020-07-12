@@ -4,7 +4,8 @@ import 'package:bachelorweather/utility/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class ApiTestWidget extends StatefulWidget {
-  ApiTestWidget({Key key}) : super(key: key);
+  final String cityName;
+  ApiTestWidget({Key key, @required this.cityName}) : super(key: key);
 
   @override
   _ApiTestWidgetState createState() => _ApiTestWidgetState();
@@ -29,7 +30,8 @@ class _ApiTestWidgetState extends State<ApiTestWidget> {
                   style: TextStyle(fontSize: 24),
                 ),
               ),
-              onPressed: () => ApiHelper().getLocationData("Gießen").then(
+              onPressed: () =>
+                  ApiHelper().getLocationData(widget.cityName).then(
                 (value) {
                   setState(
                     () => weather = value,

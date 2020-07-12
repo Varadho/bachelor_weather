@@ -27,7 +27,6 @@ class _SSPageState extends State<SSPage> {
   @override
   void initState() {
     weather = widget.initialWeather;
-    if (weather == null) _refreshWeatherData();
     super.initState();
   }
 
@@ -116,7 +115,7 @@ class _SSPageState extends State<SSPage> {
     setState(() {
       loading = true;
     });
-    ApiHelper().getLocationData('Gießen').then((value) {
+    ApiHelper().getLocationData('${weather.location.cityName}').then((value) {
       setState(() {
         weather = value;
         loading = false;
