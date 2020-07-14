@@ -1,11 +1,12 @@
 import 'dart:math';
 
-import 'package:bachelorweather/model/weather.dart';
-import 'package:bachelorweather/ui/common_widgets/weather_card.dart';
-import 'package:bachelorweather/utility/constants/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:simple_animations/simple_animations.dart';
+
+import '../../../model/weather.dart';
+import '../../../utility/constants/text_styles.dart';
+import '../weather_card.dart';
 
 class WindDisplay extends StatelessWidget {
   final Wind _wind;
@@ -75,16 +76,14 @@ class WindDisplay extends StatelessWidget {
                                       end: (_wind.deg.toDouble() / 360) *
                                           2 *
                                           pi),
-                                  builder: (BuildContext context, Widget child,
-                                      double value) {
-                                    return Transform.rotate(
-                                      angle: value,
-                                      child: Icon(
-                                        FontAwesomeIcons.arrowUp,
-                                        size: 45,
-                                      ),
-                                    );
-                                  },
+                                  builder: (context, child, value) =>
+                                      Transform.rotate(
+                                    angle: value,
+                                    child: Icon(
+                                      FontAwesomeIcons.arrowUp,
+                                      size: 45,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),

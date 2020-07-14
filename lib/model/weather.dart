@@ -1,9 +1,10 @@
 import 'dart:convert';
 
-import 'package:bachelorweather/model/atmospheric_data.dart';
-import 'package:bachelorweather/model/location.dart';
-import 'package:bachelorweather/model/temperatures.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import 'atmospheric_data.dart';
+import 'location.dart';
+import 'temperatures.dart';
 
 part 'weather.g.dart';
 
@@ -67,14 +68,12 @@ class Weather {
         sunset: json['sys']['sunset'] as int,
       );
   @override
-  String toString() {
-    return '{Weather:{coordinates: $coordinates, country: $country, '
-        'cityName: $cityName, cityID: $cityID, info: '
-        '$info, wind: $wind, characteristic: $characteristic, description: '
-        '$description, clouds: $clouds, sunrise: $sunrise, sunset: $sunset}}';
-  }
+  String toString() => '{Weather:{coordinates: $coordinates, '
+      'country: $country, cityName: $cityName, cityID: $cityID, info: '
+      '$info, wind: $wind, characteristic: $characteristic, description: '
+      '$description, clouds: $clouds, sunrise: $sunrise, sunset: $sunset}}';
 
-  Map<String, dynamic> toJson() => jsonDecode(this.toString());
+  Map<String, dynamic> toJson() => jsonDecode(toString());
 }
 
 @JsonSerializable()
@@ -103,9 +102,9 @@ class Info {
 
   Map<String, dynamic> toJson() => _$InfoToJson(this);
   @override
-  String toString() {
-    return 'Info{temperature: $temperature, tempMin: $tempMin, tempMax: $tempMax, feelsLike: $feelsLike, pressure: $pressure, humidity: $humidity}';
-  }
+  String toString() =>
+      'Info{temperature: $temperature, tempMin: $tempMin, tempMax: $tempMax, '
+      'feelsLike: $feelsLike, pressure: $pressure, humidity: $humidity}';
 }
 
 @JsonSerializable()
@@ -114,9 +113,7 @@ class Wind {
   final int deg;
 
   @override
-  String toString() {
-    return 'Wind{speed: $speed, deg: $deg}';
-  }
+  String toString() => 'Wind{speed: $speed, deg: $deg}';
 
   Wind({this.speed, this.deg});
 
@@ -129,9 +126,7 @@ class Wind {
 class Coordinates {
   final double lat, lon;
   @override
-  String toString() {
-    return 'Coordinates{lat: $lat, lon: $lon}';
-  }
+  String toString() => 'Coordinates{lat: $lat, lon: $lon}';
 
   Coordinates({this.lat, this.lon});
 

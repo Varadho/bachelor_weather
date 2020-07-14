@@ -1,10 +1,11 @@
-import 'package:bachelorweather/model/weather.dart';
-import 'package:bachelorweather/ui/common_widgets/api_test_widget.dart';
-import 'package:bachelorweather/utility/api_helper.dart';
-import 'package:bachelorweather/utility/constants/colors.dart';
-import 'package:bachelorweather/utility/constants/enums.dart';
-import 'package:bachelorweather/utility/constants/text_styles.dart';
 import 'package:flutter/material.dart';
+
+import '../model/weather.dart';
+import '../utility/api_helper.dart';
+import '../utility/constants/colors.dart';
+import '../utility/constants/enums.dart';
+import 'common_widgets/api_test_widget.dart';
+import 'common_widgets/homescreen_drawer.dart';
 
 class WeatherHomePage extends StatefulWidget {
   @override
@@ -13,7 +14,13 @@ class WeatherHomePage extends StatefulWidget {
 
 class _WeatherHomePageState extends State<WeatherHomePage> {
   Weather selectedWeather;
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+
+  @override
+  void initState() {
+    _loadWeatherData("Gießen");
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -44,101 +51,8 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
             ),
           ],
         ),
-        drawer: _customDrawer(),
-      );
-
-  Widget _customDrawer() => Drawer(
-        child: ListView(
-          padding: const EdgeInsets.all(0),
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(40.0),
-              child: Column(
-                children: [
-                  Icon(
-                    Icons.not_listed_location,
-                    size: 80,
-                  ),
-                  Text(
-                    "Select location to load",
-                    style: dataStyle,
-                  ),
-                ],
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.location_on),
-              title: Text(
-                "Gießen",
-                style: dataStyle,
-              ),
-              onTap: () => _loadWeatherData("Gießen"),
-            ),
-            ListTile(
-              leading: Icon(Icons.location_on),
-              title: Text(
-                "Köln",
-                style: dataStyle,
-              ),
-              onTap: () => _loadWeatherData("Köln"),
-            ),
-            ListTile(
-              leading: Icon(Icons.location_on),
-              title: Text(
-                "Hamburg",
-                style: dataStyle,
-              ),
-              onTap: () => _loadWeatherData("Hamburg"),
-            ),
-            ListTile(
-              leading: Icon(Icons.location_on),
-              title: Text(
-                "Frankfurt",
-                style: dataStyle,
-              ),
-              onTap: () => _loadWeatherData("Frankfurt"),
-            ),
-            ListTile(
-              leading: Icon(Icons.location_on),
-              title: Text(
-                "Los Angeles",
-                style: dataStyle,
-              ),
-              onTap: () => _loadWeatherData("Los Angeles"),
-            ),
-            ListTile(
-              leading: Icon(Icons.location_on),
-              title: Text(
-                "New York",
-                style: dataStyle,
-              ),
-              onTap: () => _loadWeatherData("New York"),
-            ),
-            ListTile(
-              leading: Icon(Icons.location_on),
-              title: Text(
-                "Tokyo",
-                style: dataStyle,
-              ),
-              onTap: () => _loadWeatherData("Tokyo"),
-            ),
-            ListTile(
-              leading: Icon(Icons.location_on),
-              title: Text(
-                "Kapstadt",
-                style: dataStyle,
-              ),
-              onTap: () => _loadWeatherData("Kapstadt"),
-            ),
-            ListTile(
-              leading: Icon(Icons.location_on),
-              title: Text(
-                "Teheran",
-                style: dataStyle,
-              ),
-              onTap: () => _loadWeatherData("Teheran"),
-            ),
-          ],
+        drawer: HomescreenDrawer(
+          loadingCallback: _loadWeatherData,
         ),
       );
 

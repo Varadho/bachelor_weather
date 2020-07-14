@@ -1,5 +1,6 @@
-import 'package:bachelorweather/model/location.dart';
 import 'package:flutter/material.dart';
+
+import '../../model/location.dart';
 
 class LocationSelector extends StatefulWidget {
   final List<Location> locations;
@@ -11,7 +12,5 @@ class LocationSelector extends StatefulWidget {
 
 class _LocationSelectorState extends State<LocationSelector> {
   @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
+  Widget build(BuildContext context) => Container();
 }

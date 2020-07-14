@@ -1,12 +1,13 @@
-import 'package:bachelorweather/model/weather.dart';
-import 'package:bachelorweather/ui/common_widgets/atmospheric_display.dart';
-import 'package:bachelorweather/ui/common_widgets/location_display.dart';
-import 'package:bachelorweather/ui/common_widgets/sun_time_display.dart';
-import 'package:bachelorweather/ui/common_widgets/temperature_display.dart';
-import 'package:bachelorweather/ui/common_widgets/wind_display.dart';
-import 'package:bachelorweather/utility/api_helper.dart';
-import 'package:bachelorweather/utility/constants/colors.dart';
 import 'package:flutter/material.dart';
+
+import '../model/weather.dart';
+import '../utility/api_helper.dart';
+import '../utility/constants/colors.dart';
+import 'common_widgets/weather_displays/atmospheric_display.dart';
+import 'common_widgets/weather_displays/location_display.dart';
+import 'common_widgets/weather_displays/sun_time_display.dart';
+import 'common_widgets/weather_displays/temperature_display.dart';
+import 'common_widgets/weather_displays/wind_display.dart';
 
 class SSPage extends StatefulWidget {
   final Animation<double> transitionAnimation;
@@ -52,18 +53,16 @@ class _SSPageState extends State<SSPage> {
               ? Container()
               : AnimatedBuilder(
                   animation: widget.transitionAnimation,
-                  builder: (BuildContext context, Widget child) {
-                    return FadeTransition(
-                      opacity: Tween<double>(begin: 0, end: 1).animate(
-                        CurvedAnimation(
-                          parent: widget.transitionAnimation,
-                          curve: Curves.easeIn,
-                          reverseCurve: Curves.easeOutCubic,
-                        ),
+                  builder: (context, child) => FadeTransition(
+                    opacity: Tween<double>(begin: 0, end: 1).animate(
+                      CurvedAnimation(
+                        parent: widget.transitionAnimation,
+                        curve: Curves.easeIn,
+                        reverseCurve: Curves.easeOutCubic,
                       ),
-                      child: child,
-                    );
-                  },
+                    ),
+                    child: child,
+                  ),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,

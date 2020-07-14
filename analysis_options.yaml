@@ -1,0 +1,14 @@
+include: package:effective_dart/analysis_options.yaml
+
+analyzer:
+  exclude:
+    - lib/**.g.dart
+
+linter:
+  rules:
+    # unnecessary_getters: true # prefer # Disabled pending fix: https://github.com/dart-lang/linter/issues/23
+    lines_longer_than_80_chars: false # avoid
+    prefer_expression_function_bodies: true # consider
+    prefer_typing_uninitialized_variables: true # consider
+    public_member_api_docs: false # do
+    use_function_type_syntax_for_parameters: true # consider

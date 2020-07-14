@@ -1,26 +1,30 @@
-import 'package:bachelorweather/model/weather.dart';
-import 'package:bachelorweather/ui/bloc_page.dart';
-import 'package:bachelorweather/ui/inherited_page.dart';
-import 'package:bachelorweather/ui/provider_page.dart';
-import 'package:bachelorweather/ui/redux_page.dart';
-import 'package:bachelorweather/ui/ss_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../../ui/bloc_page.dart';
+import '../../ui/inherited_page.dart';
+import '../../ui/provider_page.dart';
+import '../../ui/redux_page.dart';
+import '../../ui/ss_page.dart';
 
 enum StateMethod {
   ///setState
+  // ignore: constant_identifier_names
   SS,
 
   ///Inherited Widget
+  // ignore: constant_identifier_names
   INHERITED,
 
   ///Providers
+  // ignore: constant_identifier_names
   PROVIDERS,
 
   ///Redux package
+  // ignore: constant_identifier_names
   REDUX,
 
   ///Bussines Logic Components
+  // ignore: constant_identifier_names
   BLOC,
 }
 
@@ -66,7 +70,7 @@ extension Utility on StateMethod {
   dynamic get route {
     switch (this) {
       case StateMethod.SS:
-        return (Weather argument) => PageRouteBuilder(
+        return (argument) => PageRouteBuilder(
               transitionDuration: const Duration(milliseconds: 700),
               pageBuilder: (context, animation, secondaryAnimation) => SSPage(
                 transitionAnimation: animation,

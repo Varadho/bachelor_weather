@@ -1,8 +1,9 @@
-import 'package:bachelorweather/model/location.dart';
-import 'package:bachelorweather/ui/common_widgets/weather_card.dart';
-import 'package:bachelorweather/utility/constants/text_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../../../model/location.dart';
+import '../../../utility/constants/text_styles.dart';
+import '../weather_card.dart';
 
 class LocationDisplay extends StatelessWidget {
   final Location _location;
@@ -14,8 +15,8 @@ class LocationDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String northOrSouth = _location.coordinates.lat > 0 ? 'North' : 'South';
-    String eastOrWest = _location.coordinates.lon > 0 ? 'East' : 'West';
+    var northOrSouth = _location.coordinates.lat > 0 ? 'North' : 'South';
+    var eastOrWest = _location.coordinates.lon > 0 ? 'East' : 'West';
     return WeatherCard(
       child: Padding(
         padding: const EdgeInsets.all(8.0),

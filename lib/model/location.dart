@@ -1,4 +1,4 @@
-import 'package:bachelorweather/model/weather.dart';
+import 'weather.dart';
 
 class Location {
   final String cityName;

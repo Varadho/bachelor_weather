@@ -1,7 +1,8 @@
 import 'dart:convert';
 
-import 'package:bachelorweather/model/weather.dart';
 import 'package:http/http.dart' as http;
+
+import '../model/weather.dart';
 
 class ApiHelper {
   static const String baseUrl =
@@ -20,7 +21,7 @@ class ApiHelper {
           .body;
       var json = jsonDecode(body);
       return Weather.fromJson(json);
-    } catch (e) {
+    } on Exception catch (e) {
       print(e);
     }
     return null;

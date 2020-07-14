@@ -1,6 +1,7 @@
-import 'package:bachelorweather/utility/constants/colors.dart';
-import 'package:bachelorweather/utility/constants/enums.dart';
 import 'package:flutter/material.dart';
+
+import '../utility/constants/colors.dart';
+import '../utility/constants/enums.dart';
 
 class BlocPage extends StatefulWidget {
   BlocPage({Key key}) : super(key: key);

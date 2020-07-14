@@ -1,5 +1,6 @@
-import 'package:bachelorweather/utility/constants/colors.dart';
 import 'package:flutter/material.dart';
+
+import '../../utility/constants/colors.dart';
 
 class WeatherCard extends StatelessWidget {
   final Widget child;
