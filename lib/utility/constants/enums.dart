@@ -1,8 +1,8 @@
+import 'package:bachelorweather/ui/provider_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../ui/bloc_page.dart';
 import '../../ui/inherited_page.dart';
-import '../../ui/provider_page.dart';
 import '../../ui/redux_page.dart';
 import '../../ui/ss_page.dart';
 
@@ -78,13 +78,17 @@ extension Utility on StateMethod {
               ),
             );
       case StateMethod.INHERITED:
-        return MaterialPageRoute(
-          builder: (context) => InheritedPage(),
-        );
+        return (argument) => PageRouteBuilder(
+              transitionDuration: const Duration(milliseconds: 700),
+              pageBuilder: (context, animation, secondaryAnimation) =>
+                  InheritedPage(),
+            );
       case StateMethod.PROVIDERS:
-        return MaterialPageRoute(
-          builder: (context) => ProviderPage(),
-        );
+        return (argument) => PageRouteBuilder(
+              transitionDuration: const Duration(milliseconds: 700),
+              pageBuilder: (context, animation, secondaryAnimation) =>
+                  ProviderPage(),
+            );
       case StateMethod.REDUX:
         return MaterialPageRoute(
           builder: (context) => ReduxPage(),

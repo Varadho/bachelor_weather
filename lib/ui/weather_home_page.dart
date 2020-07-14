@@ -60,7 +60,6 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
     ApiHelper()
         .getLocationData(location)
         .then((value) => setState(() => selectedWeather = value));
-    _scaffoldKey.currentState.openEndDrawer();
   }
 }
 

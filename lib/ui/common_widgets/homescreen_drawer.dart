@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../utility/constants/text_styles.dart';
 
-class HomescreenDrawer extends StatelessWidget {
+class HomescreenDrawer extends Drawer {
   final ValueChanged<String> loadingCallback;
 
   const HomescreenDrawer({Key key, this.loadingCallback}) : super(key: key);
@@ -27,79 +27,32 @@ class HomescreenDrawer extends StatelessWidget {
                 ],
               ),
             ),
-            ListTile(
-              leading: Icon(Icons.location_on),
-              title: Text(
-                "Gießen",
-                style: dataStyle,
-              ),
-              onTap: () => loadingCallback("Gießen"),
-            ),
-            ListTile(
-              leading: Icon(Icons.location_on),
-              title: Text(
-                "Köln",
-                style: dataStyle,
-              ),
-              onTap: () => loadingCallback("Köln"),
-            ),
-            ListTile(
-              leading: Icon(Icons.location_on),
-              title: Text(
-                "Hamburg",
-                style: dataStyle,
-              ),
-              onTap: () => loadingCallback("Hamburg"),
-            ),
-            ListTile(
-              leading: Icon(Icons.location_on),
-              title: Text(
-                "Frankfurt",
-                style: dataStyle,
-              ),
-              onTap: () => loadingCallback("Frankfurt"),
-            ),
-            ListTile(
-              leading: Icon(Icons.location_on),
-              title: Text(
-                "Los Angeles",
-                style: dataStyle,
-              ),
-              onTap: () => loadingCallback("Los Angeles"),
-            ),
-            ListTile(
-              leading: Icon(Icons.location_on),
-              title: Text(
-                "New York",
-                style: dataStyle,
-              ),
-              onTap: () => loadingCallback("New York"),
-            ),
-            ListTile(
-              leading: Icon(Icons.location_on),
-              title: Text(
-                "Tokyo",
-                style: dataStyle,
-              ),
-              onTap: () => loadingCallback("Tokyo"),
-            ),
-            ListTile(
-              leading: Icon(Icons.location_on),
-              title: Text(
-                "Kapstadt",
-                style: dataStyle,
-              ),
-              onTap: () => loadingCallback("Kapstadt"),
-            ),
-            ListTile(
-              leading: Icon(Icons.location_on),
-              title: Text(
-                "Teheran",
-                style: dataStyle,
-              ),
-              onTap: () => loadingCallback("Teheran"),
-            ),
+            ...[
+              "Gießen",
+              "Köln",
+              "Hamburg",
+              "Frankfurt",
+              "Los Angeles",
+              "New York",
+              "Tokyo",
+              "Kapstadt",
+              "Teheran",
+            ]
+                .map((location) => ListTile(
+                      leading: Icon(Icons.location_on),
+                      title: Text(
+                        location,
+                        style: dataStyle,
+                      ),
+                      onTap: () => _callbackWrapper(location, context),
+                    ))
+                .toList(),
           ],
         ),
       );
+
+  _callbackWrapper(String location, BuildContext context) {
+    loadingCallback(location);
+    Navigator.of(context).pop();
+  }
 }

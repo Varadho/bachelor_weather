@@ -1,21 +1,48 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../utility/constants/colors.dart';
-import '../utility/constants/enums.dart';
 
-class ProviderPage extends StatefulWidget {
+class ProviderPage extends StatelessWidget {
   ProviderPage({Key key}) : super(key: key);
 
   @override
-  _ProviderPageState createState() => _ProviderPageState();
-}
-
-class _ProviderPageState extends State<ProviderPage> {
-  @override
-  Widget build(BuildContext context) => Scaffold(
-        backgroundColor: backgroundColor1,
-        body: Center(
-          child: Text(StateMethod.PROVIDERS.name),
+  Widget build(BuildContext context) =>
+      ChangeNotifierProvider<ListenableString>(
+        create: (context) => ListenableString("Press the goddamn button!"),
+        child: Builder(
+          builder: (context) => Scaffold(
+            backgroundColor: backgroundColor1,
+            body: Center(
+              child: Text(
+                "Generated Token: ${context.watch<ListenableString>()}",
+              ),
+            ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                Provider.of<ListenableString>(context, listen: false).value =
+                    Random().nextInt(4294967296).toString();
+              },
+            ),
+          ),
         ),
       );
+}
+
+class ListenableString with ChangeNotifier {
+  String _value;
+
+  ListenableString(this._value);
+
+  String get value => _value;
+
+  set value(String newValue) {
+    _value = newValue;
+    notifyListeners();
+  }
+
+  @override
+  String toString() => _value;
 }
