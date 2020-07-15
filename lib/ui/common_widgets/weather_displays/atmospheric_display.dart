@@ -15,18 +15,17 @@ class AtmosphericDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) => WeatherCard(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+          padding: const EdgeInsets.all(8),
           child: Column(
             children: <Widget>[
               Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
                   Column(
                     children: <Widget>[
                       Text(
                         "Pressure:",
-                        style: headingStyle,
+                        style: headingStyle.copyWith(fontSize: 20),
                       ),
                       Text(
                         "${_atmosphere.pressure} hPa",
@@ -38,7 +37,7 @@ class AtmosphericDisplay extends StatelessWidget {
                     children: <Widget>[
                       Text(
                         "Humidity:",
-                        style: headingStyle,
+                        style: headingStyle.copyWith(fontSize: 20),
                       ),
                       Text(
                         "${_atmosphere.humidity}%",
@@ -46,22 +45,26 @@ class AtmosphericDisplay extends StatelessWidget {
                       ),
                     ],
                   ),
-                ],
-              ),
-              Container(
-                height: 10,
-              ),
-              Column(
-                children: <Widget>[
-                  Text(
-                    "Cloudiness:",
-                    style: headingStyle,
-                  ),
-                  Text(
-                    "${_atmosphere.clouds}%",
-                    style: dataStyle,
+                  Column(
+                    children: <Widget>[
+                      Text(
+                        "Cloudiness:",
+                        style: headingStyle.copyWith(fontSize: 20),
+                      ),
+                      Text(
+                        "${_atmosphere.clouds}%",
+                        style: dataStyle,
+                      ),
+                    ],
                   ),
                 ],
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 12.0),
+                child: Text(
+                  "and ${_atmosphere.description}",
+                  style: headingStyle,
+                ),
               ),
             ],
           ),

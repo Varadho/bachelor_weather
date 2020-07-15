@@ -1,9 +1,9 @@
-import 'package:bachelorweather/ui/provider_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../ui/bloc_page.dart';
 import '../../ui/inherited_page.dart';
-import '../../ui/redux_page.dart';
+import '../../ui/provider_page.dart';
+import '../../ui/redux/redux_page.dart';
 import '../../ui/ss_page.dart';
 
 enum StateMethod {

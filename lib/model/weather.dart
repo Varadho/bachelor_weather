@@ -31,6 +31,7 @@ class Weather {
         pressure: info.pressure,
         humidity: info.humidity,
         clouds: clouds,
+        description: description,
       );
 
   Temperatures get temperature => Temperatures(
@@ -67,6 +68,7 @@ class Weather {
         sunrise: json['sys']['sunrise'] as int,
         sunset: json['sys']['sunset'] as int,
       );
+
   @override
   String toString() => '{Weather:{coordinates: $coordinates, '
       'country: $country, cityName: $cityName, cityID: $cityID, info: '

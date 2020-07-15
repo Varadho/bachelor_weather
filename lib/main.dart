@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:redux/redux.dart';
 
+import 'model/weather.dart';
+import 'ui/redux/reducer.dart';
 import 'ui/weather_home_page.dart';
 import 'utility/constants/colors.dart';
 
 void main() {
+  final store = Store<Weather>(weatherReducer, initialState: null);
   runApp(MyApp());
 }
 
