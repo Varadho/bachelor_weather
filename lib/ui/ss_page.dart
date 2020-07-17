@@ -21,14 +21,31 @@ class SSPage extends StatefulWidget {
   _SSPageState createState() => _SSPageState();
 }
 
-class _SSPageState extends State<SSPage> {
+class _SSPageState extends State<SSPage> with TickerProviderStateMixin {
   Weather weather;
   bool loading = false;
+  AnimationController _animationController;
 
   @override
   void initState() {
     weather = widget.initialWeather;
+    _animationController = AnimationController(
+      duration: Duration(milliseconds: 1300),
+      vsync: this,
+    );
+    _animationController.forward();
+    widget.transitionAnimation.addStatusListener((status) {
+      if (status == AnimationStatus.reverse) {
+        _animationController.reverse();
+      }
+    });
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
   }
 
   @override
@@ -51,18 +68,9 @@ class _SSPageState extends State<SSPage> {
           ),
           weather == null
               ? Container()
-              : AnimatedBuilder(
-                  animation: widget.transitionAnimation,
-                  builder: (context, child) => FadeTransition(
-                    opacity: Tween<double>(begin: 0, end: 1).animate(
-                      CurvedAnimation(
-                        parent: widget.transitionAnimation,
-                        curve: Curves.easeIn,
-                        reverseCurve: Curves.easeOutCubic,
-                      ),
-                    ),
-                    child: child,
-                  ),
+              : FadeTransition(
+                  opacity: Tween<double>(begin: 0, end: 1)
+                      .animate(_animationController),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -114,7 +122,9 @@ class _SSPageState extends State<SSPage> {
     setState(() {
       loading = true;
     });
-    ApiHelper().getCurrentWeatherFor('${weather.location.cityName}').then((value) {
+    ApiHelper()
+        .getCurrentWeatherFor('${weather.location.cityName}')
+        .then((value) {
       setState(() {
         weather = value;
         loading = false;
@@ -144,7 +154,7 @@ class SlideInWidget extends StatelessWidget {
             end: Offset(0, 0),
           ).animate(
             CurvedAnimation(
-              curve: Curves.easeOutCubic,
+              curve: Curves.elasticOut,
               parent: animation,
               reverseCurve: Curves.easeOutCubic,
             ),

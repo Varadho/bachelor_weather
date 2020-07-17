@@ -21,8 +21,9 @@ class WindDirectionCompass extends StatefulWidget {
 class _WindDirectionCompassState extends State<WindDirectionCompass> {
   bool _hasPermissions = false;
 
-  static const double _radius = 65;
-  static const double _dist = 10;
+  static const double _radius = 60;
+  static const double _iconSize = 60;
+
   @override
   void initState() {
     Permission.locationWhenInUse.request().then((status) {
@@ -140,7 +141,7 @@ class _WindDirectionCompassState extends State<WindDirectionCompass> {
                             child: Icon(
                               FontAwesomeIcons.wind,
                               color: backgroundColor3,
-                              size: 45,
+                              size: _iconSize,
                             ),
                           ),
                         ),

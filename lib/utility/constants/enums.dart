@@ -71,7 +71,8 @@ extension Utility on StateMethod {
     switch (this) {
       case StateMethod.SS:
         return (argument) => PageRouteBuilder(
-              transitionDuration: const Duration(milliseconds: 700),
+              transitionDuration: const Duration(milliseconds: 1300),
+              maintainState: false,
               pageBuilder: (context, animation, secondaryAnimation) => SSPage(
                 transitionAnimation: animation,
                 initialWeather: argument,
