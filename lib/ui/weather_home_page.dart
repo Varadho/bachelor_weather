@@ -58,7 +58,7 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
 
   _loadWeatherData(String location) {
     ApiHelper()
-        .getLocationData(location)
+        .getCurrentWeatherFor(location)
         .then((value) => setState(() => selectedWeather = value));
   }
 }

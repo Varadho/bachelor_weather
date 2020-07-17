@@ -31,7 +31,7 @@ class _ApiTestWidgetState extends State<ApiTestWidget> {
                   ),
                 ),
                 onPressed: () =>
-                    ApiHelper().getLocationData(widget.cityName).then(
+                    ApiHelper().getCurrentWeatherFor(widget.cityName).then(
                   (value) {
                     setState(
                       () => weather = value,

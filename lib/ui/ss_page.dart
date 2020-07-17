@@ -114,7 +114,7 @@ class _SSPageState extends State<SSPage> {
     setState(() {
       loading = true;
     });
-    ApiHelper().getLocationData('${weather.location.cityName}').then((value) {
+    ApiHelper().getCurrentWeatherFor('${weather.location.cityName}').then((value) {
       setState(() {
         weather = value;
         loading = false;

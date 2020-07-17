@@ -111,13 +111,14 @@ class Info {
 
 @JsonSerializable()
 class Wind {
-  final double speed;
-  final int deg;
+  @JsonKey(name: 'speed')
+  final double mpsSpeed;
+  final double deg;
 
   @override
-  String toString() => 'Wind{speed: $speed, deg: $deg}';
+  String toString() => 'Wind{speed: $mpsSpeed, deg: $deg}';
 
-  Wind({this.speed, this.deg});
+  Wind({this.mpsSpeed, this.deg});
 
   factory Wind.fromJson(Map<String, dynamic> json) => _$WindFromJson(json);
 

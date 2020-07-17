@@ -28,13 +28,13 @@ Map<String, dynamic> _$InfoToJson(Info instance) => <String, dynamic>{
 
 Wind _$WindFromJson(Map<String, dynamic> json) {
   return Wind(
-    speed: (json['speed'] as num)?.toDouble(),
-    deg: json['deg'] as int,
+    mpsSpeed: (json['speed'] as num)?.toDouble(),
+    deg: (json['deg'] as num)?.toDouble(),
   );
 }
 
 Map<String, dynamic> _$WindToJson(Wind instance) => <String, dynamic>{
-      'speed': instance.speed,
+      'speed': instance.mpsSpeed,
       'deg': instance.deg,
     };
 

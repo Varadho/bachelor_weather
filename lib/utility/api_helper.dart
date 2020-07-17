@@ -5,8 +5,11 @@ import 'package:http/http.dart' as http;
 import '../model/weather.dart';
 
 class ApiHelper {
-  static const String baseUrl =
-      'https://api.openweathermap.org/data/2.5/weather';
+  static const String baseUrl = 'https://api.openweathermap.org/data/2.5/';
+
+  static const String currentQuery = 'weather';
+
+  static const String forecastQuery = 'forecast';
 
   static const String cityQuery = '?q=';
 
@@ -14,13 +17,38 @@ class ApiHelper {
 
   static const String apiKey = '&appid=573837f4c28160cee116989fa116e4dc';
 
-  Future<Weather> getLocationData(String location) async {
+  Future<Weather> getCurrentWeatherFor(String location) async {
     try {
-      var body = (await http
-              .get(Uri.parse('$baseUrl$cityQuery$location$units$apiKey')))
+      var body = (await http.get(
+        Uri.parse(
+          '$baseUrl$currentQuery'
+          '$cityQuery$location'
+          '$units$apiKey',
+        ),
+      ))
           .body;
       var json = jsonDecode(body);
       return Weather.fromJson(json);
+    } on Exception catch (e) {
+      print(e);
+    }
+    return null;
+  }
+
+  Future<List<Weather>> get5DayForecastFor(String location) async {
+    try {
+      var body = (await http.get(
+        Uri.parse(
+          '$baseUrl$forecastQuery'
+          '$cityQuery$location'
+          '$units$apiKey',
+        ),
+      ))
+          .body;
+      var json = jsonDecode(body);
+      //TODO Create an appropriate way to parse forecast data
+//      List<Weather>.generate(length, (index) => null)
+//      return Weather.fromJson(json);
     } on Exception catch (e) {
       print(e);
     }
