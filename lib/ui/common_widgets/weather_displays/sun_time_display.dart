@@ -40,12 +40,17 @@ class SunTimeDisplay extends StatelessWidget {
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(
-                  Icons.wb_sunny,
-                  color: Colors.amber,
-                  size: 40,
+              ClipOval(
+                child: Container(
+                  color: Colors.white.withOpacity(0.2),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Icon(
+                      Icons.wb_sunny,
+                      color: Colors.yellowAccent.shade700,
+                      size: 40,
+                    ),
+                  ),
                 ),
               ),
               Column(

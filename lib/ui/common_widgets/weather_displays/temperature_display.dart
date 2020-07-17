@@ -7,8 +7,22 @@ import '../weather_card.dart';
 
 class TemperatureDisplay extends StatelessWidget {
   final Temperatures _temperatures;
+  Color _temperatureWarmth;
 
-  const TemperatureDisplay(this._temperatures, {Key key}) : super(key: key);
+  TemperatureDisplay(this._temperatures, {Key key}) {
+    var r = 0, g = 0, b = 0;
+    if (_temperatures.feelsLike < 12) {
+      r = 20;
+      g = (230 - 180 * _temperatures.feelsLike.clamp(0, 12) / 12).round();
+      b = 240;
+    } else {
+      r = 237;
+      g = (237 - 167 * _temperatures.feelsLike.clamp(12, 38) / 38).round();
+      b = 33;
+    }
+
+    _temperatureWarmth = Color.fromRGBO(r, g, b, 0.8);
+  }
 
   @override
   Widget build(BuildContext context) => WeatherCard(
@@ -16,12 +30,19 @@ class TemperatureDisplay extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(left: 12.0),
-              child: Icon(
-                FontAwesomeIcons.temperatureHigh,
-                size: 45,
-                color: Colors.orange.shade100,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(18),
+              child: Container(
+                alignment: Alignment.center,
+                color: Color.fromRGBO(255, 255, 255, 0.2),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Icon(
+                    FontAwesomeIcons.temperatureHigh,
+                    size: 36,
+                    color: _temperatureWarmth,
+                  ),
+                ),
               ),
             ),
             Column(
