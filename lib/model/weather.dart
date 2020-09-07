@@ -9,16 +9,19 @@ import 'temperatures.dart';
 part 'weather.g.dart';
 
 class Weather {
+  final int cityID;
+  final String cityName;
   final Coordinates coordinates;
   final String country;
-  final String cityName;
-  final int cityID;
-  final Info info;
+  final Temperature info;
   final Wind wind;
   final String characteristic;
   final String description;
   final int clouds;
   final int sunrise, sunset;
+  final int pressure;
+  final int humidity;
+  final DateTime time;
 
   Location get location => Location(
         cityID: cityID,
@@ -28,8 +31,8 @@ class Weather {
       );
 
   AtmosphericData get atmosphere => AtmosphericData(
-        pressure: info.pressure,
-        humidity: info.humidity,
+        pressure: pressure,
+        humidity: humidity,
         clouds: clouds,
         description: description,
       );
@@ -42,17 +45,20 @@ class Weather {
       );
 
   const Weather({
-    this.cityName,
+    this.pressure,
+    this.humidity,
     this.cityID,
+    this.cityName,
     this.coordinates,
     this.country,
-    this.characteristic,
-    this.description,
     this.info,
     this.wind,
+    this.characteristic,
+    this.description,
     this.clouds,
     this.sunrise,
     this.sunset,
+    this.time,
   });
 
   factory Weather.fromJson(Map<String, dynamic> json) => Weather(
@@ -60,13 +66,16 @@ class Weather {
         country: json['sys']['country'],
         cityName: json['name'],
         cityID: json['id'] as int,
-        info: Info.fromJson(json['main']),
+        info: Temperature.fromJson(json['main']),
+        pressure: json['main']['pressure'] as int,
+        humidity: json['main']['humidity'] as int,
         wind: Wind.fromJson(json['wind']),
         characteristic: json['weather'][0]['main'],
         description: json['weather'][0]['description'],
         clouds: json['clouds']['all'] as int,
         sunrise: json['sys']['sunrise'] as int,
         sunset: json['sys']['sunset'] as int,
+        time: DateTime.fromMillisecondsSinceEpoch(json["dt"] as int),
       );
 
   @override
@@ -79,7 +88,7 @@ class Weather {
 }
 
 @JsonSerializable()
-class Info {
+class Temperature {
   @JsonKey(name: 'temp')
   final double temperature;
   @JsonKey(name: 'temp_min')
@@ -88,25 +97,22 @@ class Info {
   final double tempMax;
   @JsonKey(name: 'feels_like')
   final double feelsLike;
-  final int pressure;
-  final int humidity;
 
-  Info({
+  Temperature({
     this.temperature,
     this.tempMin,
     this.tempMax,
     this.feelsLike,
-    this.pressure,
-    this.humidity,
   });
 
-  factory Info.fromJson(Map<String, dynamic> json) => _$InfoFromJson(json);
+  factory Temperature.fromJson(Map<String, dynamic> json) =>
+      _$TemperatureFromJson(json);
 
-  Map<String, dynamic> toJson() => _$InfoToJson(this);
+  Map<String, dynamic> toJson() => _$TemperatureToJson(this);
   @override
   String toString() =>
       'Info{temperature: $temperature, tempMin: $tempMin, tempMax: $tempMax, '
-      'feelsLike: $feelsLike, pressure: $pressure, humidity: $humidity}';
+      'feelsLike: $feelsLike}';
 }
 
 @JsonSerializable()

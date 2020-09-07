@@ -10,7 +10,8 @@ class TemperatureDisplay extends StatelessWidget {
   final Color _temperatureColor;
 
   TemperatureDisplay(this._temperatures, {Key key})
-      : _temperatureColor = _calculateColor(_temperatures.feelsLike);
+      : _temperatureColor =
+            _calculateColor(_temperatures?.feelsLike ?? _temperatures.max);
 
   @override
   Widget build(BuildContext context) => WeatherCard(

@@ -1,3 +1,5 @@
+import 'package:bachelorweather/ui/common_widgets/state_controlling_widgets/location_selector.dart';
+import 'package:bachelorweather/ui/common_widgets/state_controlling_widgets/time_selector.dart';
 import 'package:flutter/material.dart';
 
 import '../model/weather.dart';
@@ -15,20 +17,21 @@ class SSPage extends StatefulWidget {
   const SSPage({
     Key key,
     this.transitionAnimation,
-    this.initialWeather,
+    @required this.initialWeather,
   }) : super(key: key);
   @override
   _SSPageState createState() => _SSPageState();
 }
 
 class _SSPageState extends State<SSPage> with TickerProviderStateMixin {
-  Weather weather;
+  Weather currentWeather;
+  List<Weather> forecast;
   bool loading = false;
   AnimationController _animationController;
 
   @override
   void initState() {
-    weather = widget.initialWeather;
+    currentWeather = widget.initialWeather;
     _animationController = AnimationController(
       duration: Duration(milliseconds: 1300),
       vsync: this,
@@ -50,83 +53,128 @@ class _SSPageState extends State<SSPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-      floatingActionButton: FloatingActionButton(
-        child: loading
-            ? CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(borderColor),
-              )
-            : Icon(Icons.refresh),
-        onPressed: _refreshWeatherData,
-        backgroundColor: cardColor,
-      ),
-      body: Stack(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              gradient: backgroundGradient,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        body: Stack(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                gradient: backgroundGradient,
+              ),
             ),
-          ),
-          weather == null
-              ? Container()
-              : FadeTransition(
-                  opacity: Tween<double>(begin: 0, end: 1)
-                      .animate(_animationController),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      SlideInWidget(
-                        animation: widget.transitionAnimation,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            LocationDisplay(weather?.location),
-                          ],
-                        ),
-                      ),
-                      SlideInWidget(
-                        animation: widget.transitionAnimation,
-                        fromRight: false,
-                        child: SunTimeDisplay(
-                          weather?.sunrise,
-                          weather?.sunset,
-                        ),
-                      ),
-                      SlideInWidget(
-                        animation: widget.transitionAnimation,
-                        child: TemperatureDisplay(weather?.temperature),
-                      ),
-                      SlideInWidget(
-                        child: AtmosphericDisplay(weather?.atmosphere),
-                        animation: widget.transitionAnimation,
-                        fromRight: false,
-                      ),
-                      Column(
-                        children: <Widget>[
-                          SlideInWidget(
-                            animation: widget.transitionAnimation,
-                            child: WindDisplay(
-                              weather?.wind,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+            FadeTransition(
+              opacity:
+                  Tween<double>(begin: 0, end: 1).animate(_animationController),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  SlideInWidget(
+                    animation: widget.transitionAnimation,
+                    slideDirection: AxisDirection.down,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        LocationDisplay(currentWeather?.location),
+                      ],
+                    ),
                   ),
+                  SlideInWidget(
+                    animation: widget.transitionAnimation,
+                    slideDirection: AxisDirection.down,
+                    child: SunTimeDisplay(
+                      currentWeather?.sunrise,
+                      currentWeather?.sunset,
+                    ),
+                  ),
+                  SlideInWidget(
+                    animation: widget.transitionAnimation,
+                    slideDirection: AxisDirection.right,
+                    child: TemperatureDisplay(currentWeather?.temperature),
+                  ),
+                  SlideInWidget(
+                    child: AtmosphericDisplay(currentWeather?.atmosphere),
+                    animation: widget.transitionAnimation,
+                    slideDirection: AxisDirection.left,
+                  ),
+                  SlideInWidget(
+                    animation: widget.transitionAnimation,
+                    slideDirection: AxisDirection.right,
+                    child: WindDisplay(
+                      currentWeather?.wind,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: SlideInWidget(
+                animation: widget.transitionAnimation,
+                slideDirection: AxisDirection.right,
+                child: TimeSelector(
+                  onTimeSelected: (time) => debugPrint("Time callback "
+                      "successful"),
                 ),
-        ],
-      ));
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: SlideInWidget(
+                animation: widget.transitionAnimation,
+                slideDirection: AxisDirection.left,
+                child: LocationSelector(
+                  onLocationSelected: (location) =>
+                      ApiHelper.get5DayForecastFor("Boston")
+                          .then((forecastList) {
+                    for (var weather in forecastList) {
+                      print(
+                        "Wind: ${weather.wind}, "
+                        "Temp: ${weather.temperature}, "
+                        "Clouds: ${weather.clouds}",
+                      );
+                    }
+                  }),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
 
-  void _refreshWeatherData() {
+  void _refreshWeatherData(context) async {
+//    final result = await showSlidingBottomSheet(
+//      context,
+//      builder: (context) => SlidingSheetDialog(
+//        elevation: 8,
+//        cornerRadius: 16,
+//        snapSpec: const SnapSpec(
+//          snap: true,
+//          snappings: [1.0],
+//          positioning: SnapPositioning.relativeToSheetHeight,
+//        ),
+//        builder: (context, state) => Container(
+//          child: Row(
+//            children: [
+//              Icon(
+//                CupertinoIcons.clock,
+//                size: 60,
+//              ),
+//            ],
+//          ),
+//        ),
+//      ),
+//    );
+//    setState(() {
+//      currentWeather = result ?? currentWeather;
+//    });
     setState(() {
       loading = true;
     });
-    ApiHelper()
-        .getCurrentWeatherFor('${weather.location.cityName}')
+    ApiHelper.getCurrentWeatherFor('${currentWeather.location.cityName}')
         .then((value) {
       setState(() {
-        weather = value;
+        currentWeather = value;
         loading = false;
       });
     });
@@ -136,13 +184,13 @@ class _SSPageState extends State<SSPage> with TickerProviderStateMixin {
 class SlideInWidget extends StatelessWidget {
   final Widget child;
   final Animation<double> animation;
-  final bool fromRight;
+  final AxisDirection slideDirection;
 
   const SlideInWidget({
     Key key,
     @required this.child,
     @required this.animation,
-    this.fromRight = true,
+    this.slideDirection = AxisDirection.left,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) => AnimatedBuilder(
@@ -150,7 +198,7 @@ class SlideInWidget extends StatelessWidget {
         builder: (context, child) => SlideTransition(
           child: child,
           position: Tween<Offset>(
-            begin: Offset(fromRight ? 1 : -1, fromRight ? 0 : 0),
+            begin: _calculateOffset(),
             end: Offset(0, 0),
           ).animate(
             CurvedAnimation(
@@ -162,4 +210,18 @@ class SlideInWidget extends StatelessWidget {
         ),
         child: child,
       );
+
+  // ignore: missing_return
+  Offset _calculateOffset() {
+    switch (slideDirection) {
+      case AxisDirection.up:
+        return Offset(0, 1);
+      case AxisDirection.right:
+        return Offset(-1, 0);
+      case AxisDirection.down:
+        return Offset(0, -1);
+      case AxisDirection.left:
+        return Offset(1, 0);
+    }
+  }
 }

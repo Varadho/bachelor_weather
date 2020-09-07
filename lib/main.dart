@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
         title: 'Comfortable Weather',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           textTheme: TextTheme(button: TextStyle(color: textColor)),
           primarySwatch: Colors.blue,

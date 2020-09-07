@@ -11,13 +11,15 @@ class ApiHelper {
 
   static const String forecastQuery = 'forecast';
 
+  static const String oneCallQuery = 'onecall';
+
   static const String cityQuery = '?q=';
 
   static const String units = '&units=metric';
 
   static const String apiKey = '&appid=573837f4c28160cee116989fa116e4dc';
 
-  Future<Weather> getCurrentWeatherFor(String location) async {
+  static Future<Weather> getCurrentWeatherFor(String location) async {
     try {
       var body = (await http.get(
         Uri.parse(
@@ -35,7 +37,7 @@ class ApiHelper {
     return null;
   }
 
-  Future<List<Weather>> get5DayForecastFor(String location) async {
+  static Future<List<Weather>> get5DayForecastFor(String location) async {
     try {
       var body = (await http.get(
         Uri.parse(
@@ -45,8 +47,41 @@ class ApiHelper {
         ),
       ))
           .body;
-      var json = jsonDecode(body);
+      print(body);
+      var json = jsonDecode(body) as Map<String, dynamic>;
+      var jsonWeatherList = (json["list"] as List)
+        ..forEach((weather) {
+          (json["city"] as Map<String, dynamic>).forEach(
+            (key, value) {
+              weather.putIfAbsent(key, () => value);
+            },
+          );
+        });
       //TODO Create an appropriate way to parse forecast data
+      return List<Weather>.generate(
+        jsonWeatherList.length,
+        (index) => Weather.fromJson(jsonWeatherList[index]),
+      );
+//      return Weather.fromJson(json);
+    } on Exception catch (e) {
+      print(e);
+    }
+    return [];
+  }
+
+  static Future<List<Weather>> getOneCallForecastFor(
+      String lat, String lon) async {
+    try {
+      var body = (await http.get(
+        Uri.parse(
+          '$baseUrl$oneCallQuery'
+          '&lat=$lat&lon=$lon'
+          '$units$apiKey',
+        ),
+      ))
+          .body;
+      var json = jsonDecode(body);
+      //TODO Create an appropriate way to parse one call data
 //      List<Weather>.generate(length, (index) => null)
 //      return Weather.fromJson(json);
     } on Exception catch (e) {

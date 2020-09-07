@@ -4,7 +4,6 @@ import '../model/weather.dart';
 import '../utility/api_helper.dart';
 import '../utility/constants/colors.dart';
 import '../utility/constants/enums.dart';
-import 'common_widgets/api_test_widget.dart';
 import 'common_widgets/homescreen_drawer.dart';
 
 class WeatherHomePage extends StatefulWidget {
@@ -43,9 +42,6 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
                       stateMethod: method,
                       currentWeather: selectedWeather,
                     ),
-                  ApiTestWidget(
-                    cityName: selectedWeather?.cityName,
-                  ),
                 ],
               ),
             ),
@@ -57,8 +53,7 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
       );
 
   _loadWeatherData(String location) {
-    ApiHelper()
-        .getCurrentWeatherFor(location)
+    ApiHelper.getCurrentWeatherFor(location)
         .then((value) => setState(() => selectedWeather = value));
   }
 }
