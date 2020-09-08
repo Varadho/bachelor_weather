@@ -5,7 +5,7 @@ class Location {
   final int cityID;
   final Coordinates coordinates;
   final String country;
-  Location({
+  const Location({
     this.coordinates,
     this.country,
     this.cityName,

@@ -133,7 +133,7 @@ class _SSPageState extends State<SSPage> with TickerProviderStateMixin {
                 slideDirection: AxisDirection.left,
                 child: LocationSelector(
                   onLocationSelected: (location) =>
-                      ApiHelper.get5DayForecastFor("Hamburg")
+                      ApiHelper.get5DayForecastFor(location.cityName)
                           .then((forecastList) {
                     for (var weather in forecastList) {
                       print(
@@ -146,6 +146,7 @@ class _SSPageState extends State<SSPage> with TickerProviderStateMixin {
                     }
                     setState(() {
                       forecast = forecastList;
+                      currentWeather = forecast[0];
                     });
                   }),
                 ),

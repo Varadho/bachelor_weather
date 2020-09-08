@@ -137,7 +137,7 @@ class Coordinates {
   @override
   String toString() => 'Coordinates{lat: $lat, lon: $lon}';
 
-  Coordinates({this.lat, this.lon});
+  const Coordinates({this.lat, this.lon});
 
   factory Coordinates.fromJson(Map<String, dynamic> json) =>
       _$CoordinatesFromJson(json);
