@@ -72,12 +72,7 @@ class _SSPageState extends State<SSPage> with TickerProviderStateMixin {
                   SlideInWidget(
                     animation: widget.transitionAnimation,
                     slideDirection: AxisDirection.down,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        LocationDisplay(currentWeather?.location),
-                      ],
-                    ),
+                    child: LocationDisplay(currentWeather?.location),
                   ),
                   SlideInWidget(
                     animation: widget.transitionAnimation,
@@ -93,17 +88,18 @@ class _SSPageState extends State<SSPage> with TickerProviderStateMixin {
                     child: TemperatureDisplay(currentWeather?.temperature),
                   ),
                   SlideInWidget(
-                    child: AtmosphericDisplay(currentWeather?.atmosphere),
-                    animation: widget.transitionAnimation,
-                    slideDirection: AxisDirection.left,
-                  ),
-                  SlideInWidget(
                     animation: widget.transitionAnimation,
                     slideDirection: AxisDirection.right,
                     child: WindDisplay(
                       currentWeather?.wind,
                     ),
                   ),
+                  SlideInWidget(
+                    child: AtmosphericDisplay(currentWeather?.atmosphere),
+                    animation: widget.transitionAnimation,
+                    slideDirection: AxisDirection.left,
+                  ),
+                  Container(),
                 ],
               ),
             ),
