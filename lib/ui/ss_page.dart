@@ -1,10 +1,10 @@
-import 'package:bachelorweather/ui/common_widgets/state_controlling_widgets/location_selector.dart';
-import 'package:bachelorweather/ui/common_widgets/state_controlling_widgets/time_selector.dart';
 import 'package:flutter/material.dart';
 
 import '../model/weather.dart';
 import '../utility/api_helper.dart';
 import '../utility/constants/colors.dart';
+import 'common_widgets/state_controlling_widgets/location_selector.dart';
+import 'common_widgets/state_controlling_widgets/time_selector.dart';
 import 'common_widgets/weather_displays/atmospheric_display.dart';
 import 'common_widgets/weather_displays/location_display.dart';
 import 'common_widgets/weather_displays/sun_time_display.dart';
@@ -32,6 +32,7 @@ class _SSPageState extends State<SSPage> with TickerProviderStateMixin {
   @override
   void initState() {
     currentWeather = widget.initialWeather;
+    _loadForecast();
     _animationController = AnimationController(
       duration: Duration(milliseconds: 1300),
       vsync: this,
@@ -125,6 +126,8 @@ class _SSPageState extends State<SSPage> with TickerProviderStateMixin {
                           .then((forecastList) {
                     for (var weather in forecastList) {
                       print(
+                        "Time: ${weather.time.hour.toString().padLeft(2, "0")}:"
+                        "${weather.time.minute.toString().padLeft(2, "0")} "
                         "Wind: ${weather.wind}, "
                         "Temp: ${weather.temperature}, "
                         "Clouds: ${weather.clouds}",
@@ -137,6 +140,13 @@ class _SSPageState extends State<SSPage> with TickerProviderStateMixin {
           ],
         ),
       );
+
+  void _loadForecast() async {
+    var update = await ApiHelper.get5DayForecastFor("Boston");
+    setState(() {
+      forecast = update;
+    });
+  }
 
   void _refreshWeatherData(context) async {
 //    final result = await showSlidingBottomSheet(

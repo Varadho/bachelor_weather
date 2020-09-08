@@ -57,7 +57,7 @@ class ApiHelper {
             },
           );
         });
-      //TODO Create an appropriate way to parse forecast data
+      //TODO Check if we're parsing correctly!
       return List<Weather>.generate(
         jsonWeatherList.length,
         (index) => Weather.fromJson(jsonWeatherList[index]),

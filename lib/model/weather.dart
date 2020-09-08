@@ -75,7 +75,7 @@ class Weather {
         clouds: json['clouds']['all'] as int,
         sunrise: json['sys']['sunrise'] as int,
         sunset: json['sys']['sunset'] as int,
-        time: DateTime.fromMillisecondsSinceEpoch(json["dt"] as int),
+        time: DateTime.fromMillisecondsSinceEpoch((json["dt"] as int) * 1000),
       );
 
   @override

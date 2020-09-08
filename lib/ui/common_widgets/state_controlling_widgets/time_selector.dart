@@ -19,6 +19,8 @@ class TimeSelector extends StatefulWidget {
 class _TimeSelectorState extends State<TimeSelector> {
   DateTime _selectedTime;
   final DateTime _now = DateTime.now();
+  bool _changing = false;
+  bool _longPressing = false;
 
   @override
   void initState() {
@@ -61,35 +63,39 @@ class _TimeSelectorState extends State<TimeSelector> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    FlatButton(
-                      shape: CircleBorder(),
-                      splashColor: backgroundColor2,
-                      child: Icon(
-                        Icons.remove,
-                        color: Colors.white,
-                        size: 75,
+                    InkWell(
+                      child: GestureDetector(
+                        onTapDown: (details) => _decreaseRapidly(),
+                        onTapUp: (details) => _haltChange(),
+                        onTapCancel: _haltChange,
+                        child: Icon(
+                          Icons.remove,
+                          color: Colors.white,
+                          size: 75,
+                        ),
                       ),
-                      onPressed: _decrementTime,
-                      onLongPress: () async => Stream.periodic(
-                        10.milliseconds,
-                        (index) => _decrementTime(),
-                      ),
+                      customBorder: CircleBorder(),
+                      splashColor: backgroundColor2.withOpacity(0.7),
+                      splashFactory: InkSplash.splashFactory,
+                      enableFeedback: false,
                     ),
                     Container(),
-                    FlatButton(
-                      shape: CircleBorder(),
-                      splashColor: backgroundColor2,
-                      child: Icon(
-                        Icons.add,
-                        color: Colors.white,
-                        size: 75,
+                    InkWell(
+                      child: GestureDetector(
+                        onTapDown: (details) => _increaseRapidly(),
+                        onTapUp: (details) => _haltChange(),
+                        onTapCancel: _haltChange,
+                        child: Icon(
+                          Icons.add,
+                          color: Colors.white,
+                          size: 75,
+                        ),
                       ),
-                      onPressed: _incrementTime,
-                      onLongPress: () => Stream.periodic(
-                        1.milliseconds,
-                        (index) => _incrementTime(),
-                      ),
-                    )
+                      customBorder: CircleBorder(),
+                      splashColor: backgroundColor2.withOpacity(0.7),
+                      splashFactory: InkSplash.splashFactory,
+                      enableFeedback: false,
+                    ),
                   ],
                 ),
               )
@@ -101,12 +107,12 @@ class _TimeSelectorState extends State<TimeSelector> {
   String _generateTimeString() {
     var out = StringBuffer();
     if (_selectedTime.weekday != _now.weekday ||
-        _selectedTime.difference(_now) >= 2.days) {
+        _selectedTime.difference(_now) > 1.days) {
       out.write(
-          "${Localizations.of<MaterialLocalizations>(context, MaterialLocalizations).narrowWeekdays[_selectedTime.weekday - 1]},");
+          "${Localizations.of<MaterialLocalizations>(context, MaterialLocalizations).narrowWeekdays[_selectedTime.weekday - 1]}, ");
     }
-    if (_selectedTime.difference(_now) >= 7.days) {
-      out.write(" ${_selectedTime.day}.${_selectedTime.month},");
+    if (_selectedTime.difference(_now) >= 6.days) {
+      out.write("${_selectedTime.day}.${_selectedTime.month}, ");
     }
     out.write(
       "${_selectedTime.hour.toString().padLeft(2, "0")}:"
@@ -128,4 +134,32 @@ class _TimeSelectorState extends State<TimeSelector> {
     });
     widget.onTimeSelected(_selectedTime);
   }
+
+  void _increaseRapidly() async {
+    _changeRapidly(_incrementTime);
+  }
+
+  void _decreaseRapidly() async {
+    _changeRapidly(_decrementTime);
+  }
+
+  void _changeRapidly(VoidCallback change) async {
+    if (_changing) return;
+    setState(() {
+      _changing = true;
+    });
+    _longPressing = true;
+    while (_longPressing) {
+      change();
+      await Future.delayed(100.milliseconds);
+    }
+    setState(() {
+      _changing = false;
+    });
+  }
+
+  void _haltChange() => setState(() {
+        _changing = false;
+        _longPressing = false;
+      });
 }
