@@ -33,8 +33,9 @@ class SunTimeDisplay extends StatelessWidget {
                         TextSpan(
                             style: dataStyle,
                             text:
-                                "${DateTime.fromMillisecondsSinceEpoch(_sunrise * 1000).hour}"
-                                ":${DateTime.fromMillisecondsSinceEpoch(_sunrise * 1000).minute < 10 ? "0" : ""}${DateTime.fromMillisecondsSinceEpoch(_sunrise * 1000).minute}")
+                                "${DateTime.fromMillisecondsSinceEpoch(_sunrise ?? 0 * 1000).hour}"
+                                ":${DateTime.fromMillisecondsSinceEpoch(_sunrise ?? 0 * 1000).minute < 10 ? "0" : ""}"
+                                "${DateTime.fromMillisecondsSinceEpoch(_sunrise ?? 0 * 1000).minute}")
                       ],
                     ),
                   ),
@@ -68,8 +69,8 @@ class SunTimeDisplay extends StatelessWidget {
                         TextSpan(
                             style: dataStyle,
                             text:
-                                "${DateTime.fromMillisecondsSinceEpoch(_sunset * 1000).hour}"
-                                ":${DateTime.fromMillisecondsSinceEpoch(_sunset * 1000).minute < 10 ? "0" : ""}${DateTime.fromMillisecondsSinceEpoch(_sunset * 1000).minute}")
+                                "${DateTime.fromMillisecondsSinceEpoch(_sunset ?? 0 * 1000).hour}"
+                                ":${DateTime.fromMillisecondsSinceEpoch(_sunset ?? 0 * 1000).minute < 10 ? "0" : ""}${DateTime.fromMillisecondsSinceEpoch(_sunset ?? 0 * 1000).minute}")
                       ],
                     ),
                   ),

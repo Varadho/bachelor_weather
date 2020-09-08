@@ -123,14 +123,14 @@ class _TimeSelectorState extends State<TimeSelector> {
 
   void _incrementTime() {
     setState(() {
-      _selectedTime = _selectedTime + 20.minutes;
+      _selectedTime = _selectedTime + 3.hours;
     });
     widget.onTimeSelected(_selectedTime);
   }
 
   void _decrementTime() {
     setState(() {
-      _selectedTime = _selectedTime - 20.minutes;
+      _selectedTime = _selectedTime - 3.hours;
     });
     widget.onTimeSelected(_selectedTime);
   }

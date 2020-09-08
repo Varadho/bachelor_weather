@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:time/time.dart';
 
 import '../model/weather.dart';
 import '../utility/api_helper.dart';
@@ -26,7 +27,6 @@ class SSPage extends StatefulWidget {
 class _SSPageState extends State<SSPage> with TickerProviderStateMixin {
   Weather currentWeather;
   List<Weather> forecast;
-  bool loading = false;
   AnimationController _animationController;
 
   @override
@@ -110,8 +110,19 @@ class _SSPageState extends State<SSPage> with TickerProviderStateMixin {
                 animation: widget.transitionAnimation,
                 slideDirection: AxisDirection.right,
                 child: TimeSelector(
-                  onTimeSelected: (time) => debugPrint("Time callback "
-                      "successful"),
+                  initialTime: currentWeather.time,
+                  onTimeSelected: (time) => setState(
+                    () => currentWeather = forecast.firstWhere(
+                      (weather) => time.difference(weather.time) < 2.hours,
+                      orElse: () {
+                        if (forecast[0].time.difference(time).isNegative) {
+                          return forecast[0];
+                        } else {
+                          return forecast[forecast.length - 1];
+                        }
+                      },
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -122,7 +133,7 @@ class _SSPageState extends State<SSPage> with TickerProviderStateMixin {
                 slideDirection: AxisDirection.left,
                 child: LocationSelector(
                   onLocationSelected: (location) =>
-                      ApiHelper.get5DayForecastFor("Boston")
+                      ApiHelper.get5DayForecastFor("Hamburg")
                           .then((forecastList) {
                     for (var weather in forecastList) {
                       print(
@@ -133,6 +144,9 @@ class _SSPageState extends State<SSPage> with TickerProviderStateMixin {
                         "Clouds: ${weather.clouds}",
                       );
                     }
+                    setState(() {
+                      forecast = forecastList;
+                    });
                   }),
                 ),
               ),
@@ -142,7 +156,7 @@ class _SSPageState extends State<SSPage> with TickerProviderStateMixin {
       );
 
   void _loadForecast() async {
-    var update = await ApiHelper.get5DayForecastFor("Boston");
+    var update = await ApiHelper.get5DayForecastFor("Hamburg");
     setState(() {
       forecast = update;
     });
@@ -174,16 +188,16 @@ class _SSPageState extends State<SSPage> with TickerProviderStateMixin {
 //    setState(() {
 //      currentWeather = result ?? currentWeather;
 //    });
-    setState(() {
-      loading = true;
-    });
-    ApiHelper.getCurrentWeatherFor('${currentWeather.location.cityName}')
-        .then((value) {
-      setState(() {
-        currentWeather = value;
-        loading = false;
-      });
-    });
+//    setState(() {
+//      loading = true;
+//    });
+//    ApiHelper.getCurrentWeatherFor('${currentWeather.location.cityName}')
+//        .then((value) {
+//      setState(() {
+//        currentWeather = value;
+//        loading = false;
+//      });
+//    });
   }
 }
 
