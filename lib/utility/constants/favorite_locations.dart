@@ -31,4 +31,52 @@ const Location koeln = Location(
   ),
 );
 
-const List<Location> favoriteLocations = <Location>[hh, giessen, koeln];
+const Location london = Location(
+  cityID: 2643743,
+  cityName: "London",
+  country: "GB",
+  coordinates: Coordinates(
+    lon: -0.12574,
+    lat: 51.50853,
+  ),
+);
+
+const Location marseille = Location(
+  cityID: 2995469,
+  cityName: "Marseille",
+  country: "FR",
+  coordinates: Coordinates(
+    lon: 5.38107,
+    lat: 43.296951,
+  ),
+);
+
+const Location tokyo = Location(
+  cityID: 1850147,
+  cityName: "Tokyo",
+  country: "JP",
+  coordinates: Coordinates(
+    lon: 139.691711,
+    lat: 35.689499,
+  ),
+);
+
+const Location kapstadt = Location(
+  cityID: 3369157,
+  cityName: "Cape Town",
+  country: "ZA",
+  coordinates: Coordinates(
+    lon: 18.42322,
+    lat: -33.925838,
+  ),
+);
+
+const List<Location> favoriteLocations = <Location>[
+  giessen,
+  koeln,
+  hh,
+  marseille,
+  tokyo,
+  london,
+  kapstadt,
+];
