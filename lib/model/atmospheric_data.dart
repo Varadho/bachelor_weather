@@ -8,4 +8,9 @@ class AtmosphericData {
     this.clouds,
     this.description,
   });
+
+  @override
+  String toString() =>
+      'AtmosphericData{pressure: $pressure, humidity: $humidity, '
+      'clouds: $clouds, description: $description}';
 }

@@ -1,8 +1,7 @@
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:bachelorweather/utility/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:time/time.dart';
 
+import '../../../utility/constants/colors.dart';
 import '../../../utility/constants/text_styles.dart';
 import 'expandable_controls.dart';
 
@@ -52,9 +51,21 @@ class _TimeSelectorState extends State<TimeSelector> {
                       color: Colors.white,
                     ),
                   ),
-                  AutoSizeText(
-                    _generateTimeString(),
-                    style: headingStyle.copyWith(fontSize: 38),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          _generateDateString(),
+                          style: headingStyle.copyWith(fontSize: 24),
+                        ),
+                        Text(
+                          _generateTimeString(),
+                          style: headingStyle.copyWith(fontSize: 38),
+                        ),
+                      ],
+                    ),
                   )
                 ],
               ),
@@ -104,22 +115,17 @@ class _TimeSelectorState extends State<TimeSelector> {
         ),
       );
 
-  String _generateTimeString() {
-    var out = StringBuffer();
-    if (_selectedTime.weekday != _now.weekday ||
-        _selectedTime.difference(_now) > 1.days) {
-      out.write(
-          "${Localizations.of<MaterialLocalizations>(context, MaterialLocalizations).narrowWeekdays[_selectedTime.weekday - 1]}, ");
+  String _generateDateString() {
+    if (_selectedTime.weekday != _now.weekday) {
+      return "${Localizations.of<MaterialLocalizations>(context, MaterialLocalizations).narrowWeekdays[_selectedTime.weekday - 1]}, "
+          "${_selectedTime.day}.${_selectedTime.month}";
     }
-    if (_selectedTime.difference(_now) >= 6.days) {
-      out.write("${_selectedTime.day}.${_selectedTime.month}, ");
-    }
-    out.write(
-      "${_selectedTime.hour.toString().padLeft(2, "0")}:"
-      "${_selectedTime.minute.toString().padLeft(2, "0")}",
-    );
-    return out.toString();
+    return "Today";
   }
+
+  String _generateTimeString() =>
+      "${_selectedTime.hour.toString().padLeft(2, "0")}:"
+      "${_selectedTime.minute.toString().padLeft(2, "0")}";
 
   void _incrementTime() {
     setState(() {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../model/weather.dart';
-import '../../utility/api_helper.dart';
 import '../../utility/constants/colors.dart';
 
 class ApiTestWidget extends StatefulWidget {
@@ -30,14 +29,7 @@ class _ApiTestWidgetState extends State<ApiTestWidget> {
                     style: TextStyle(fontSize: 24),
                   ),
                 ),
-                onPressed: () =>
-                    ApiHelper.getCurrentWeatherFor(widget.cityName).then(
-                  (value) {
-                    setState(
-                      () => weather = value,
-                    );
-                  },
-                ),
+                onPressed: () => null,
               ),
             ),
             Text(

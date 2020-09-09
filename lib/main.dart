@@ -6,8 +6,12 @@ import 'model/weather.dart';
 import 'ui/redux/reducer.dart';
 import 'ui/weather_home_page.dart';
 import 'utility/constants/colors.dart';
+import 'utility/repository.dart';
 
 void main() {
+  ///Create first and only instance of WeatherRepository, so it'll start
+  ///loading.
+  WeatherRepository();
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   //TODO Use the store, Luke!

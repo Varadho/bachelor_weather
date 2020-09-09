@@ -75,7 +75,6 @@ extension Utility on StateMethod {
               maintainState: false,
               pageBuilder: (context, animation, secondaryAnimation) => SSPage(
                 transitionAnimation: animation,
-                initialWeather: argument,
               ),
             );
       case StateMethod.INHERITED:

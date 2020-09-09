@@ -61,7 +61,10 @@ class TemperatureDisplay extends StatelessWidget {
                       ),
                       child: Row(
                         children: <Widget>[
-                          Icon(FontAwesomeIcons.longArrowAltUp),
+                          Icon(
+                            FontAwesomeIcons.longArrowAltUp,
+                            color: Colors.red,
+                          ),
                           Text(
                             "${_temperatures.max.toStringAsFixed(2)}°C ",
                             style: dataStyle,
@@ -76,7 +79,10 @@ class TemperatureDisplay extends StatelessWidget {
                       ),
                       child: Row(
                         children: <Widget>[
-                          Icon(FontAwesomeIcons.longArrowAltDown),
+                          Icon(
+                            FontAwesomeIcons.longArrowAltDown,
+                            color: Colors.lightBlue,
+                          ),
                           Text(
                             "${_temperatures.min.toStringAsFixed(2)}°C ",
                             style: dataStyle,

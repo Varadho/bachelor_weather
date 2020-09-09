@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../model/weather.dart';
-import '../utility/api_helper.dart';
 import '../utility/constants/colors.dart';
 import '../utility/constants/enums.dart';
-import 'common_widgets/homescreen_drawer.dart';
 
 class WeatherHomePage extends StatefulWidget {
   @override
@@ -14,12 +12,6 @@ class WeatherHomePage extends StatefulWidget {
 class _WeatherHomePageState extends State<WeatherHomePage> {
   Weather selectedWeather;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
-
-  @override
-  void initState() {
-    _loadWeatherData("Gießen");
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -40,22 +32,13 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
                   for (var method in StateMethod.values)
                     HomeTile(
                       stateMethod: method,
-                      currentWeather: selectedWeather,
                     ),
                 ],
               ),
             ),
           ],
         ),
-        drawer: HomescreenDrawer(
-          loadingCallback: _loadWeatherData,
-        ),
       );
-
-  _loadWeatherData(String location) {
-    ApiHelper.getCurrentWeatherFor(location)
-        .then((value) => setState(() => selectedWeather = value));
-  }
 }
 
 class HomeTile extends StatelessWidget {

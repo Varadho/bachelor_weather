@@ -18,7 +18,6 @@ class LocationSelector extends StatefulWidget {
 
 class _LocationControlWidgetState extends State<LocationSelector> {
   Location _selectedLocation;
-  bool _typing = false;
 
   @override
   Widget build(BuildContext context) => ExpandableControls(
@@ -47,42 +46,35 @@ class _LocationControlWidgetState extends State<LocationSelector> {
                 ),
               ],
             ),
-            _typing
-                ? _searchResults()
-                : Container(
-                    height: 190,
-                    child: ListView.builder(
-                      padding: EdgeInsets.zero,
-                      itemExtent: 40,
-                      shrinkWrap: true,
-                      itemCount: favoriteLocations.length,
-                      itemBuilder: (context, index) => ListTile(
-                        leading: Icon(
-                          Icons.location_on,
-                          size: 40,
-                          color: Colors.white,
-                        ),
-                        title: Text(
-                          favoriteLocations[index].cityName,
-                          style: headingStyle.copyWith(fontSize: 24),
-                        ),
-                        onTap: () {
-                          setState(() {
-                            _selectedLocation = favoriteLocations[index];
-                          });
-                          widget.onLocationSelected(
-                            _selectedLocation,
-                          );
-                        },
-                      ),
-                    ),
-                  )
+            Container(
+              height: 190,
+              child: ListView.builder(
+                padding: EdgeInsets.zero,
+                itemExtent: 40,
+                shrinkWrap: true,
+                itemCount: favoriteLocations.length,
+                itemBuilder: (context, index) => ListTile(
+                  leading: Icon(
+                    Icons.location_on,
+                    size: 40,
+                    color: Colors.white,
+                  ),
+                  title: Text(
+                    favoriteLocations[index].cityName,
+                    style: headingStyle.copyWith(fontSize: 24),
+                  ),
+                  onTap: () {
+                    setState(() {
+                      _selectedLocation = favoriteLocations[index];
+                    });
+                    widget.onLocationSelected(
+                      _selectedLocation,
+                    );
+                  },
+                ),
+              ),
+            )
           ],
         ),
-      );
-
-  Widget _searchResults() => Text(
-        "Search results here",
-        style: headingStyle,
       );
 }

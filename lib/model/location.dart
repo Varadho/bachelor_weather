@@ -11,4 +11,7 @@ class Location {
     this.cityName,
     this.cityID,
   });
+
+  @override
+  String toString() => "$cityName, $country";
 }

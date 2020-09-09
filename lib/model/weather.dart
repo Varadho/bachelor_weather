@@ -22,6 +22,8 @@ class Weather {
   final int pressure;
   final int humidity;
   final DateTime time;
+  final int _timezone;
+  int get timezone => _timezone;
 
   Location get location => Location(
         cityID: cityID,
@@ -59,11 +61,12 @@ class Weather {
     this.sunrise,
     this.sunset,
     this.time,
-  });
+    int timezone,
+  }) : _timezone = timezone ?? 0;
 
   factory Weather.fromJson(Map<String, dynamic> json) => Weather(
         coordinates: Coordinates.fromJson(json['coord']),
-        country: json['sys']['country'],
+        country: json['country'],
         cityName: json['name'],
         cityID: json['id'] as int,
         info: Temperature.fromJson(json['main']),
@@ -73,16 +76,19 @@ class Weather {
         characteristic: json['weather'][0]['main'],
         description: json['weather'][0]['description'],
         clouds: json['clouds']['all'] as int,
-        sunrise: json['sys']['sunrise'] as int,
-        sunset: json['sys']['sunset'] as int,
+        sunrise: (json['sunrise'] as int) * 1000,
+        sunset: (json['sunset'] as int) * 1000,
         time: DateTime.fromMillisecondsSinceEpoch((json["dt"] as int) * 1000),
+        timezone: (json["timezone"] as int),
       );
 
   @override
-  String toString() => '{Weather:{coordinates: $coordinates, '
-      'country: $country, cityName: $cityName, cityID: $cityID, info: '
-      '$info, wind: $wind, characteristic: $characteristic, description: '
-      '$description, clouds: $clouds, sunrise: $sunrise, sunset: $sunset}}';
+  String toString() => 'Weather{cityID: $cityID, cityName: $cityName, '
+      'coordinates: $coordinates, country: $country, '
+      'info: $info, wind: $wind, characteristic: $characteristic, '
+      'description: $description, clouds: $clouds, sunrise: $sunrise, '
+      'sunset: $sunset, pressure: $pressure, humidity: $humidity, '
+      'time: $time, _timezone: $_timezone}';
 
   Map<String, dynamic> toJson() => jsonDecode(toString());
 }
