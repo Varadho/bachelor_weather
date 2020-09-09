@@ -43,9 +43,6 @@ class WeatherRepository {
 
   void _loadWeatherForLocation(Location loc) async {
     var weatherList = await ApiHelper.get5DayForecastFor(loc.cityName);
-    for (var w in weatherList) {
-      print(w.time);
-    }
     _weatherMap[loc] = weatherList;
   }
 
