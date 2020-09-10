@@ -69,27 +69,6 @@ class ApiHelper {
     }
     return result;
   }
-
-//  static Future<List<Weather>> getOneCallForecastFor(
-//      String lat, String lon) async {
-//    try {
-//      var body = (await http.get(
-//        Uri.parse(
-//          '$baseUrl$oneCallQuery'
-//          '&lat=$lat&lon=$lon'
-//          '$units$apiKey',
-//        ),
-//      ))
-//          .body;
-//      var json = jsonDecode(body);
-//      //TODO Create an appropriate way to parse one call data
-////      List<Weather>.generate(length, (index) => null)
-////      return Weather.fromJson(json);
-//    } on Exception catch (e) {
-//      print(e);
-//    }
-//    return null;
-//  }
 }
 /*
 * Parameters:

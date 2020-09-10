@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import '../model/weather.dart';
 import '../utility/constants/colors.dart';
 import '../utility/repository.dart';
-import 'common_widgets/state_controlling_widgets/location_selector.dart';
-import 'common_widgets/state_controlling_widgets/time_selector.dart';
-import 'common_widgets/weather_displays/atmospheric_display.dart';
-import 'common_widgets/weather_displays/location_display.dart';
-import 'common_widgets/weather_displays/sun_time_display.dart';
-import 'common_widgets/weather_displays/temperature_display.dart';
-import 'common_widgets/weather_displays/wind_display.dart';
+import 'common_widgets/controls/location_selector.dart';
+import 'common_widgets/controls/time_selector.dart';
+import 'common_widgets/displays/atmospheric_display.dart';
+import 'common_widgets/displays/location_display.dart';
+import 'common_widgets/displays/sun_time_display.dart';
+import 'common_widgets/displays/temperature_display.dart';
+import 'common_widgets/displays/wind_display.dart';
 
 class SSPage extends StatefulWidget {
   final Animation<double> transitionAnimation;
