@@ -1,21 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:time/time.dart';
 
 import '../../../utility/constants/text_styles.dart';
 import '../weather_card.dart';
 
 class SunTimeDisplay extends StatelessWidget {
   final DateTime _sunrise, _sunset;
-  final int timezone;
   final String _date = "${DateTime.now().day}."
       "${DateTime.now().month}."
       "${DateTime.now().year}";
-  SunTimeDisplay(int sunrise, int sunset, {Key key, this.timezone = 0})
-      : _sunrise =
-            DateTime.fromMillisecondsSinceEpoch(sunrise) + timezone.seconds,
-        _sunset =
-            DateTime.fromMillisecondsSinceEpoch(sunset) + timezone.seconds,
-        super(key: key);
+
+  SunTimeDisplay(this._sunrise, this._sunset);
 
   @override
   Widget build(BuildContext context) => WeatherCard(
@@ -44,10 +38,11 @@ class SunTimeDisplay extends StatelessWidget {
                           style: TextStyle(fontSize: 16),
                           children: <InlineSpan>[
                             TextSpan(
-                                style: dataStyle,
-                                text:
-                                    "${_sunrise.hour.toString().padLeft(2, "0")}:"
-                                    "${_sunrise.minute.toString().padLeft(2, "0")}")
+                              style: dataStyle,
+                              text:
+                                  "${_sunrise.hour.toString().padLeft(2, "0")}:"
+                                  "${_sunrise.minute.toString().padLeft(2, "0")}",
+                            )
                           ],
                         ),
                       ),
@@ -79,10 +74,11 @@ class SunTimeDisplay extends StatelessWidget {
                           style: TextStyle(fontSize: 16),
                           children: <InlineSpan>[
                             TextSpan(
-                                style: dataStyle,
-                                text:
-                                    "${_sunset.hour.toString().padLeft(2, "0")}:"
-                                    "${_sunset.minute.toString().padLeft(2, "0")}")
+                              style: dataStyle,
+                              text:
+                                  "${_sunset.hour.toString().padLeft(2, "0")}:"
+                                  "${_sunset.minute.toString().padLeft(2, "0")}",
+                            )
                           ],
                         ),
                       ),

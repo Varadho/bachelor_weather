@@ -55,9 +55,7 @@ class _SSPageState extends State<SSPage> with TickerProviderStateMixin {
                   animation: widget.transitionAnimation,
                   slideDirection: AxisDirection.down,
                   child: SunTimeDisplay(
-                    currentWeather?.sunrise,
-                    currentWeather?.sunset,
-                  ),
+                      currentWeather.sunrise, currentWeather.sunset),
                 ),
                 SlideInWidget(
                   animation: widget.transitionAnimation,

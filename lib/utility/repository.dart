@@ -1,6 +1,5 @@
 import 'package:time/time.dart';
 
-import '../model/location.dart';
 import '../model/weather.dart';
 import 'api_helper.dart';
 import 'constants/favorite_locations.dart';
@@ -15,10 +14,10 @@ class WeatherRepository {
     _loadData();
   }
 
-  Location _currentLocation;
+  LocationData _currentLocation;
   DateTime _currentTime = DateTime.now();
-  static const List<Location> _locations = favoriteLocations;
-  final Map<Location, List<Weather>> _weatherMap = {};
+  static const List<LocationData> _locations = favoriteLocations;
+  final Map<LocationData, List<Weather>> _weatherMap = {};
 
   bool _loading = false;
   bool get isLoading => _loading;
@@ -36,12 +35,12 @@ class WeatherRepository {
     return currentWeather;
   }
 
-  Weather changeLocation(Location l) {
+  Weather changeLocation(LocationData l) {
     _currentLocation = l;
     return currentWeather;
   }
 
-  void _loadWeatherForLocation(Location loc) async {
+  void _loadWeatherForLocation(LocationData loc) async {
     var weatherList = await ApiHelper.get5DayForecastFor(loc.cityName);
     _weatherMap[loc] = weatherList;
   }

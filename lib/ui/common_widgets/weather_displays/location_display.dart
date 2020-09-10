@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../model/location.dart';
+import '../../../model/weather.dart';
 import '../../../utility/constants/text_styles.dart';
 import '../weather_card.dart';
 
 class LocationDisplay extends StatelessWidget {
-  final Location _location;
+  final LocationData _location;
 
   const LocationDisplay(
     this._location, {

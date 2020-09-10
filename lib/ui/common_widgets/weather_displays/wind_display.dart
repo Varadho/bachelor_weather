@@ -6,7 +6,7 @@ import '../weather_card.dart';
 import 'compass_widget.dart';
 
 class WindDisplay extends StatelessWidget {
-  final Wind _wind;
+  final WindData _wind;
 
   WindDisplay(
     this._wind, {

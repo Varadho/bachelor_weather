@@ -2,13 +2,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import '../../../model/location.dart';
+import '../../../model/weather.dart';
 import '../../../utility/constants/favorite_locations.dart';
 import '../../../utility/constants/text_styles.dart';
 import 'expandable_controls.dart';
 
 class LocationSelector extends StatefulWidget {
-  final ValueChanged<Location> onLocationSelected;
+  final ValueChanged<LocationData> onLocationSelected;
 
   const LocationSelector({Key key, this.onLocationSelected}) : super(key: key);
 
@@ -17,7 +17,7 @@ class LocationSelector extends StatefulWidget {
 }
 
 class _LocationControlWidgetState extends State<LocationSelector> {
-  Location _selectedLocation;
+  LocationData _selectedLocation;
 
   @override
   Widget build(BuildContext context) => ExpandableControls(

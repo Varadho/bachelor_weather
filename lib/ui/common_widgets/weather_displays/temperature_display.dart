@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../model/temperatures.dart';
+import '../../../model/weather.dart';
 import '../../../utility/constants/text_styles.dart';
 import '../weather_card.dart';
 
 class TemperatureDisplay extends StatelessWidget {
-  final Temperatures _temperatures;
+  final TemperatureData _temperatures;
   final Color _temperatureColor;
 
   TemperatureDisplay(this._temperatures, {Key key})

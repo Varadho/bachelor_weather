@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../model/weather.dart';
+import 'api_key.dart';
 
 class ApiHelper {
   static const String baseUrl = 'https://api.openweathermap.org/data/2.5/';
@@ -16,8 +17,6 @@ class ApiHelper {
   static const String cityQuery = '?q=';
 
   static const String units = '&units=metric';
-
-  static const String apiKey = '&appid=573837f4c28160cee116989fa116e4dc';
 
   static Future<Weather> getCurrentWeatherFor(String location) async {
     try {

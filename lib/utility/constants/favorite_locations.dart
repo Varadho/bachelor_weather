@@ -1,7 +1,6 @@
-import '../../model/location.dart';
 import '../../model/weather.dart';
 
-const Location hh = Location(
+const LocationData hh = LocationData(
   cityID: 6547395,
   cityName: "Hamburg",
   country: "DE",
@@ -11,7 +10,7 @@ const Location hh = Location(
   ),
 );
 
-const Location giessen = Location(
+const LocationData giessen = LocationData(
   cityID: 2920512,
   cityName: "Gießen",
   country: "DE",
@@ -21,7 +20,7 @@ const Location giessen = Location(
   ),
 );
 
-const Location koeln = Location(
+const LocationData koeln = LocationData(
   cityID: 2920512,
   cityName: "Köln",
   country: "DE",
@@ -31,7 +30,7 @@ const Location koeln = Location(
   ),
 );
 
-const Location london = Location(
+const LocationData london = LocationData(
   cityID: 2643743,
   cityName: "London",
   country: "GB",
@@ -41,7 +40,7 @@ const Location london = Location(
   ),
 );
 
-const Location marseille = Location(
+const LocationData marseille = LocationData(
   cityID: 2995469,
   cityName: "Marseille",
   country: "FR",
@@ -51,7 +50,7 @@ const Location marseille = Location(
   ),
 );
 
-const Location tokyo = Location(
+const LocationData tokyo = LocationData(
   cityID: 1850147,
   cityName: "Tokyo",
   country: "JP",
@@ -61,7 +60,7 @@ const Location tokyo = Location(
   ),
 );
 
-const Location kapstadt = Location(
+const LocationData kapstadt = LocationData(
   cityID: 3369157,
   cityName: "Cape Town",
   country: "ZA",
@@ -71,7 +70,7 @@ const Location kapstadt = Location(
   ),
 );
 
-const List<Location> favoriteLocations = <Location>[
+const List<LocationData> favoriteLocations = <LocationData>[
   giessen,
   koeln,
   hh,
