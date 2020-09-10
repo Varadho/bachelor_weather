@@ -15,8 +15,8 @@ class LocationDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var northOrSouth = _location.coordinates.lat > 0 ? 'North' : 'South';
-    var eastOrWest = _location.coordinates.lon > 0 ? 'East' : 'West';
+    var northOrSouth = _location.coord.lat > 0 ? 'North' : 'South';
+    var eastOrWest = _location.coord.lon > 0 ? 'East' : 'West';
     return WeatherCard(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -36,14 +36,14 @@ class LocationDisplay extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Text(
-                  '${_location.coordinates.lat.abs().toStringAsFixed(2)}° $northOrSouth',
+                  '${_location.coord.lat.abs().toStringAsFixed(2)}° $northOrSouth',
                   style: subtitleStyle,
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width / 6,
                 ),
                 Text(
-                  '${_location.coordinates.lon.abs().toStringAsFixed(2)}° $eastOrWest',
+                  '${_location.coord.lon.abs().toStringAsFixed(2)}° $eastOrWest',
                   style: subtitleStyle,
                 )
               ],

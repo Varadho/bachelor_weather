@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:time/time.dart';
 
 import '../model/weather.dart';
@@ -10,13 +11,12 @@ class WeatherRepository {
   factory WeatherRepository() => _singleton;
 
   WeatherRepository._internal() {
-    _currentLocation = _locations.first;
+    _currentLocation = favoriteLocations.first;
     _loadData();
   }
 
   LocationData _currentLocation;
   DateTime _currentTime = DateTime.now();
-  static const List<LocationData> _locations = favoriteLocations;
   final Map<LocationData, List<Weather>> _weatherMap = {};
 
   bool _loading = false;
@@ -47,9 +47,10 @@ class WeatherRepository {
 
   void _loadData() async {
     _loading = true;
-    for (var location in _locations) {
+    for (var location in favoriteLocations) {
       await _loadWeatherForLocation(location);
     }
     _loading = false;
+    debugPrint("Loading weather data complete");
   }
 }

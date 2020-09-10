@@ -2,7 +2,9 @@ part of 'weather.dart';
 
 @JsonSerializable()
 class AtmosphericData {
-  final int pressure, humidity, clouds;
+  final int pressure, humidity;
+  @JsonKey(name: "all")
+  final int clouds;
   final String description;
 
   const AtmosphericData({

@@ -6,45 +6,11 @@ part of 'weather.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Weather _$WeatherFromJson(Map<String, dynamic> json) {
-  return Weather(
-    atmosphere: json['atmosphere'] == null
-        ? null
-        : AtmosphericData.fromJson(json['atmosphere'] as Map<String, dynamic>),
-    coords: json['coords'] == null
-        ? null
-        : Coordinates.fromJson(json['coords'] as Map<String, dynamic>),
-    location: json['location'] == null
-        ? null
-        : LocationData.fromJson(json['location'] as Map<String, dynamic>),
-    temperature: json['temperature'] == null
-        ? null
-        : TemperatureData.fromJson(json['temperature'] as Map<String, dynamic>),
-    wind: json['wind'] == null
-        ? null
-        : WindData.fromJson(json['wind'] as Map<String, dynamic>),
-    time: json['time'] as int,
-    sunrise: json['sunrise'] as int,
-    sunset: json['sunset'] as int,
-  );
-}
-
-Map<String, dynamic> _$WeatherToJson(Weather instance) => <String, dynamic>{
-      'atmosphere': instance.atmosphere?.toJson(),
-      'coords': instance.coords?.toJson(),
-      'location': instance.location?.toJson(),
-      'temperature': instance.temperature?.toJson(),
-      'wind': instance.wind?.toJson(),
-      'sunrise': instance.sunrise?.toIso8601String(),
-      'sunset': instance.sunset?.toIso8601String(),
-      'time': instance.time?.toIso8601String(),
-    };
-
 AtmosphericData _$AtmosphericDataFromJson(Map<String, dynamic> json) {
   return AtmosphericData(
     pressure: json['pressure'] as int,
     humidity: json['humidity'] as int,
-    clouds: json['clouds'] as int,
+    clouds: json['all'] as int,
     description: json['description'] as String,
   );
 }
@@ -53,7 +19,7 @@ Map<String, dynamic> _$AtmosphericDataToJson(AtmosphericData instance) =>
     <String, dynamic>{
       'pressure': instance.pressure,
       'humidity': instance.humidity,
-      'clouds': instance.clouds,
+      'all': instance.clouds,
       'description': instance.description,
     };
 
@@ -72,21 +38,25 @@ Map<String, dynamic> _$CoordinatesToJson(Coordinates instance) =>
 
 LocationData _$LocationDataFromJson(Map<String, dynamic> json) {
   return LocationData(
-    coordinates: json['coordinates'] == null
+    coord: json['coord'] == null
         ? null
-        : Coordinates.fromJson(json['coordinates'] as Map<String, dynamic>),
+        : Coordinates.fromJson(json['coord'] as Map<String, dynamic>),
     country: json['country'] as String,
-    cityName: json['cityName'] as String,
-    cityID: json['cityID'] as int,
+    cityName: json['name'] as String,
+    cityID: json['id'] as int,
+    sunrise: json['sunrise'] as int,
+    sunset: json['sunset'] as int,
   );
 }
 
 Map<String, dynamic> _$LocationDataToJson(LocationData instance) =>
     <String, dynamic>{
-      'cityName': instance.cityName,
-      'cityID': instance.cityID,
-      'coordinates': instance.coordinates,
+      'name': instance.cityName,
+      'id': instance.cityID,
+      'coord': instance.coord,
       'country': instance.country,
+      'sunrise': instance.sunrise?.toIso8601String(),
+      'sunset': instance.sunset?.toIso8601String(),
     };
 
 SunTime _$SunTimeFromJson(Map<String, dynamic> json) {

@@ -29,7 +29,7 @@ class ApiHelper {
       ))
           .body;
       var json = jsonDecode(body);
-      return Weather.fromJson(json);
+//      return Weather.fromJson(json);
     } on Exception catch (e) {
       print(e);
     }
@@ -37,6 +37,7 @@ class ApiHelper {
   }
 
   static Future<List<Weather>> get5DayForecastFor(String location) async {
+    var result = <Weather>[];
     try {
       var body = (await http.get(
         Uri.parse(
@@ -47,24 +48,26 @@ class ApiHelper {
       ))
           .body;
       var json = jsonDecode(body) as Map<String, dynamic>;
-      var jsonWeatherList = (json["list"] as List)
-        ..forEach((weather) {
-          (json["city"] as Map<String, dynamic>).forEach(
-            (key, value) {
-              weather.putIfAbsent(key, () => value);
-            },
-          );
-        });
-      //TODO Check if we're parsing correctly!
-      return List<Weather>.generate(
-        jsonWeatherList.length,
-        (index) => Weather.fromJson(jsonWeatherList[index]),
-      );
-//      return Weather.fromJson(json);
+      var jsonWeatherList = (json["list"] as List);
+      var locationData = LocationData.fromJson(json['city']);
+      for (var weather in jsonWeatherList) {
+        Map<String, dynamic> mainMap = weather['main'];
+        mainMap.addAll(weather['clouds']);
+        mainMap.addAll(weather['weather'][0]);
+        result.add(
+          Weather(
+            location: locationData,
+            time: weather['dt'],
+            temperature: TemperatureData.fromJson(weather['main']),
+            atmosphere: AtmosphericData.fromJson(weather['main']),
+            wind: WindData.fromJson(weather['wind']),
+          ),
+        );
+      }
     } on Exception catch (e) {
       print(e);
     }
-    return [];
+    return result;
   }
 
 //  static Future<List<Weather>> getOneCallForecastFor(
