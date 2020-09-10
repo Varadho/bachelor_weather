@@ -89,6 +89,8 @@ class _SSPageState extends State<SSPage> with TickerProviderStateMixin {
                   onTimeSelected: (time) => setState(() {
                     currentWeather = wr.changeTime(time);
                   }),
+                  earliest: wr.forecast.first.time,
+                  latest: wr.forecast.last.time,
                 ),
               ),
             ),

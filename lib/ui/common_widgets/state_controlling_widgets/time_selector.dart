@@ -7,10 +7,15 @@ import 'expandable_controls.dart';
 
 class TimeSelector extends StatefulWidget {
   final ValueChanged<DateTime> onTimeSelected;
-  final DateTime initialTime;
+  final DateTime initialTime, earliest, latest;
 
-  const TimeSelector({Key key, this.onTimeSelected, this.initialTime})
-      : super(key: key);
+  const TimeSelector({
+    Key key,
+    this.onTimeSelected,
+    this.initialTime,
+    this.earliest,
+    this.latest,
+  }) : super(key: key);
   @override
   _TimeSelectorState createState() => _TimeSelectorState();
 }
@@ -128,17 +133,21 @@ class _TimeSelectorState extends State<TimeSelector> {
       "${_selectedTime.minute.toString().padLeft(2, "0")}";
 
   void _incrementTime() {
-    setState(() {
-      _selectedTime = _selectedTime + 3.hours;
-    });
-    widget.onTimeSelected(_selectedTime);
+    if (_selectedTime.difference(widget.latest).isNegative) {
+      setState(() {
+        _selectedTime = _selectedTime + 3.hours;
+      });
+      widget.onTimeSelected(_selectedTime);
+    }
   }
 
   void _decrementTime() {
-    setState(() {
-      _selectedTime = _selectedTime - 3.hours;
-    });
-    widget.onTimeSelected(_selectedTime);
+    if (!_selectedTime.difference(widget.earliest + 5.minutes).isNegative) {
+      setState(() {
+        _selectedTime = _selectedTime - 3.hours;
+      });
+      widget.onTimeSelected(_selectedTime);
+    }
   }
 
   void _increaseRapidly() async {
