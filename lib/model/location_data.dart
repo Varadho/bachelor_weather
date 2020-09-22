@@ -19,10 +19,10 @@ class LocationData {
     int sunset = 0,
     int timezone = 0,
   })  : sunrise =
-            DateTime.fromMillisecondsSinceEpoch(sunrise * 1000, isUtc: true) +
+            DateTime.fromMillisecondsSinceEpoch(sunrise * 1000, isUtc: true) -
                 timezone.seconds,
         sunset =
-            DateTime.fromMillisecondsSinceEpoch(sunset * 1000, isUtc: true) +
+            DateTime.fromMillisecondsSinceEpoch(sunset * 1000, isUtc: true) -
                 timezone.seconds;
 
   factory LocationData.fromJson(Map<String, dynamic> json) =>
