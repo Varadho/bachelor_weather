@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_compass/flutter_compass.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

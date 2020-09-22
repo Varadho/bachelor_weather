@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/widgets.dart';
 
 const Color backgroundColor1 = Color(0xFFFF329ec9);
 const Color backgroundColor2 = Color(0xFFFF5bc5ef);
