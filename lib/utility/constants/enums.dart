@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:time/time.dart';
 
 import '../../ui/bloc_page.dart';
 import '../../ui/inherited_page.dart';
@@ -71,7 +72,7 @@ extension Utility on StateMethod {
     switch (this) {
       case StateMethod.SS:
         return (argument) => PageRouteBuilder(
-              transitionDuration: const Duration(milliseconds: 1300),
+              transitionDuration: 1200.milliseconds,
               maintainState: false,
               pageBuilder: (context, animation, secondaryAnimation) => SSPage(
                 transitionAnimation: animation,
@@ -79,13 +80,13 @@ extension Utility on StateMethod {
             );
       case StateMethod.INHERITED:
         return (argument) => PageRouteBuilder(
-              transitionDuration: const Duration(milliseconds: 700),
+              transitionDuration: 1200.milliseconds,
               pageBuilder: (context, animation, secondaryAnimation) =>
                   InheritedPage(),
             );
       case StateMethod.PROVIDERS:
         return (argument) => PageRouteBuilder(
-              transitionDuration: const Duration(milliseconds: 700),
+              transitionDuration: 1200.milliseconds,
               pageBuilder: (context, animation, secondaryAnimation) =>
                   ProviderPage(),
             );

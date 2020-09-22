@@ -46,12 +46,12 @@ class _SSPageState extends State<SSPage> with TickerProviderStateMixin {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                SlideInWidget(
+                SlideAnimation(
                   animation: widget.transitionAnimation,
                   slideDirection: AxisDirection.down,
                   child: LocationDisplay(currentWeather?.location),
                 ),
-                SlideInWidget(
+                SlideAnimation(
                   animation: widget.transitionAnimation,
                   slideDirection: AxisDirection.down,
                   child: SunTimeDisplay(
@@ -59,19 +59,19 @@ class _SSPageState extends State<SSPage> with TickerProviderStateMixin {
                     currentWeather.location.sunset,
                   ),
                 ),
-                SlideInWidget(
+                SlideAnimation(
                   animation: widget.transitionAnimation,
                   slideDirection: AxisDirection.right,
                   child: TemperatureDisplay(currentWeather?.temperature),
                 ),
-                SlideInWidget(
+                SlideAnimation(
                   animation: widget.transitionAnimation,
                   slideDirection: AxisDirection.right,
                   child: WindDisplay(
                     currentWeather?.wind,
                   ),
                 ),
-                SlideInWidget(
+                SlideAnimation(
                   child: AtmosphericDisplay(currentWeather?.atmosphere),
                   animation: widget.transitionAnimation,
                   slideDirection: AxisDirection.left,
@@ -81,7 +81,7 @@ class _SSPageState extends State<SSPage> with TickerProviderStateMixin {
             ),
             Align(
               alignment: Alignment.bottomLeft,
-              child: SlideInWidget(
+              child: SlideAnimation(
                 animation: widget.transitionAnimation,
                 slideDirection: AxisDirection.right,
                 child: TimeSelector(
@@ -96,7 +96,7 @@ class _SSPageState extends State<SSPage> with TickerProviderStateMixin {
             ),
             Align(
               alignment: Alignment.bottomRight,
-              child: SlideInWidget(
+              child: SlideAnimation(
                 animation: widget.transitionAnimation,
                 slideDirection: AxisDirection.left,
                 child: LocationSelector(
@@ -113,12 +113,12 @@ class _SSPageState extends State<SSPage> with TickerProviderStateMixin {
       );
 }
 
-class SlideInWidget extends StatelessWidget {
+class SlideAnimation extends StatelessWidget {
   final Widget child;
   final Animation<double> animation;
   final AxisDirection slideDirection;
 
-  const SlideInWidget({
+  const SlideAnimation({
     Key key,
     @required this.child,
     @required this.animation,
@@ -134,7 +134,7 @@ class SlideInWidget extends StatelessWidget {
             end: Offset(0, 0),
           ).animate(
             CurvedAnimation(
-              curve: Curves.elasticOut,
+              curve: Curves.easeOutBack,
               parent: animation,
               reverseCurve: Curves.easeOutCubic,
             ),
@@ -147,13 +147,13 @@ class SlideInWidget extends StatelessWidget {
   Offset _calculateOffset() {
     switch (slideDirection) {
       case AxisDirection.up:
-        return Offset(0, 1);
+        return Offset(0, 1.5);
       case AxisDirection.right:
-        return Offset(-1, 0);
+        return Offset(-1.5, 0);
       case AxisDirection.down:
-        return Offset(0, -1);
+        return Offset(0, -1.5);
       case AxisDirection.left:
-        return Offset(1, 0);
+        return Offset(1.5, 0);
     }
   }
 }
