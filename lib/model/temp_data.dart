@@ -12,10 +12,10 @@ class TemperatureData {
   final double feelsLike;
 
   TemperatureData({
-    this.avg,
-    this.min,
-    this.max,
-    this.feelsLike,
+    this.avg = 0,
+    this.min = 0,
+    this.max = 0,
+    this.feelsLike = 0,
   });
 
   factory TemperatureData.fromJson(Map<String, dynamic> json) =>

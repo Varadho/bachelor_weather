@@ -11,10 +11,10 @@ class LocationData {
   final DateTime sunrise, sunset;
 
   LocationData({
-    this.coord,
-    this.country,
-    this.cityName,
-    this.cityID,
+    this.coord = const Coordinates(),
+    this.country = "Nothing",
+    this.cityName = "Nowhere",
+    this.cityID = -1,
     int sunrise = 0,
     int sunset = 0,
     int timezone = 0,

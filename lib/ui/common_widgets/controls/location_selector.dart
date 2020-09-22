@@ -51,32 +51,35 @@ class _LocationControlWidgetState extends State<LocationSelector> {
               ),
             ),
             Expanded(
-              flex: 8,
+              flex: 5,
               child: ListView.builder(
                 padding: EdgeInsets.only(right: 60),
                 itemExtent: 40,
-                shrinkWrap: true,
-                itemCount: favoriteLocations.length,
-                itemBuilder: (context, index) => ListTile(
-                  contentPadding: EdgeInsets.symmetric(vertical: 3),
-                  leading: Icon(
-                    Icons.location_on,
-                    size: 40,
-                    color: Colors.white,
-                  ),
-                  title: Text(
-                    favoriteLocations[index].cityName,
-                    style: headingStyle.copyWith(fontSize: 24),
-                  ),
-                  onTap: () {
-                    setState(() {
-                      _selectedLocation = favoriteLocations[index];
-                    });
-                    widget.onLocationSelected(
-                      _selectedLocation,
-                    );
-                  },
-                ),
+                shrinkWrap: false,
+                itemCount: favoriteLocations.length + 1,
+                itemBuilder: (context, index) =>
+                    index == favoriteLocations.length
+                        ? Container()
+                        : ListTile(
+                            contentPadding: EdgeInsets.symmetric(vertical: 3),
+                            leading: Icon(
+                              Icons.location_on,
+                              size: 40,
+                              color: Colors.white,
+                            ),
+                            title: Text(
+                              favoriteLocations[index].cityName,
+                              style: headingStyle.copyWith(fontSize: 24),
+                            ),
+                            onTap: () {
+                              setState(() {
+                                _selectedLocation = favoriteLocations[index];
+                              });
+                              widget.onLocationSelected(
+                                _selectedLocation,
+                              );
+                            },
+                          ),
               ),
             )
           ],

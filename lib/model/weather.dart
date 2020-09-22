@@ -24,6 +24,14 @@ class Weather {
     int time,
   }) : time = DateTime.fromMillisecondsSinceEpoch(time * 1000, isUtc: true);
 
+  factory Weather.empty() => Weather(
+        location: LocationData(),
+        time: 0,
+        temperature: TemperatureData(),
+        atmosphere: AtmosphericData(),
+        wind: WindData(),
+      );
+
   @override
   String toString() => 'Weather{atmosphere: $atmosphere, location: $location, '
       'temperature: $temperature, wind: $wind, time: $time}';

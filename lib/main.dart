@@ -9,13 +9,16 @@ import 'utility/constants/colors.dart';
 import 'utility/repository.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
+  //TODO Use the store, Luke!
+  final store = Store<Weather>(weatherReducer, initialState: null);
+
   ///Create first and only instance of WeatherRepository, so it'll start
   ///loading.
   WeatherRepository();
-  WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  //TODO Use the store, Luke!
-  final store = Store<Weather>(weatherReducer, initialState: null);
+
   runApp(MyApp());
 }
 

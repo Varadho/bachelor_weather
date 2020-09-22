@@ -26,9 +26,18 @@ class LocationDisplay extends StatelessWidget {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(
-                _location?.cityName ?? "City Name",
-                style: headingStyle,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    _location.cityName,
+                    style: headingStyle,
+                  ),
+                  Text(
+                    " (${_location.country})",
+                    style: headingStyle,
+                  ),
+                ],
               ),
             ),
             Row(

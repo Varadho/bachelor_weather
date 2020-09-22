@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:time/time.dart';
 
-import '../../ui/bloc_page.dart';
+import '../../ui/bloc/bloc_page.dart';
 import '../../ui/inherited_page.dart';
 import '../../ui/provider_page.dart';
 import '../../ui/redux/redux_page.dart';

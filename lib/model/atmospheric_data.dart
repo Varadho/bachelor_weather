@@ -8,10 +8,10 @@ class AtmosphericData {
   final String description;
 
   const AtmosphericData({
-    this.pressure,
-    this.humidity,
-    this.clouds,
-    this.description,
+    this.pressure = 0,
+    this.humidity = 0,
+    this.clouds = 0,
+    this.description = "nothing",
   });
 
   factory AtmosphericData.fromJson(Map<String, dynamic> json) =>

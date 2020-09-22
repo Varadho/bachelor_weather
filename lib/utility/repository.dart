@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:time/time.dart';
 
 import '../model/weather.dart';
@@ -22,8 +22,11 @@ class WeatherRepository {
   bool _loading = false;
   bool get isLoading => _loading;
 
-  List<Weather> get forecast => _loading ? [] : _weatherMap[_currentLocation];
-  Weather get currentWeather => forecast?.firstWhere(
+  List<Weather> get forecast =>
+      _weatherMap[_currentLocation]?.isNotEmpty ?? false
+          ? _weatherMap[_currentLocation]
+          : [Weather.empty()];
+  Weather get currentWeather => forecast.firstWhere(
         (w) => w.time.difference(_currentTime).abs() <= 1.5.hours,
         orElse: () => _currentTime.difference(DateTime.now()).isNegative
             ? forecast.first

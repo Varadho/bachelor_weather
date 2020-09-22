@@ -9,7 +9,10 @@ class WindData {
   @override
   String toString() => 'Wind{speed: $mpsSpeed, deg: $deg}';
 
-  WindData({this.mpsSpeed, this.deg});
+  WindData({
+    this.mpsSpeed = 0,
+    this.deg = 0,
+  });
 
   factory WindData.fromJson(Map<String, dynamic> json) =>
       _$WindDataFromJson(json);

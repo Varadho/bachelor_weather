@@ -6,7 +6,7 @@ class Coordinates {
   @override
   String toString() => 'Coordinates{lat: $lat, lon: $lon}';
 
-  const Coordinates({this.lat, this.lon});
+  const Coordinates({this.lat = 0, this.lon = 0});
 
   factory Coordinates.fromJson(Map<String, dynamic> json) =>
       _$CoordinatesFromJson(json);
