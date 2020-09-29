@@ -26,7 +26,7 @@ class Weather {
 
   factory Weather.empty() => Weather(
         location: LocationData(),
-        time: 0,
+        time: (DateTime.now().millisecondsSinceEpoch / 1000).floor(),
         temperature: TemperatureData(),
         atmosphere: AtmosphericData(),
         wind: WindData(),
