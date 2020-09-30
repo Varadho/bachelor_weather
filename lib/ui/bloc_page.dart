@@ -3,19 +3,19 @@ import 'package:flutter/material.dart';
 import '../utility/constants/colors.dart';
 import '../utility/constants/enums.dart';
 
-class InheritedPage extends StatefulWidget {
-  InheritedPage({Key key}) : super(key: key);
+class BlocPage extends StatefulWidget {
+  BlocPage({Key key}) : super(key: key);
 
   @override
-  _InheritedPageState createState() => _InheritedPageState();
+  _BlocPageState createState() => _BlocPageState();
 }
 
-class _InheritedPageState extends State<InheritedPage> {
+class _BlocPageState extends State<BlocPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
         backgroundColor: backgroundColor1,
         body: Center(
-          child: Text(StateMethod.INHERITED.name),
+          child: Text(StateMethod.BLOC.name),
         ),
       );
 }

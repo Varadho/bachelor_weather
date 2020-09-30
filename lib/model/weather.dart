@@ -4,7 +4,6 @@ import 'package:time/time.dart';
 part 'atmospheric_data.dart';
 part 'coord.dart';
 part 'location_data.dart';
-part 'sun_time.dart';
 part 'temp_data.dart';
 part 'weather.g.dart';
 part 'wind_data.dart';

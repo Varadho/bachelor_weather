@@ -42,7 +42,7 @@ LocationData _$LocationDataFromJson(Map<String, dynamic> json) {
         ? null
         : Coordinates.fromJson(json['coord'] as Map<String, dynamic>),
     country: json['country'] as String,
-    cityName: json['name'] as String,
+    name: json['name'] as String,
     cityID: json['id'] as int,
     sunrise: json['sunrise'] as int,
     sunset: json['sunset'] as int,
@@ -51,28 +51,12 @@ LocationData _$LocationDataFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$LocationDataToJson(LocationData instance) =>
     <String, dynamic>{
-      'name': instance.cityName,
+      'name': instance.name,
       'id': instance.cityID,
       'coord': instance.coord,
       'country': instance.country,
       'sunrise': instance.sunrise?.toIso8601String(),
       'sunset': instance.sunset?.toIso8601String(),
-    };
-
-SunTime _$SunTimeFromJson(Map<String, dynamic> json) {
-  return SunTime(
-    sunrise: json['sunrise'] as int,
-    sunset: json['sunset'] as int,
-    time: json['time'] as int,
-    timezone: json['timezone'] as int,
-  );
-}
-
-Map<String, dynamic> _$SunTimeToJson(SunTime instance) => <String, dynamic>{
-      'sunrise': instance.sunrise?.toIso8601String(),
-      'sunset': instance.sunset?.toIso8601String(),
-      'time': instance.time?.toIso8601String(),
-      'timezone': instance.timezone,
     };
 
 TemperatureData _$TemperatureDataFromJson(Map<String, dynamic> json) {

@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:redux/redux.dart';
 
 import 'model/weather.dart';
-import 'ui/redux/reducer.dart';
+import 'state_management/redux/reducer.dart';
 import 'ui/weather_home_page.dart';
 import 'utility/constants/colors.dart';
 import 'utility/repository.dart';

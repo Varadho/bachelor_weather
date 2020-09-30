@@ -18,24 +18,6 @@ class ApiHelper {
 
   static const String units = '&units=metric';
 
-  static Future<Weather> getCurrentWeatherFor(String location) async {
-    try {
-      var body = (await http.get(
-        Uri.parse(
-          '$baseUrl$currentQuery'
-          '$cityQuery$location'
-          '$units$apiKey',
-        ),
-      ))
-          .body;
-      var json = jsonDecode(body);
-//      return Weather.fromJson(json);
-    } on Exception catch (e) {
-      print(e);
-    }
-    return null;
-  }
-
   static Future<List<Weather>> get5DayForecastFor(String location) async {
     var result = <Weather>[];
     try {
@@ -69,6 +51,24 @@ class ApiHelper {
     }
     return result;
   }
+
+//   static Future<Weather> getCurrentWeatherFor(String location) async {
+//     try {
+//       var body = (await http.get(
+//         Uri.parse(
+//           '$baseUrl$currentQuery'
+//               '$cityQuery$location'
+//               '$units$apiKey',
+//         ),
+//       ))
+//           .body;
+//       var json = jsonDecode(body);
+// //      return Weather.fromJson(json);
+//     } on Exception catch (e) {
+//       print(e);
+//     }
+//     return null;
+//   }
 }
 /*
 * Parameters:

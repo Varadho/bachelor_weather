@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_compass/flutter_compass.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:simple_animations/simple_animations.dart';
 
 import '../../../utility/constants/colors.dart';
 
@@ -62,7 +61,8 @@ class _WindDirectionCompassState extends State<WindDirectionCompass> {
         var northDegrees = snapshot.data;
 
         return Transform.rotate(
-            angle: (northDegrees * (-pi / 180)),
+            angle: 0,
+            // angle: (northDegrees * (-pi / 180)),
             child: ClipOval(
               clipBehavior: Clip.antiAlias,
               child: Container(
@@ -125,25 +125,34 @@ class _WindDirectionCompassState extends State<WindDirectionCompass> {
                       alignment: Alignment.center,
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
-                        child: PlayAnimation<double>(
-                          duration: Duration(milliseconds: 2000),
-                          curve: Curves.elasticOut,
-                          tween: Tween<double>(
-                              begin: (northDegrees - 90) * (pi / 180) +
-                                          widget.windDegrees <=
-                                      180
-                                  ? 0
-                                  : 2 * pi,
-                              end: (widget.windDegrees - 90) * pi / 180),
-                          builder: (context, child, value) => Transform.rotate(
-                            angle: value,
-                            child: Icon(
-                              FontAwesomeIcons.wind,
-                              color: backgroundColor3,
-                              size: _iconSize,
-                            ),
+                        child: Transform.rotate(
+                          angle: (widget.windDegrees - 90) * pi / 180,
+                          child: Icon(
+                            FontAwesomeIcons.wind,
+                            color: backgroundColor3,
+                            size: _iconSize,
                           ),
                         ),
+                        //TODO Put the animation back in.
+                        // PlayAnimation<double>(
+                        //   duration: Duration(milliseconds: 2000),
+                        //   curve: Curves.elasticOut,
+                        //   tween: Tween<double>(
+                        //       begin: (northDegrees - 90) * (pi / 180) +
+                        //                   widget.windDegrees <=
+                        //               180
+                        //           ? 0
+                        //           : 2 * pi,
+                        //       end: (widget.windDegrees - 90) * pi / 180),
+                        //   builder: (context, child, value) => Transform.rotate(
+                        //     angle: value,
+                        //     child: Icon(
+                        //       FontAwesomeIcons.wind,
+                        //       color: backgroundColor3,
+                        //       size: _iconSize,
+                        //     ),
+                        //   ),
+                        // ),
                       ),
                     ),
                   ],

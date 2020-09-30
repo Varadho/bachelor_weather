@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:time/time.dart';
 
-import '../../ui/bloc/bloc_page.dart';
-import '../../ui/inherited_page.dart';
+import '../../ui/bloc_page.dart';
+import '../../ui/mob_x_page.dart';
 import '../../ui/provider_page.dart';
-import '../../ui/redux/redux_page.dart';
+import '../../ui/redux_page.dart';
 import '../../ui/ss_page.dart';
 
 enum StateMethod {
@@ -14,7 +13,7 @@ enum StateMethod {
 
   ///Inherited Widget
   // ignore: constant_identifier_names
-  INHERITED,
+  MOBX,
 
   ///Providers
   // ignore: constant_identifier_names
@@ -34,8 +33,8 @@ extension Utility on StateMethod {
     switch (this) {
       case StateMethod.SS:
         return "setState((){})";
-      case StateMethod.INHERITED:
-        return "Inherited Widgets";
+      case StateMethod.MOBX:
+        return "MobX";
       case StateMethod.PROVIDERS:
         return "Providers";
       case StateMethod.REDUX:
@@ -51,10 +50,10 @@ extension Utility on StateMethod {
     switch (this) {
       case StateMethod.SS:
         return Icons.airline_seat_individual_suite;
-      case StateMethod.INHERITED:
+      case StateMethod.PROVIDERS:
         return Icons.airline_seat_flat;
         break;
-      case StateMethod.PROVIDERS:
+      case StateMethod.MOBX:
         return Icons.airline_seat_flat_angled;
         break;
       case StateMethod.REDUX:
@@ -68,31 +67,23 @@ extension Utility on StateMethod {
     }
   }
 
-  dynamic get route {
+  Route get route {
     switch (this) {
       case StateMethod.SS:
-        return (argument) => PageRouteBuilder(
-              transitionDuration: 1200.milliseconds,
-              maintainState: false,
-              pageBuilder: (context, animation, secondaryAnimation) => SSPage(
-                transitionAnimation: animation,
-              ),
-            );
-      case StateMethod.INHERITED:
-        return (argument) => PageRouteBuilder(
-              transitionDuration: 1200.milliseconds,
-              pageBuilder: (context, animation, secondaryAnimation) =>
-                  InheritedPage(),
-            );
+        return MaterialPageRoute(
+          builder: (context) => SSPage(),
+        );
       case StateMethod.PROVIDERS:
-        return (argument) => PageRouteBuilder(
-              transitionDuration: 1200.milliseconds,
-              pageBuilder: (context, animation, secondaryAnimation) =>
-                  ProviderPage(),
-            );
+        return MaterialPageRoute(
+          builder: (context) => ProviderPage(),
+        );
       case StateMethod.REDUX:
         return MaterialPageRoute(
           builder: (context) => ReduxPage(),
+        );
+      case StateMethod.MOBX:
+        return MaterialPageRoute(
+          builder: (context) => MobXPage(),
         );
       case StateMethod.BLOC:
         return MaterialPageRoute(

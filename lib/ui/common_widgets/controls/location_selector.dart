@@ -75,9 +75,7 @@ class _LocationControlWidgetState extends State<LocationSelector> {
                               setState(() {
                                 _selectedLocation = favoriteLocations[index];
                               });
-                              widget.onLocationSelected(
-                                _selectedLocation,
-                              );
+                              widget.onLocationSelected(_selectedLocation);
                             },
                           ),
               ),

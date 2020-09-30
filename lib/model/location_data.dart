@@ -2,8 +2,7 @@ part of 'weather.dart';
 
 @JsonSerializable()
 class LocationData {
-  @JsonKey(name: "name")
-  final String cityName;
+  final String name;
   @JsonKey(name: "id")
   final int cityID;
   final Coordinates coord;
@@ -13,7 +12,7 @@ class LocationData {
   LocationData({
     this.coord = const Coordinates(),
     this.country = "Nothing",
-    this.cityName = "Nowhere",
+    this.name = "Nowhere",
     this.cityID = -1,
     int sunrise = 0,
     int sunset = 0,
@@ -31,5 +30,7 @@ class LocationData {
   Map<String, dynamic> toJson() => _$LocationDataToJson(this);
 
   @override
-  String toString() => "$cityName, $country";
+  String toString() => "$name, $country";
+
+  String get cityName => name.split(" ").last;
 }

@@ -2,7 +2,7 @@ import '../../model/weather.dart';
 
 LocationData hh = LocationData(
   cityID: 6547395,
-  cityName: "Hamburg",
+  name: "Hamburg",
   country: "DE",
   coord: Coordinates(
     lon: 10.0,
@@ -12,7 +12,7 @@ LocationData hh = LocationData(
 
 LocationData giessen = LocationData(
   cityID: 2920512,
-  cityName: "Gießen",
+  name: "Gießen",
   country: "DE",
   coord: Coordinates(
     lon: 8.65,
@@ -22,7 +22,7 @@ LocationData giessen = LocationData(
 
 LocationData koeln = LocationData(
   cityID: 2920512,
-  cityName: "Köln",
+  name: "Köln",
   country: "DE",
   coord: Coordinates(
     lon: 8.65,
@@ -32,7 +32,7 @@ LocationData koeln = LocationData(
 
 LocationData london = LocationData(
   cityID: 2643743,
-  cityName: "London",
+  name: "London",
   country: "GB",
   coord: Coordinates(
     lon: -0.12574,
@@ -42,7 +42,7 @@ LocationData london = LocationData(
 
 LocationData marseille = LocationData(
   cityID: 2995469,
-  cityName: "Marseille",
+  name: "Marseille",
   country: "FR",
   coord: Coordinates(
     lon: 5.38107,
@@ -52,7 +52,7 @@ LocationData marseille = LocationData(
 
 LocationData tokyo = LocationData(
   cityID: 1850147,
-  cityName: "Tokyo",
+  name: "Tokyo",
   country: "JP",
   coord: Coordinates(
     lon: 139.691711,
@@ -62,7 +62,7 @@ LocationData tokyo = LocationData(
 
 LocationData kapstadt = LocationData(
   cityID: 3369157,
-  cityName: "Cape Town",
+  name: "Cape Town",
   country: "ZA",
   coord: Coordinates(
     lon: 18.42322,
