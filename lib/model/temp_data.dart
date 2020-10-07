@@ -1,7 +1,7 @@
 part of 'weather_state.dart';
 
 @JsonSerializable()
-class TemperatureData {
+class TemperatureData extends Equatable {
   @JsonKey(name: 'temp')
   final double avg;
   @JsonKey(name: 'temp_min')
@@ -26,4 +26,6 @@ class TemperatureData {
   @override
   String toString() => 'Info{temperature: $avg, tempMin: $min, tempMax: $max, '
       'feelsLike: $feelsLike}';
+  @override
+  List<Object> get props => [avg, min, max, feelsLike];
 }

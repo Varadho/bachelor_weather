@@ -1,7 +1,7 @@
 part of 'weather_state.dart';
 
 @JsonSerializable()
-class WindData {
+class WindData extends Equatable {
   @JsonKey(name: 'speed')
   final double mpsSpeed;
   final double deg;
@@ -18,4 +18,6 @@ class WindData {
       _$WindDataFromJson(json);
 
   Map<String, dynamic> toJson() => _$WindDataToJson(this);
+  @override
+  List<Object> get props => [mpsSpeed, deg];
 }

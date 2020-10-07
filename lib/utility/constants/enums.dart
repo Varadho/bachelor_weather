@@ -11,13 +11,13 @@ enum StateMethod {
   // ignore: constant_identifier_names
   SS,
 
-  ///Inherited Widget
-  // ignore: constant_identifier_names
-  MOBX,
-
   ///Providers
   // ignore: constant_identifier_names
   PROVIDERS,
+
+  ///Inherited Widget
+  // ignore: constant_identifier_names
+  MOBX,
 
   ///Redux package
   // ignore: constant_identifier_names
@@ -75,15 +75,15 @@ extension Utility on StateMethod {
         );
       case StateMethod.PROVIDERS:
         return MaterialPageRoute(
-          builder: (context) => ProviderPage(),
+          builder: (context) => ProviderPageSmall(),
         );
       case StateMethod.REDUX:
         return MaterialPageRoute(
-          builder: (context) => ReduxPage(),
+          builder: (context) => ReduxPageSmall(),
         );
       case StateMethod.MOBX:
         return MaterialPageRoute(
-          builder: (context) => MobXPage(),
+          builder: (context) => MobXPageSmall(),
         );
       case StateMethod.BLOC:
         return MaterialPageRoute(

@@ -1,7 +1,7 @@
 part of 'weather_state.dart';
 
 @JsonSerializable()
-class LocationData {
+class LocationData extends Equatable {
   final String name;
   @JsonKey(name: "id")
   final int cityID;
@@ -33,4 +33,8 @@ class LocationData {
   String toString() => "$name, $country";
 
   String get cityName => name.split(" ").last;
+
+  @override
+  List<Object> get props =>
+      [name, cityID, cityName, coord, country, sunrise, sunset];
 }

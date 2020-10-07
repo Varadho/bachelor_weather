@@ -1,21 +1,81 @@
 import 'package:flutter/material.dart';
 
+import '../../../model/weather_state.dart';
 import '../../../utility/constants/colors.dart';
-import '../../../utility/constants/enums.dart';
+import '../../../utility/repository.dart';
+import '../../common_widgets/controls/location_selector.dart';
+import '../../common_widgets/controls/time_selector.dart';
+import '../../common_widgets/displays/atmospheric_display.dart';
+import '../../common_widgets/displays/location_display.dart';
+import '../../common_widgets/displays/sun_time_display.dart';
+import '../../common_widgets/displays/temperature_display.dart';
+import '../../common_widgets/displays/wind_display.dart';
 
-class ReduxPage extends StatefulWidget {
-  ReduxPage({Key key}) : super(key: key);
-
+class ReduxPageSmall extends StatefulWidget {
+  const ReduxPageSmall({Key key}) : super(key: key);
   @override
-  _ReduxPageState createState() => _ReduxPageState();
+  _ReduxPageSmallState createState() => _ReduxPageSmallState();
 }
 
-class _ReduxPageState extends State<ReduxPage> {
+class _ReduxPageSmallState extends State<ReduxPageSmall> {
+  WeatherRepository wr = WeatherRepository();
+  WeatherState currentWeather;
+
+  @override
+  void initState() {
+    currentWeather = wr.currentWeather;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) => Scaffold(
-        backgroundColor: backgroundColor1,
-        body: Center(
-          child: Text(StateMethod.REDUX.name),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        body: Stack(
+          children: [
+            //Background Color
+            Container(
+              decoration: BoxDecoration(gradient: backgroundGradient),
+            ),
+            //Weather Displays
+            Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                LocationDisplay(currentWeather.location),
+                SunTimeDisplay(
+                  currentWeather.location.sunrise,
+                  currentWeather.location.sunset,
+                ),
+                TemperatureDisplay(currentWeather.temperature),
+                WindDisplay(currentWeather.wind),
+                AtmosphericDisplay(currentWeather.atmosphere),
+                Container(),
+              ],
+            ),
+            //Time & Location controls
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: TimeSelector(
+                initialTime: currentWeather.time,
+                onTimeSelected: (time) => setState(() {
+                  currentWeather = wr.changeTime(time);
+                }),
+                earliest: wr.forecast.first.time,
+                latest: wr.forecast.last.time,
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: LocationSelector(
+                onLocationSelected: (location) => setState(
+                  () {
+                    currentWeather = wr.changeLocation(location);
+                  },
+                ),
+              ),
+            ),
+          ],
         ),
       );
 }

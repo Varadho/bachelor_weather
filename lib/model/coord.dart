@@ -1,7 +1,7 @@
 part of 'weather_state.dart';
 
 @JsonSerializable()
-class Coordinates {
+class Coordinates extends Equatable {
   final double lat, lon;
   @override
   String toString() => 'Coordinates{lat: $lat, lon: $lon}';
@@ -12,4 +12,6 @@ class Coordinates {
       _$CoordinatesFromJson(json);
 
   Map<String, dynamic> toJson() => _$CoordinatesToJson(this);
+  @override
+  List<Object> get props => [lat, lon];
 }

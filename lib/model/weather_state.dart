@@ -1,3 +1,5 @@
+import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:time/time.dart';
 
@@ -8,7 +10,8 @@ part 'temp_data.dart';
 part 'weather.g.dart';
 part 'wind_data.dart';
 
-class WeatherState {
+@immutable
+class WeatherState extends Equatable {
   final LocationData location;
   final DateTime time;
   final AtmosphericData atmosphere;
@@ -34,4 +37,7 @@ class WeatherState {
   @override
   String toString() => 'Weather{atmosphere: $atmosphere, location: $location, '
       'temperature: $temperature, wind: $wind, time: $time}';
+
+  @override
+  List<Object> get props => [location, time, atmosphere, temperature, wind];
 }

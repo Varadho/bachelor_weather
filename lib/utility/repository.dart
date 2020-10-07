@@ -26,6 +26,7 @@ class WeatherRepository {
       _weatherMap[_currentLocation]?.isNotEmpty ?? false
           ? _weatherMap[_currentLocation]
           : [WeatherState.empty()];
+
   WeatherState get currentWeather => forecast.firstWhere(
         (w) => w.time.difference(_currentTime).abs() <= 1.5.hours,
         orElse: () => _currentTime.difference(DateTime.now()).isNegative

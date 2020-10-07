@@ -1,7 +1,7 @@
 part of 'weather_state.dart';
 
 @JsonSerializable()
-class AtmosphericData {
+class AtmosphericData extends Equatable {
   final int pressure, humidity;
   @JsonKey(name: "all")
   final int clouds;
@@ -23,4 +23,7 @@ class AtmosphericData {
   String toString() =>
       'AtmosphericData{pressure: $pressure, humidity: $humidity, '
       'clouds: $clouds, description: $description}';
+
+  @override
+  List<Object> get props => [pressure, humidity, clouds, description];
 }
