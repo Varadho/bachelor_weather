@@ -1,4 +1,4 @@
-part of 'weather.dart';
+part of 'weather_state.dart';
 
 @JsonSerializable()
 class Coordinates {

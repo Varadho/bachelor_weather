@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../model/weather.dart';
-import '../utility/constants/colors.dart';
-import '../utility/repository.dart';
-import 'common_widgets/controls/location_selector.dart';
-import 'common_widgets/controls/time_selector.dart';
-import 'common_widgets/displays/atmospheric_display.dart';
-import 'common_widgets/displays/location_display.dart';
-import 'common_widgets/displays/sun_time_display.dart';
-import 'common_widgets/displays/temperature_display.dart';
-import 'common_widgets/displays/wind_display.dart';
+import '../../../model/weather_state.dart';
+import '../../../utility/constants/colors.dart';
+import '../../../utility/repository.dart';
+import '../../common_widgets/controls/location_selector.dart';
+import '../../common_widgets/controls/time_selector.dart';
+import '../../common_widgets/displays/atmospheric_display.dart';
+import '../../common_widgets/displays/location_display.dart';
+import '../../common_widgets/displays/sun_time_display.dart';
+import '../../common_widgets/displays/temperature_display.dart';
+import '../../common_widgets/displays/wind_display.dart';
 
 class SSPage extends StatefulWidget {
   const SSPage({Key key}) : super(key: key);
@@ -19,7 +19,7 @@ class SSPage extends StatefulWidget {
 
 class _SSPageState extends State<SSPage> {
   WeatherRepository wr = WeatherRepository();
-  Weather currentWeather;
+  WeatherState currentWeather;
 
   @override
   void initState() {
@@ -48,9 +48,7 @@ class _SSPageState extends State<SSPage> {
                   currentWeather.location.sunset,
                 ),
                 TemperatureDisplay(currentWeather.temperature),
-                WindDisplay(
-                  currentWeather.wind,
-                ),
+                WindDisplay(currentWeather.wind),
                 AtmosphericDisplay(currentWeather.atmosphere),
                 Container(),
               ],

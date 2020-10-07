@@ -8,14 +8,14 @@ part 'temp_data.dart';
 part 'weather.g.dart';
 part 'wind_data.dart';
 
-class Weather {
+class WeatherState {
   final LocationData location;
+  final DateTime time;
   final AtmosphericData atmosphere;
   final TemperatureData temperature;
   final WindData wind;
-  final DateTime time;
 
-  Weather({
+  WeatherState({
     this.atmosphere,
     this.location,
     this.temperature,
@@ -23,7 +23,7 @@ class Weather {
     int time,
   }) : time = DateTime.fromMillisecondsSinceEpoch(time * 1000, isUtc: true);
 
-  factory Weather.empty() => Weather(
+  factory WeatherState.empty() => WeatherState(
         location: LocationData(),
         time: (DateTime.now().millisecondsSinceEpoch / 1000).floor(),
         temperature: TemperatureData(),

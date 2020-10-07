@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../utility/constants/colors.dart';
+import '../../../utility/constants/colors.dart';
 
 class ProviderPage extends StatelessWidget {
   ProviderPage({Key key}) : super(key: key);
@@ -32,8 +32,7 @@ class ProviderPage extends StatelessWidget {
       );
 }
 
-// ignore: prefer_mixin
-class Token with ChangeNotifier {
+class Token extends ChangeNotifier {
   String _value;
   Token(this._value);
 

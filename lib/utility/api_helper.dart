@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import '../model/weather.dart';
+import '../model/weather_state.dart';
 import 'api_key.dart';
 
 class ApiHelper {
@@ -18,8 +18,8 @@ class ApiHelper {
 
   static const String units = '&units=metric';
 
-  static Future<List<Weather>> get5DayForecastFor(String location) async {
-    var result = <Weather>[];
+  static Future<List<WeatherState>> get5DayForecastFor(String location) async {
+    var result = <WeatherState>[];
     try {
       var body = (await http.get(
         Uri.parse(
@@ -37,7 +37,7 @@ class ApiHelper {
         mainMap.addAll(weather['clouds']);
         mainMap.addAll(weather['weather'][0]);
         result.add(
-          Weather(
+          WeatherState(
             location: locationData,
             time: weather['dt'],
             temperature: TemperatureData.fromJson(weather['main']),

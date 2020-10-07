@@ -1,24 +1,26 @@
 import 'package:redux/redux.dart';
 
-import '../../model/weather.dart';
+import '../../model/weather_state.dart';
 import 'actions.dart';
 
-typedef WeatherReducer = Function(Weather, WeatherAction);
+typedef WeatherReducer = Function(WeatherState, WeatherAction);
 
 ///Reducer for all WeatherActions
-final WeatherReducer weatherReducer = combineReducers<Weather>(
+final WeatherReducer weatherReducer = combineReducers<WeatherState>(
   [
-    TypedReducer<Weather, LoadCurrentWeatherAction>(_loadCurrentWeather),
-    TypedReducer<Weather, Load3DayForecastAction>(_load3DayForecast),
+    TypedReducer<WeatherState, LoadCurrentWeatherAction>(_loadCurrentWeather),
+    TypedReducer<WeatherState, Load3DayForecastAction>(_load3DayForecast),
   ],
 );
 
-Weather _loadCurrentWeather(Weather state, LoadCurrentWeatherAction action) {
-  Weather w;
+WeatherState _loadCurrentWeather(
+    WeatherState state, LoadCurrentWeatherAction action) {
+  WeatherState w;
   return w;
 }
 
-Weather _load3DayForecast(Weather state, Load3DayForecastAction action) {
-  Weather w;
+WeatherState _load3DayForecast(
+    WeatherState state, Load3DayForecastAction action) {
+  WeatherState w;
   return w;
 }

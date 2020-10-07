@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../utility/constants/colors.dart';
-import '../utility/constants/enums.dart';
+import '../../../utility/constants/colors.dart';
+import '../../../utility/constants/enums.dart';
 
 class ReduxPage extends StatefulWidget {
   ReduxPage({Key key}) : super(key: key);

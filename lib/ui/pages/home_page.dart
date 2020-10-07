@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../utility/constants/colors.dart';
-import '../utility/constants/enums.dart';
+import '../../utility/constants/colors.dart';
+import '../../utility/constants/enums.dart';
 
-class WeatherHomePage extends StatelessWidget {
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         body: Stack(
           fit: StackFit.expand,
           children: <Widget>[
             Container(
-              decoration: BoxDecoration(
-                gradient: backgroundGradient,
-              ),
+              decoration: BoxDecoration(gradient: backgroundGradient),
             ),
             Center(
               child: ListView(

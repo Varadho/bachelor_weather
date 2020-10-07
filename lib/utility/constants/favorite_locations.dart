@@ -1,4 +1,4 @@
-import '../../model/weather.dart';
+import '../../model/weather_state.dart';
 
 LocationData hh = LocationData(
   cityID: 6547395,
@@ -77,5 +77,4 @@ List<LocationData> favoriteLocations = <LocationData>[
   marseille,
   tokyo,
   london,
-  kapstadt,
 ];
