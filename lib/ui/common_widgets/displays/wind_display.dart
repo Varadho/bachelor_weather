@@ -27,7 +27,7 @@ class WindDisplay extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  WindDirectionCompass(
+                  WindDirectionDisplay(
                     windDegrees: _wind.deg,
                   ),
                   Padding(

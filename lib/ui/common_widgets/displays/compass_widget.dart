@@ -57,108 +57,106 @@ class _WindDirectionCompassState extends State<WindDirectionCompass> {
             ),
           );
         }
-
         var northDegrees = snapshot.data;
-
         return Transform.rotate(
-            angle: 0,
-            // angle: (northDegrees * (-pi / 180)),
-            child: ClipOval(
-              clipBehavior: Clip.antiAlias,
-              child: Container(
-                color: Colors.white.withOpacity(0.75),
-                constraints: BoxConstraints.tight(Size.fromRadius(_radius)),
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    Align(
-                      alignment: Alignment.topCenter,
-                      child: Text(
-                        "N",
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w300,
-                            color: Colors.red.shade800),
-                      ),
+          angle: (northDegrees * (-pi / 180)),
+          child: ClipOval(
+            clipBehavior: Clip.antiAlias,
+            child: Container(
+              color: Colors.white.withOpacity(0.75),
+              constraints: BoxConstraints.tight(Size.fromRadius(_radius)),
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: Text(
+                      "N",
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w300,
+                          color: Colors.red.shade800),
                     ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: Text(
-                        "E",
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w300),
-                      ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      "E",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w300),
                     ),
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Text(
-                        "S",
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w300),
-                      ),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Text(
+                      "S",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w300),
                     ),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "W",
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w300),
-                      ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "W",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w300),
                     ),
-                    Align(
-                      alignment: Alignment.center,
-                      child: Container(
-                        color: shadowColor.withOpacity(0.5),
-                        height: _radius * sqrt2,
-                        width: 1,
-                      ),
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Container(
+                      color: shadowColor.withOpacity(0.5),
+                      height: _radius * sqrt2,
+                      width: 1,
                     ),
-                    Align(
-                      alignment: Alignment.center,
-                      child: Container(
-                        color: shadowColor.withOpacity(0.5),
-                        width: _radius * sqrt2,
-                        height: 1,
-                      ),
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Container(
+                      color: shadowColor.withOpacity(0.5),
+                      width: _radius * sqrt2,
+                      height: 1,
                     ),
-                    Align(
-                      alignment: Alignment.center,
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Transform.rotate(
-                          angle: (widget.windDegrees - 90) * pi / 180,
-                          child: Icon(
-                            FontAwesomeIcons.wind,
-                            color: backgroundColor3,
-                            size: _iconSize,
-                          ),
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Transform.rotate(
+                        angle: (widget.windDegrees - 90) * pi / 180,
+                        child: Icon(
+                          FontAwesomeIcons.wind,
+                          color: backgroundColor3,
+                          size: _iconSize,
                         ),
-                        //TODO Put the animation back in.
-                        // PlayAnimation<double>(
-                        //   duration: Duration(milliseconds: 2000),
-                        //   curve: Curves.elasticOut,
-                        //   tween: Tween<double>(
-                        //       begin: (northDegrees - 90) * (pi / 180) +
-                        //                   widget.windDegrees <=
-                        //               180
-                        //           ? 0
-                        //           : 2 * pi,
-                        //       end: (widget.windDegrees - 90) * pi / 180),
-                        //   builder: (context, child, value) => Transform.rotate(
-                        //     angle: value,
-                        //     child: Icon(
-                        //       FontAwesomeIcons.wind,
-                        //       color: backgroundColor3,
-                        //       size: _iconSize,
-                        //     ),
-                        //   ),
-                        // ),
                       ),
+                      //TODO Put the animation back in.
+                      // PlayAnimation<double>(
+                      //   duration: Duration(milliseconds: 2000),
+                      //   curve: Curves.elasticOut,
+                      //   tween: Tween<double>(
+                      //       begin: (northDegrees - 90) * (pi / 180) +
+                      //                   widget.windDegrees <=
+                      //               180
+                      //           ? 0
+                      //           : 2 * pi,
+                      //       end: (widget.windDegrees - 90) * pi / 180),
+                      //   builder: (context, child, value) => Transform.rotate(
+                      //     angle: value,
+                      //     child: Icon(
+                      //       FontAwesomeIcons.wind,
+                      //       color: backgroundColor3,
+                      //       size: _iconSize,
+                      //     ),
+                      //   ),
+                      // ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ));
+            ),
+          ),
+        );
       });
 
   Widget _buildPermissionSheet() => Center(
@@ -172,6 +170,89 @@ class _WindDirectionCompassState extends State<WindDirectionCompass> {
               },
             )
           ],
+        ),
+      );
+}
+
+class WindDirectionDisplay extends StatelessWidget {
+  final double windDegrees;
+  static const double _radius = 60;
+  static const double _iconSize = 60;
+
+  const WindDirectionDisplay({Key key, this.windDegrees}) : super(key: key);
+
+  @override
+  Widget build(context) => ClipOval(
+        clipBehavior: Clip.antiAlias,
+        child: Container(
+          color: Colors.white.withOpacity(0.75),
+          constraints: BoxConstraints.tight(Size.fromRadius(_radius)),
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              Align(
+                alignment: Alignment.topCenter,
+                child: Text(
+                  "N",
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w300,
+                      color: Colors.red.shade800),
+                ),
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: Text(
+                  "E",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300),
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Text(
+                  "S",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300),
+                ),
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "W",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300),
+                ),
+              ),
+              Align(
+                alignment: Alignment.center,
+                child: Container(
+                  color: shadowColor.withOpacity(0.5),
+                  height: _radius * sqrt2,
+                  width: 1,
+                ),
+              ),
+              Align(
+                alignment: Alignment.center,
+                child: Container(
+                  color: shadowColor.withOpacity(0.5),
+                  width: _radius * sqrt2,
+                  height: 1,
+                ),
+              ),
+              Align(
+                alignment: Alignment.center,
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Transform.rotate(
+                    angle: (windDegrees - 90) * pi / 180,
+                    child: Icon(
+                      FontAwesomeIcons.wind,
+                      color: backgroundColor3,
+                      size: _iconSize,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       );
 }
