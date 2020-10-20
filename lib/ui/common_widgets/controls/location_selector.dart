@@ -11,9 +11,8 @@ class LocationSelector extends StatefulWidget {
   final ValueChanged<LocationData> onLocationSelected;
   final LocationData initialLocation;
 
-  const LocationSelector(
-      {Key key, this.onLocationSelected, this.initialLocation})
-      : super(key: key);
+  const LocationSelector({this.onLocationSelected, this.initialLocation})
+      : super(key: const Key("ls"));
 
   @override
   _LocationControlWidgetState createState() => _LocationControlWidgetState();
@@ -69,6 +68,7 @@ class _LocationControlWidgetState extends State<LocationSelector> {
                         favoriteLocations.length
                     ? Container()
                     : ListTile(
+                        key: Key(favoriteLocations[index].name),
                         selectedTileColor: Color.fromRGBO(255, 255, 255, 0.3),
                         selected: _selectedLocation == favoriteLocations[index],
                         contentPadding: EdgeInsets.zero,

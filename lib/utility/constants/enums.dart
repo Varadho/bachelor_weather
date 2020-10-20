@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../ui/pages/bloc/bloc_page_big.dart';
-import '../../ui/pages/mobx/mob_x_page_small.dart';
-import '../../ui/pages/provider/provider_page_small.dart';
-import '../../ui/pages/redux/redux_page_small.dart';
+import '../../ui/pages/mobx/mob_x_page.dart';
+import '../../ui/pages/provider/provider_page.dart';
+import '../../ui/pages/redux/redux_page.dart';
 import '../../ui/pages/set_state/ss_page.dart';
 
 enum StateMethod {

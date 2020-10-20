@@ -41,7 +41,7 @@ class _WindDirectionCompassState extends State<WindDirectionCompass> {
     }
   }
 
-  Widget _buildCompass() => StreamBuilder<double>(
+  Widget _buildCompass() => StreamBuilder<CompassEvent>(
       stream: FlutterCompass.events,
       builder: (context, snapshot) {
         if (snapshot.hasError) {
@@ -57,7 +57,7 @@ class _WindDirectionCompassState extends State<WindDirectionCompass> {
             ),
           );
         }
-        var northDegrees = snapshot.data;
+        var northDegrees = snapshot.data.heading;
         return Transform.rotate(
           angle: (northDegrees * (-pi / 180)),
           child: ClipOval(
@@ -182,7 +182,7 @@ class WindDirectionDisplay extends StatelessWidget {
   const WindDirectionDisplay({Key key, this.windDegrees}) : super(key: key);
 
   @override
-  Widget build(context) => ClipOval(
+  Widget build(BuildContext context) => ClipOval(
         clipBehavior: Clip.antiAlias,
         child: Container(
           color: Colors.white.withOpacity(0.75),

@@ -19,6 +19,7 @@ class HomePage extends StatelessWidget {
                 children: <Widget>[
                   for (var method in StateMethod.values)
                     HomeTile(
+                      key: Key(method.name),
                       stateMethod: method,
                     ),
                 ],

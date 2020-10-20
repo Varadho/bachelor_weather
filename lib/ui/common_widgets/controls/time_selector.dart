@@ -10,12 +10,11 @@ class TimeSelector extends StatefulWidget {
   final DateTime initialTime, earliest, latest;
 
   const TimeSelector({
-    Key key,
     this.onTimeSelected,
     this.initialTime,
     this.earliest,
     this.latest,
-  }) : super(key: key);
+  }) : super(key: const Key("ts"));
   @override
   _TimeSelectorState createState() => _TimeSelectorState();
 }
@@ -81,6 +80,7 @@ class _TimeSelectorState extends State<TimeSelector> {
                   children: [
                     InkWell(
                       child: GestureDetector(
+                        key: const Key("previous_time"),
                         onTapDown: (details) => _decreaseRapidly(),
                         onTapUp: (details) => _haltChange(),
                         onTapCancel: _haltChange,
@@ -98,6 +98,7 @@ class _TimeSelectorState extends State<TimeSelector> {
                     Container(),
                     InkWell(
                       child: GestureDetector(
+                        key: const Key("next_time"),
                         onTapDown: (details) => _increaseRapidly(),
                         onTapUp: (details) => _haltChange(),
                         onTapCancel: _haltChange,
