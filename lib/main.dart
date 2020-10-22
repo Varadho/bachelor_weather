@@ -11,7 +11,7 @@ void main() {
 
   ///Create first and only instance of WeatherRepository, so it'll start
   ///loading.
-  var wr = WeatherRepository();
+  WeatherRepository();
 
   runApp(MyApp());
 }

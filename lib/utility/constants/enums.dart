@@ -1,7 +1,7 @@
-import 'package:bachelorweather/state_management/mob_x/weather_store.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../state_management/mob_x/weather_store.dart';
 import '../../ui/pages/bloc/bloc_page_big.dart';
 import '../../ui/pages/mobx/mob_x_page.dart';
 import '../../ui/pages/provider/provider_page.dart';
