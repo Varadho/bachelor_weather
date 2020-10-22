@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 
 import '../../../state_management/providers/weather_notifier.dart';
 import '../../../utility/constants/colors.dart';
-import '../../../utility/repository.dart';
 import '../../common_widgets/controls/location_selector.dart';
 import '../../common_widgets/controls/time_selector.dart';
 import '../../common_widgets/displays/atmospheric_display.dart';
@@ -65,8 +64,6 @@ class ProviderPageSmall extends StatelessWidget {
                   builder: (context, notifier, _) => TimeSelector(
                     initialTime: notifier.weather.time,
                     onTimeSelected: (time) => notifier.changeTime(time),
-                    earliest: WeatherRepository().forecast.first.time,
-                    latest: WeatherRepository().forecast.last.time,
                   ),
                 ),
               ),

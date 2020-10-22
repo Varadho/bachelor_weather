@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../model/weather_state.dart';
 import '../../../state_management/bloc/weather_bloc.dart';
 import '../../../utility/constants/colors.dart';
-import '../../../utility/repository.dart';
+import '../../../utility/weather_repository.dart';
 import '../../common_widgets/controls/location_selector.dart';
 import '../../common_widgets/controls/time_selector.dart';
 import '../../common_widgets/displays/atmospheric_display.dart';
@@ -80,8 +80,6 @@ class BlocPageSmall extends StatelessWidget {
                         BlocProvider.of<WeatherBloc>(context).add(
                       TimeChangedEvent(time),
                     ),
-                    earliest: WeatherRepository().forecast.first.time,
-                    latest: WeatherRepository().forecast.last.time,
                   ),
                 ),
               ),

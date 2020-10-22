@@ -1,11 +1,13 @@
+import '../../model/weather_state.dart';
+
 abstract class WeatherAction {}
 
-class LoadCurrentWeatherAction extends WeatherAction {
-  final String location;
-  LoadCurrentWeatherAction(this.location);
+class ChangeTimeAction extends WeatherAction {
+  final DateTime newTime;
+  ChangeTimeAction(this.newTime);
 }
 
-class Load3DayForecastAction extends WeatherAction {
-  final String location;
-  Load3DayForecastAction(this.location);
+class ChangeLocationAction extends WeatherAction {
+  final LocationData newLocation;
+  ChangeLocationAction(this.newLocation);
 }

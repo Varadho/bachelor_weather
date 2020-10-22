@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
 
-import '../../../model/weather_state.dart';
+import '../../../state_management/mob_x/weather_store.dart';
 import '../../../utility/constants/colors.dart';
-import '../../../utility/repository.dart';
 import '../../common_widgets/controls/location_selector.dart';
 import '../../common_widgets/controls/time_selector.dart';
 import '../../common_widgets/displays/atmospheric_display.dart';
@@ -11,71 +12,67 @@ import '../../common_widgets/displays/sun_time_display.dart';
 import '../../common_widgets/displays/temperature_display.dart';
 import '../../common_widgets/displays/wind_display.dart';
 
-class MobXPageSmall extends StatefulWidget {
-  const MobXPageSmall({Key key}) : super(key: key);
-  @override
-  _MobXPageSmallState createState() => _MobXPageSmallState();
-}
-
-class _MobXPageSmallState extends State<MobXPageSmall> {
-  WeatherRepository wr = WeatherRepository();
-  WeatherState currentWeather;
+class MobXPage extends StatelessWidget {
+  MobXPage({Key key}) : super(key: key);
 
   @override
-  void initState() {
-    currentWeather = wr.currentWeather;
-    super.initState();
+  Widget build(BuildContext context) {
+    var _weatherStore = Provider.of<WeatherStore>(context);
+    return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      body: Stack(
+        children: [
+          //Background Color
+          Container(
+            decoration: BoxDecoration(gradient: backgroundGradient),
+          ),
+          //Weather Displays
+          Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Observer(
+                builder: (_) => LocationDisplay(_weatherStore.state.location),
+              ),
+              Observer(
+                builder: (_) => SunTimeDisplay(
+                  _weatherStore.state.location.sunrise,
+                  _weatherStore.state.location.sunset,
+                ),
+              ),
+              Observer(
+                  builder: (_) =>
+                      TemperatureDisplay(_weatherStore.state.temperature)),
+              Observer(builder: (_) => WindDisplay(_weatherStore.state.wind)),
+              Observer(
+                  builder: (_) =>
+                      AtmosphericDisplay(_weatherStore.state.atmosphere)),
+              Container(),
+            ],
+          ),
+          //Time & Location controls
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: Observer(
+              builder: (_) => TimeSelector(
+                initialTime: _weatherStore.state.time,
+                onTimeSelected: (time) => _weatherStore.changeTime(time),
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Observer(
+              builder: (_) => LocationSelector(
+                initialLocation: _weatherStore.state.location,
+                onLocationSelected: (location) =>
+                    _weatherStore.changeLocation(location),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
-
-  @override
-  Widget build(BuildContext context) => Scaffold(
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        body: Stack(
-          children: [
-            //Background Color
-            Container(
-              decoration: BoxDecoration(gradient: backgroundGradient),
-            ),
-            //Weather Displays
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                LocationDisplay(currentWeather.location),
-                SunTimeDisplay(
-                  currentWeather.location.sunrise,
-                  currentWeather.location.sunset,
-                ),
-                TemperatureDisplay(currentWeather.temperature),
-                WindDisplay(currentWeather.wind),
-                AtmosphericDisplay(currentWeather.atmosphere),
-                Container(),
-              ],
-            ),
-            //Time & Location controls
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: TimeSelector(
-                initialTime: currentWeather.time,
-                onTimeSelected: (time) => setState(() {
-                  currentWeather = wr.changeTime(time);
-                }),
-                earliest: wr.forecast.first.time,
-                latest: wr.forecast.last.time,
-              ),
-            ),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: LocationSelector(
-                onLocationSelected: (location) => setState(
-                  () {
-                    currentWeather = wr.changeLocation(location);
-                  },
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
 }

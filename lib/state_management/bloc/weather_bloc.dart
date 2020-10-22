@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../model/weather_state.dart';
-import '../../utility/repository.dart';
+import '../../utility/weather_repository.dart';
 
 part 'weather_event.dart';
 

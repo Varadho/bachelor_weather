@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import '../../model/weather_state.dart';
-import '../../utility/repository.dart';
+import '../../utility/weather_repository.dart';
 
 class WeatherNotifier extends ChangeNotifier {
   WeatherState weather = WeatherRepository().currentWeather;

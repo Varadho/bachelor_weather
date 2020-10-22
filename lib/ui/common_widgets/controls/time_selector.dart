@@ -3,17 +3,16 @@ import 'package:time/time.dart';
 
 import '../../../utility/constants/colors.dart';
 import '../../../utility/constants/text_styles.dart';
+import '../../../utility/weather_repository.dart';
 import 'expandable_controls.dart';
 
 class TimeSelector extends StatefulWidget {
   final ValueChanged<DateTime> onTimeSelected;
-  final DateTime initialTime, earliest, latest;
+  final DateTime initialTime;
 
   const TimeSelector({
     this.onTimeSelected,
     this.initialTime,
-    this.earliest,
-    this.latest,
   }) : super(key: const Key("ts"));
   @override
   _TimeSelectorState createState() => _TimeSelectorState();
@@ -24,6 +23,8 @@ class _TimeSelectorState extends State<TimeSelector> {
   final DateTime _now = DateTime.now();
   bool _changing = false;
   bool _longPressing = false;
+  final DateTime _earliest = WeatherRepository().forecast.first.time;
+  final DateTime _latest = WeatherRepository().forecast.last.time;
 
   @override
   void initState() {
@@ -134,7 +135,7 @@ class _TimeSelectorState extends State<TimeSelector> {
       "${_selectedTime.minute.toString().padLeft(2, "0")}";
 
   void _incrementTime() {
-    if (_selectedTime.difference(widget.latest).isNegative) {
+    if (_selectedTime.difference(_latest).isNegative) {
       setState(() {
         _selectedTime = _selectedTime + 3.hours;
       });
@@ -143,7 +144,7 @@ class _TimeSelectorState extends State<TimeSelector> {
   }
 
   void _decrementTime() {
-    if (!_selectedTime.difference(widget.earliest + 5.minutes).isNegative) {
+    if (!_selectedTime.difference(_earliest + 5.minutes).isNegative) {
       setState(() {
         _selectedTime = _selectedTime - 3.hours;
       });

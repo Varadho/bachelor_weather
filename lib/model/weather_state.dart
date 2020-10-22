@@ -7,7 +7,7 @@ part 'atmospheric_data.dart';
 part 'coord.dart';
 part 'location_data.dart';
 part 'temp_data.dart';
-part 'weather.g.dart';
+part 'weather_state.g.dart';
 part 'wind_data.dart';
 
 @immutable

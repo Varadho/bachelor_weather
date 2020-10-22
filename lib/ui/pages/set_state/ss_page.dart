@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../model/weather_state.dart';
 import '../../../utility/constants/colors.dart';
-import '../../../utility/repository.dart';
+import '../../../utility/weather_repository.dart';
 import '../../common_widgets/controls/location_selector.dart';
 import '../../common_widgets/controls/time_selector.dart';
 import '../../common_widgets/displays/atmospheric_display.dart';
@@ -61,8 +61,6 @@ class _SSPageState extends State<SSPage> {
                 onTimeSelected: (time) => setState(() {
                   currentWeather = wr.changeTime(time);
                 }),
-                earliest: wr.forecast.first.time,
-                latest: wr.forecast.last.time,
               ),
             ),
             Align(

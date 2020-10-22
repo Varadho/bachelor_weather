@@ -1,4 +1,6 @@
+import 'package:bachelorweather/state_management/mob_x/weather_store.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../ui/pages/bloc/bloc_page_big.dart';
 import '../../ui/pages/mobx/mob_x_page.dart';
@@ -79,11 +81,14 @@ extension Utility on StateMethod {
         );
       case StateMethod.REDUX:
         return MaterialPageRoute(
-          builder: (context) => ReduxPageSmall(),
+          builder: (context) => ReduxPage(),
         );
       case StateMethod.MOBX:
         return MaterialPageRoute(
-          builder: (context) => MobXPageSmall(),
+          builder: (context) => Provider(
+            create: (context) => WeatherStore(),
+            child: MobXPage(),
+          ),
         );
       case StateMethod.BLOC:
         return MaterialPageRoute(
