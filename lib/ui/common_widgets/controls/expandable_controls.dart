@@ -3,27 +3,10 @@ import 'package:flutter/material.dart';
 import '../weather_card.dart';
 
 class ExpandableControls extends StatefulWidget {
-  final Widget contracted, _expanded;
+  final Widget contracted, expanded;
 
-  Widget get expanded => SizedBox(
-        height: 210,
-        child: Stack(
-          children: <Widget>[
-            _expanded,
-            Align(
-              alignment: Alignment.topRight,
-              child: Icon(
-                Icons.close,
-                color: Colors.white,
-                size: 30,
-              ),
-            )
-          ],
-        ),
-      );
-  const ExpandableControls({Key key, this.contracted, Widget expanded})
-      : _expanded = expanded,
-        super(key: key);
+  const ExpandableControls({Key key, this.contracted, this.expanded})
+      : super(key: key);
 
   @override
   _ExpandableControlsState createState() => _ExpandableControlsState();
@@ -45,8 +28,29 @@ class _ExpandableControlsState extends State<ExpandableControls>
             duration: animationDuration,
             child: Padding(
               padding: const EdgeInsets.all(6.0),
-              child: _isExpanded ? widget.expanded : widget.contracted,
+              child: _isExpanded
+                  ? addCloseIcon(widget.expanded)
+                  : widget.contracted,
             ),
+          ),
+        ),
+      );
+
+  Widget addCloseIcon(Widget widget) => SizedBox(
+        child: SizedBox(
+          height: 225,
+          child: Stack(
+            children: <Widget>[
+              widget,
+              Align(
+                alignment: Alignment.topRight,
+                child: Icon(
+                  Icons.close,
+                  color: Colors.white,
+                  size: 30,
+                ),
+              )
+            ],
           ),
         ),
       );
