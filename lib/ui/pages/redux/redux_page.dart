@@ -7,13 +7,8 @@ import '../../../state_management/redux/actions.dart';
 import '../../../state_management/redux/reducer.dart';
 import '../../../utility/constants/colors.dart';
 import '../../../utility/weather_repository.dart';
-import '../../common_widgets/controls/location_selector.dart';
-import '../../common_widgets/controls/time_selector.dart';
-import '../../common_widgets/displays/atmospheric_display.dart';
-import '../../common_widgets/displays/location_display.dart';
-import '../../common_widgets/displays/sun_time_display.dart';
-import '../../common_widgets/displays/temperature_display.dart';
-import '../../common_widgets/displays/wind_display.dart';
+import '../../common_widgets/controls/weather_controls.dart';
+import '../../common_widgets/displays/weather_displays.dart';
 
 class ReduxPage extends StatelessWidget {
   const ReduxPage({Key key}) : super(key: key);

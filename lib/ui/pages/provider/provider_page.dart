@@ -3,16 +3,11 @@ import 'package:provider/provider.dart';
 
 import '../../../state_management/providers/weather_notifier.dart';
 import '../../../utility/constants/colors.dart';
-import '../../common_widgets/controls/location_selector.dart';
-import '../../common_widgets/controls/time_selector.dart';
-import '../../common_widgets/displays/atmospheric_display.dart';
-import '../../common_widgets/displays/location_display.dart';
-import '../../common_widgets/displays/sun_time_display.dart';
-import '../../common_widgets/displays/temperature_display.dart';
-import '../../common_widgets/displays/wind_display.dart';
+import '../../common_widgets/controls/weather_controls.dart';
+import '../../common_widgets/displays/weather_displays.dart';
 
-class ProviderPageSmall extends StatelessWidget {
-  const ProviderPageSmall({Key key}) : super(key: key);
+class ProviderPage extends StatelessWidget {
+  const ProviderPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => ChangeNotifierProvider(

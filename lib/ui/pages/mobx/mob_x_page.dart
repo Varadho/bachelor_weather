@@ -4,13 +4,8 @@ import 'package:provider/provider.dart';
 
 import '../../../state_management/mob_x/weather_store.dart';
 import '../../../utility/constants/colors.dart';
-import '../../common_widgets/controls/location_selector.dart';
-import '../../common_widgets/controls/time_selector.dart';
-import '../../common_widgets/displays/atmospheric_display.dart';
-import '../../common_widgets/displays/location_display.dart';
-import '../../common_widgets/displays/sun_time_display.dart';
-import '../../common_widgets/displays/temperature_display.dart';
-import '../../common_widgets/displays/wind_display.dart';
+import '../../common_widgets/controls/weather_controls.dart';
+import '../../common_widgets/displays/weather_displays.dart';
 
 class MobXPage extends StatelessWidget {
   MobXPage({Key key}) : super(key: key);
