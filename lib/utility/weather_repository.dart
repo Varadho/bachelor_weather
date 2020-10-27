@@ -36,7 +36,7 @@ class WeatherRepository {
 
   WeatherState changeTime(DateTime newTime) {
     if (newTime.difference(forecast.last.time).isNegative &&
-        !newTime.difference(forecast.first.time + 5.minutes).isNegative) {
+        !newTime.difference(forecast.first.time).isNegative) {
       _currentTime = newTime;
     }
     return currentWeather;
@@ -59,5 +59,13 @@ class WeatherRepository {
     }
     _loading = false;
     debugPrint("Loading weather data complete");
+    debugPrint(toString());
   }
+
+  @override
+  String toString() => 'WeatherRepository{'
+      '_currentLocation: $_currentLocation, '
+      '_currentTime: $_currentTime, '
+      '_weatherMap: $_weatherMap'
+      '}';
 }

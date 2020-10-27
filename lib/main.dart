@@ -12,12 +12,10 @@ void main() {
   ///Create first and only instance of WeatherRepository, so it'll start
   ///loading.
   WeatherRepository();
-
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) => MaterialApp(
         title: 'Comfortable Weather',

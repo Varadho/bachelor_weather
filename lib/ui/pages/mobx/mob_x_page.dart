@@ -16,63 +16,73 @@ class MobXPage extends StatelessWidget {
   MobXPage({Key key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    var _weatherStore = Provider.of<WeatherStore>(context);
-    return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      body: Stack(
-        children: [
-          //Background Color
-          Container(
-            decoration: BoxDecoration(gradient: backgroundGradient),
+  Widget build(BuildContext context) => Provider(
+        create: (context) => WeatherStore(),
+        child: Scaffold(
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerFloat,
+          body: Builder(
+            builder: (context) {
+              var _weatherStore = Provider.of<WeatherStore>(context);
+              return Stack(
+                children: [
+                  //Background Color
+                  Container(
+                    decoration: BoxDecoration(gradient: backgroundGradient),
+                  ),
+                  //Weather Displays
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Observer(
+                        builder: (_) =>
+                            LocationDisplay(_weatherStore.state.location),
+                      ),
+                      Observer(
+                        builder: (_) => SunTimeDisplay(
+                          _weatherStore.state.location.sunrise,
+                          _weatherStore.state.location.sunset,
+                        ),
+                      ),
+                      Observer(
+                          builder: (_) => TemperatureDisplay(
+                              _weatherStore.state.temperature)),
+                      Observer(
+                          builder: (_) =>
+                              WindDisplay(_weatherStore.state.wind)),
+                      Observer(
+                          builder: (_) => AtmosphericDisplay(
+                              _weatherStore.state.atmosphere)),
+                      Container(),
+                    ],
+                  ),
+                  //Time & Location controls
+                  Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Observer(
+                      builder: (_) => TimeSelector(
+                        initialTime: _weatherStore.state.time,
+                        onTimeSelected: (time) =>
+                            _weatherStore.changeTime(time),
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Observer(
+                      builder: (_) => LocationSelector(
+                        initialLocation: _weatherStore.state.location,
+                        onLocationSelected: (location) =>
+                            _weatherStore.changeLocation(location),
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
           ),
-          //Weather Displays
-          Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Observer(
-                builder: (_) => LocationDisplay(_weatherStore.state.location),
-              ),
-              Observer(
-                builder: (_) => SunTimeDisplay(
-                  _weatherStore.state.location.sunrise,
-                  _weatherStore.state.location.sunset,
-                ),
-              ),
-              Observer(
-                  builder: (_) =>
-                      TemperatureDisplay(_weatherStore.state.temperature)),
-              Observer(builder: (_) => WindDisplay(_weatherStore.state.wind)),
-              Observer(
-                  builder: (_) =>
-                      AtmosphericDisplay(_weatherStore.state.atmosphere)),
-              Container(),
-            ],
-          ),
-          //Time & Location controls
-          Align(
-            alignment: Alignment.bottomLeft,
-            child: Observer(
-              builder: (_) => TimeSelector(
-                initialTime: _weatherStore.state.time,
-                onTimeSelected: (time) => _weatherStore.changeTime(time),
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Observer(
-              builder: (_) => LocationSelector(
-                initialLocation: _weatherStore.state.location,
-                onLocationSelected: (location) =>
-                    _weatherStore.changeLocation(location),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+        ),
+      );
 }
