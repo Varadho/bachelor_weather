@@ -123,7 +123,7 @@ class _TimeSelectorState extends State<TimeSelector> {
       );
 
   String _generateDateString() {
-    if (_selectedTime.weekday != _now.weekday) {
+    if (_selectedTime.weekday - 1 != _now.weekday) {
       return "${Localizations.of<MaterialLocalizations>(context, MaterialLocalizations).narrowWeekdays[_selectedTime.weekday - 1]}, "
           "${_selectedTime.day}.${_selectedTime.month}";
     }
@@ -135,7 +135,7 @@ class _TimeSelectorState extends State<TimeSelector> {
       "${_selectedTime.minute.toString().padLeft(2, "0")}";
 
   void _incrementTime() {
-    if (_selectedTime.difference(_latest).isNegative) {
+    if ((_selectedTime.difference(_latest) + 3.hours).isNegative) {
       setState(() {
         _selectedTime = _selectedTime + 3.hours;
       });
@@ -144,7 +144,7 @@ class _TimeSelectorState extends State<TimeSelector> {
   }
 
   void _decrementTime() {
-    if (!_selectedTime.difference(_earliest + 5.minutes).isNegative) {
+    if (!(_selectedTime.difference(_earliest) - 1.days).isNegative) {
       setState(() {
         _selectedTime = _selectedTime - 3.hours;
       });
