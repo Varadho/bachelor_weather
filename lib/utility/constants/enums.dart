@@ -1,6 +1,6 @@
+import 'package:bachelorweather/ui/pages/bloc/bloc_page_small.dart';
 import 'package:flutter/material.dart';
 
-import '../../ui/pages/bloc/bloc_page_big.dart';
 import '../../ui/pages/mobx/mob_x_page.dart';
 import '../../ui/pages/provider/provider_page.dart';
 import '../../ui/pages/redux/redux_page.dart';
@@ -32,7 +32,7 @@ extension Utility on StateMethod {
   String get name {
     switch (this) {
       case StateMethod.SS:
-        return "setState((){})";
+        return "setState((){...})";
       case StateMethod.MOBX:
         return "MobX";
       case StateMethod.PROVIDERS:
@@ -67,30 +67,28 @@ extension Utility on StateMethod {
     }
   }
 
-  Route get route {
+  Route get route => MaterialPageRoute(builder: (context) => page);
+
+  Widget get page {
     switch (this) {
       case StateMethod.SS:
-        return MaterialPageRoute(
-          builder: (context) => SSPage(),
-        );
+        return SSPage();
+        break;
       case StateMethod.PROVIDERS:
-        return MaterialPageRoute(
-          builder: (context) => ProviderPageSmall(),
-        );
-      case StateMethod.REDUX:
-        return MaterialPageRoute(
-          builder: (context) => ReduxPage(),
-        );
+        return ProviderPage();
+        break;
       case StateMethod.MOBX:
-        return MaterialPageRoute(
-          builder: (context) => MobXPage(),
-        );
+        return MobXPage();
+        break;
+      case StateMethod.REDUX:
+        return ReduxPage();
+        break;
       case StateMethod.BLOC:
-        return MaterialPageRoute(
-          builder: (context) => BlocPageBig(),
-        );
+        return BlocPageSmall();
+        break;
       default:
         return null;
+        break;
     }
   }
 }
