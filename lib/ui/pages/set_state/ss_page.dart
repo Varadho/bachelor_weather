@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../model/weather_state.dart';
 import '../../../utility/constants/colors.dart';
 import '../../../utility/weather_repository.dart';
-import '../../common_widgets/controls/weather_controls.dart';
-import '../../common_widgets/displays/weather_displays.dart';
+import 'controls/weather_controls.dart';
+import 'displays/weather_displays.dart';
 
 class SSPage extends StatefulWidget {
   const SSPage({Key key}) : super(key: key);

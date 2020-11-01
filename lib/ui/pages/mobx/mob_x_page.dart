@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 
-import '../../../state_management/mob_x/weather_store.dart';
 import '../../../utility/constants/colors.dart';
-import '../../common_widgets/controls/weather_controls.dart';
-import '../../common_widgets/displays/weather_displays.dart';
+import 'controls/weather_controls.dart';
+import 'displays/weather_displays.dart';
+import 'state_management/weather_store.dart';
 
 class MobXPage extends StatelessWidget {
   MobXPage({Key key}) : super(key: key);

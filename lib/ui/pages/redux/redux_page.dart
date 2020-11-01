@@ -3,12 +3,12 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
 import '../../../model/weather_state.dart';
-import '../../../state_management/redux/actions.dart';
-import '../../../state_management/redux/reducer.dart';
 import '../../../utility/constants/colors.dart';
 import '../../../utility/weather_repository.dart';
-import '../../common_widgets/controls/weather_controls.dart';
-import '../../common_widgets/displays/weather_displays.dart';
+import 'controls/weather_controls.dart';
+import 'displays/weather_displays.dart';
+import 'state_management/actions.dart';
+import 'state_management/reducer.dart';
 
 class ReduxPage extends StatelessWidget {
   const ReduxPage({Key key}) : super(key: key);

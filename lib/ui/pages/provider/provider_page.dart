@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../state_management/providers/weather_notifier.dart';
 import '../../../utility/constants/colors.dart';
-import '../../common_widgets/controls/weather_controls.dart';
-import '../../common_widgets/displays/weather_displays.dart';
+import 'controls/weather_controls.dart';
+import 'displays/weather_displays.dart';
+import 'state_management/weather_notifier.dart';
 
 class ProviderPage extends StatelessWidget {
   const ProviderPage({Key key}) : super(key: key);
