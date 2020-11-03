@@ -52,8 +52,8 @@ LocationData _$LocationDataFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$LocationDataToJson(LocationData instance) =>
     <String, dynamic>{
       'name': instance.name,
+      'coord': instance.coord?.toJson(),
       'id': instance.cityID,
-      'coord': instance.coord,
       'country': instance.country,
       'sunrise': instance.sunrise?.toIso8601String(),
       'sunset': instance.sunset?.toIso8601String(),

@@ -5,9 +5,11 @@ import '../model/weather_state.dart';
 import 'api_helper.dart';
 import 'constants/favorite_locations.dart';
 
+///Repository which loads and caches all WeatherStates
 class WeatherRepository {
   static final WeatherRepository _singleton = WeatherRepository._internal();
 
+  ///Only public constructor used to implement the singleton pattern
   factory WeatherRepository() => _singleton;
 
   WeatherRepository._internal() {
@@ -19,14 +21,15 @@ class WeatherRepository {
   DateTime _currentTime = DateTime.now();
   final Map<LocationData, List<WeatherState>> _weatherMap = {};
 
-  bool _loading = false;
-  bool get isLoading => _loading;
-
+  ///A getter which provides a  list of WeatherStates which represent the
+  ///entire forecast for a specific location
   List<WeatherState> get forecast =>
       _weatherMap[_currentLocation]?.isNotEmpty ?? false
           ? _weatherMap[_currentLocation]
           : [WeatherState.empty()];
 
+  ///A getter which provides a single WeatherState depending on the currently
+  /// selected location and time.
   WeatherState get currentWeather => forecast.firstWhere(
         (w) => w.time.difference(_currentTime).abs() <= 1.5.hours,
         orElse: () => _currentTime.difference(DateTime.now()).isNegative
@@ -34,6 +37,8 @@ class WeatherRepository {
             : forecast.last,
       );
 
+  ///A method which allows to change the currentTime in the repository and
+  ///returns the corresponding [WeatherState]
   WeatherState changeTime(DateTime newTime) {
     if (newTime.difference(forecast.last.time).isNegative &&
         !newTime.difference(forecast.first.time).isNegative) {
@@ -42,6 +47,8 @@ class WeatherRepository {
     return currentWeather;
   }
 
+  ///A method which allows to change the currentLocation in the repository and
+  ///returns the corresponding [WeatherState]
   WeatherState changeLocation(LocationData l) {
     _currentLocation = l;
     return currentWeather;
@@ -53,11 +60,9 @@ class WeatherRepository {
   }
 
   void _loadData() async {
-    _loading = true;
     for (var location in favoriteLocations) {
       await _loadWeatherForLocation(location);
     }
-    _loading = false;
     debugPrint("Loading weather data complete");
     debugPrint(toString());
   }

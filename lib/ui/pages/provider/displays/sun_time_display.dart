@@ -3,12 +3,15 @@ import 'package:flutter/material.dart';
 import '../../../../utility/constants/text_styles.dart';
 import '../../../common_widgets/weather_card.dart';
 
+///Widget which displays information about sunrise, sunset and the current time
+///This is a specific implementation using the Provider package
 class SunTimeDisplay extends StatelessWidget {
   final DateTime _sunrise, _sunset;
   final String _date = "${DateTime.now().day}."
       "${DateTime.now().month}."
       "${DateTime.now().year}";
 
+  // ignore: public_member_api_docs
   SunTimeDisplay(this._sunrise, this._sunset);
 
   @override

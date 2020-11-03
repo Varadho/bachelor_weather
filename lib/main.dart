@@ -8,16 +8,37 @@ import 'utility/weather_repository.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-
-  ///Create first and only instance of WeatherRepository, so it'll start
-  ///loading.
-  WeatherRepository();
-  runApp(MyApp());
+  _main(null);
 }
 
+///Entry point for Flutter Driver integration Tests.
+///A [NavigatorObserver] must be provided, to allow custom commands to the
+///[Navigator] from the testing suite.
+void mainTest(NavigatorObserver navigatorObserver) {
+  WeatherRepository();
+  _main(navigatorObserver);
+}
+
+void _main(NavigatorObserver navigatorObserver) {
+  WeatherRepository();
+  runApp(MyApp(
+    navigatorObserver: navigatorObserver,
+  ));
+}
+
+///Main Widget which is the root for the application
 class MyApp extends StatelessWidget {
+  ///NavigatorObserver used to relay navigator commands from the Driver tests
+  /// to the application
+  final NavigatorObserver navigatorObserver;
+
+  ///Constructor which accepts navigatorObserver
+  const MyApp({Key key, this.navigatorObserver}) : super(key: key);
+
   @override
   Widget build(BuildContext context) => MaterialApp(
+        navigatorObservers:
+            navigatorObserver == null ? [] : [navigatorObserver],
         title: 'Comfortable Weather',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(

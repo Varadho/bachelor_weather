@@ -1,5 +1,6 @@
 import '../../model/weather_state.dart';
 
+///Static location of Hamburg, Germany
 LocationData hh = LocationData(
   cityID: 6547395,
   name: "Hamburg",
@@ -10,6 +11,7 @@ LocationData hh = LocationData(
   ),
 );
 
+///Static location of Gießen, Germany
 LocationData giessen = LocationData(
   cityID: 2920512,
   name: "Gießen",
@@ -20,6 +22,7 @@ LocationData giessen = LocationData(
   ),
 );
 
+///Static location of Cologne, Germany
 LocationData koeln = LocationData(
   cityID: 2920512,
   name: "Köln",
@@ -30,6 +33,7 @@ LocationData koeln = LocationData(
   ),
 );
 
+///Static location of London, England
 LocationData london = LocationData(
   cityID: 2643743,
   name: "London",
@@ -40,6 +44,7 @@ LocationData london = LocationData(
   ),
 );
 
+///Static location of Marseille, France
 LocationData marseille = LocationData(
   cityID: 2995469,
   name: "Marseille",
@@ -50,6 +55,7 @@ LocationData marseille = LocationData(
   ),
 );
 
+///Static location of Tokyo, Japan
 LocationData tokyo = LocationData(
   cityID: 1850147,
   name: "Tokyo",
@@ -60,16 +66,7 @@ LocationData tokyo = LocationData(
   ),
 );
 
-LocationData kapstadt = LocationData(
-  cityID: 3369157,
-  name: "Cape Town",
-  country: "ZA",
-  coord: Coordinates(
-    lon: 18.42322,
-    lat: -33.925838,
-  ),
-);
-
+///A static list of all favorite locations
 List<LocationData> favoriteLocations = <LocationData>[
   giessen,
   koeln,

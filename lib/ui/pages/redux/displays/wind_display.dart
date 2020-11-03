@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import '../../../../model/weather_state.dart';
 import '../../../../utility/constants/text_styles.dart';
 import '../../../common_widgets/weather_card.dart';
-import 'compass_widget.dart';
+import 'wind_direction_display.dart';
 
+///Widget which displays information about wind.
+///This is a specific implementation using the Redux package
 class WindDisplay extends StatelessWidget {
   final WindData _wind;
 
+  // ignore: public_member_api_docs
   WindDisplay(
     this._wind, {
     Key key,

@@ -5,10 +5,13 @@ import '../../../../model/weather_state.dart';
 import '../../../../utility/constants/text_styles.dart';
 import '../../../common_widgets/weather_card.dart';
 
+///Widget which displays information about temperature data
+///This is a specific implementation using the BLoC package
 class TemperatureDisplay extends StatelessWidget {
   final TemperatureData _temperatures;
   final Color _temperatureColor;
 
+  // ignore: public_member_api_docs
   TemperatureDisplay(this._temperatures, {Key key})
       : _temperatureColor =
             _calculateColor(_temperatures?.feelsLike ?? _temperatures.max);

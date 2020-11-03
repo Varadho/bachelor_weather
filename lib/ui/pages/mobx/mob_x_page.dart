@@ -7,7 +7,9 @@ import 'controls/weather_controls.dart';
 import 'displays/weather_displays.dart';
 import 'state_management/weather_store.dart';
 
+///Page which displays the weather using the MobX state management package
 class MobXPage extends StatelessWidget {
+  // ignore: public_member_api_docs
   MobXPage({Key key}) : super(key: key);
 
   @override

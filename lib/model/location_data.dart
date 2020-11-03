@@ -1,14 +1,26 @@
 part of 'weather_state.dart';
 
-@JsonSerializable()
+///Information about the Location for the displayed weather
+@JsonSerializable(explicitToJson: true)
 class LocationData extends Equatable {
+  ///Name of the City for which weather is displayed
   final String name;
+  ///A getter which splits the provided Name cut unnecessarily Long desciptions
+  ///e.g. "Regierungsbezirk Gießen" -> "Gießen",
+  ///"Arrondisement Marseille"->Marseille",
+  ///"London" -> "London"
+  String get cityName => name.split(" ").last;
+  ///Coordinates of the City
+  final Coordinates coord;
+  ///ID of the city, as provided by the API
   @JsonKey(name: "id")
   final int cityID;
-  final Coordinates coord;
+  ///Country in which the city lies
   final String country;
+  ///Times of sunrise and sunset for the location
   final DateTime sunrise, sunset;
 
+  // ignore: public_member_api_docs
   LocationData({
     this.coord = const Coordinates(),
     this.country = "Nothing",
@@ -24,15 +36,16 @@ class LocationData extends Equatable {
             DateTime.fromMillisecondsSinceEpoch(sunset * 1000, isUtc: true) -
                 timezone.seconds;
 
+  ///Factory which allows for deserializing a JSON-Map into a
+  ///[LocationData] Object
   factory LocationData.fromJson(Map<String, dynamic> json) =>
       _$LocationDataFromJson(json);
 
+  ///Method which allows serializing the [LocationData] into a JSON-Map
   Map<String, dynamic> toJson() => _$LocationDataToJson(this);
 
   @override
   String toString() => "$name, $country";
-
-  String get cityName => name.split(" ").last;
 
   @override
   List<Object> get props =>

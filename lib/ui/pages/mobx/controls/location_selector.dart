@@ -7,10 +7,15 @@ import '../../../../utility/constants/favorite_locations.dart';
 import '../../../../utility/constants/text_styles.dart';
 import '../../../common_widgets/expandable_controls.dart';
 
+///Widget which controls the location for which the weather should be displayed.
+///This is a specific implementation using the MobX package.
 class LocationSelector extends StatefulWidget {
+  // ignore: public_member_api_docs
   final ValueChanged<LocationData> onLocationSelected;
+  // ignore: public_member_api_docs
   final LocationData initialLocation;
 
+  // ignore: public_member_api_docs
   const LocationSelector({this.onLocationSelected, this.initialLocation})
       : super(key: const Key("ls"));
 

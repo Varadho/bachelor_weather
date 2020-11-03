@@ -8,8 +8,10 @@ import 'controls/weather_controls.dart';
 import 'displays/weather_displays.dart';
 import 'state_management/weather_bloc.dart';
 
-class BlocPageSmall extends StatelessWidget {
-  const BlocPageSmall({Key key}) : super(key: key);
+///Page which displays the weather using the BLoC state management package
+class BlocPage extends StatelessWidget {
+  // ignore: public_member_api_docs
+  const BlocPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => BlocProvider<WeatherBloc>(

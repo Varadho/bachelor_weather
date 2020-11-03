@@ -4,9 +4,12 @@ import '../../../../model/weather_state.dart';
 import '../../../../utility/constants/text_styles.dart';
 import '../../../common_widgets/weather_card.dart';
 
+///Widget which displays information about the location
+///This is a specific implementation using the Redux package
 class LocationDisplay extends StatelessWidget {
   final LocationData _location;
 
+  // ignore: public_member_api_docs
   const LocationDisplay(
     this._location, {
     Key key,

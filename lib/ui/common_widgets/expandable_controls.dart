@@ -2,11 +2,18 @@ import 'package:flutter/material.dart';
 
 import 'weather_card.dart';
 
+///Controls which display one of two Widgets, depending on whether they are
+///expanded or not. Expansion can be achieved by tapping this Widget
 class ExpandableControls extends StatefulWidget {
+  ///The widgets which are to be displayed
   final Widget contracted, expanded;
 
-  const ExpandableControls({Key key, this.contracted, this.expanded})
-      : super(key: key);
+  // ignore: public_member_api_docs
+  const ExpandableControls({
+    Key key,
+    this.contracted,
+    this.expanded,
+  }) : super(key: key);
 
   @override
   _ExpandableControlsState createState() => _ExpandableControlsState();

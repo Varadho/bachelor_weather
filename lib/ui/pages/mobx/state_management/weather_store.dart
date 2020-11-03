@@ -5,6 +5,8 @@ import '../../../../utility/weather_repository.dart';
 
 part 'weather_store.g.dart';
 
+///WeatherStore which is used to hold all possible States one might want to
+///display
 class WeatherStore = _WeatherStore with _$WeatherStore;
 
 abstract class _WeatherStore with Store {

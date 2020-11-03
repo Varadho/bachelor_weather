@@ -4,6 +4,8 @@ import '../../../../model/weather_state.dart';
 import '../../../../utility/weather_repository.dart';
 import 'actions.dart';
 
+///Type definition for weather reducers. These functions take a [WeatherState]
+/// and [WeatherAction] as parameters
 typedef WeatherReducer = Function(WeatherState, WeatherAction);
 
 ///Reducer for all WeatherActions

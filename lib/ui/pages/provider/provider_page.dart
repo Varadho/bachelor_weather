@@ -6,7 +6,10 @@ import 'controls/weather_controls.dart';
 import 'displays/weather_displays.dart';
 import 'state_management/weather_notifier.dart';
 
+///Page which displays the weather using the Provider package to realize
+///state management
 class ProviderPage extends StatelessWidget {
+  // ignore: public_member_api_docs
   const ProviderPage({Key key}) : super(key: key);
 
   @override

@@ -10,7 +10,9 @@ import 'displays/weather_displays.dart';
 import 'state_management/actions.dart';
 import 'state_management/reducer.dart';
 
+///Page which displays the weather using the Redux package for state management
 class ReduxPage extends StatelessWidget {
+  // ignore: public_member_api_docs
   const ReduxPage({Key key}) : super(key: key);
 
   @override

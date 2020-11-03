@@ -3,31 +3,30 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../model/weather_state.dart';
-//import 'api_key.dart';
+import 'constants/api_key.dart';
 
+///Class which takes care of all network traffic
 class ApiHelper {
+  ///The base URL of the API which is used to retrieve weather data
   static const String baseUrl = 'https://api.openweathermap.org/data/2.5/';
 
-  static const String currentQuery = 'weather';
+  static const String _forecastQuery = 'forecast';
 
-  static const String forecastQuery = 'forecast';
+  static const String _cityQuery = '?q=';
 
-  static const String oneCallQuery = 'onecall';
+  static const String _units = '&units=metric';
 
-  static const String cityQuery = '?q=';
+  static const String _keyQuery = '&appid=$apiKey';
 
-  static const String units = '&units=metric';
-
-  static const String apiKey = '&appid=1234567890';
-
+  ///Method which retrieves a five day forecast for a specific location
   static Future<List<WeatherState>> get5DayForecastFor(String location) async {
     var result = <WeatherState>[];
     try {
       var body = (await http.get(
         Uri.parse(
-          '$baseUrl$forecastQuery'
-          '$cityQuery$location'
-          '$units$apiKey',
+          '$baseUrl$_forecastQuery'
+          '$_cityQuery$location'
+          '$_units$_keyQuery',
         ),
       ))
           .body;

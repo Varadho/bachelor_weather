@@ -1,13 +1,16 @@
-import 'package:bachelorweather/model/weather_state.dart';
-import 'package:bachelorweather/ui/common_widgets/weather_card.dart';
-import 'package:bachelorweather/utility/constants/text_styles.dart';
 import 'package:flutter/material.dart';
 
-import 'compass_widget.dart';
+import '../../../../model/weather_state.dart';
+import '../../../../utility/constants/text_styles.dart';
+import '../../../common_widgets/weather_card.dart';
+import 'wind_direction_display.dart';
 
+///Widget which displays information about wind.
+///This is a specific implementation using the MobX package
 class WindDisplay extends StatelessWidget {
   final WindData _wind;
 
+  // ignore: public_member_api_docs
   WindDisplay(
     this._wind, {
     Key key,

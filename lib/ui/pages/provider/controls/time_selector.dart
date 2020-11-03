@@ -6,10 +6,14 @@ import '../../../../utility/constants/text_styles.dart';
 import '../../../../utility/weather_repository.dart';
 import '../../../common_widgets/expandable_controls.dart';
 
+///Widget which controls the time for which the weather should be displayed.
+///This is a specific implementation using the Provider package.
 class TimeSelector extends StatefulWidget {
+  // ignore: public_member_api_docs
   final ValueChanged<DateTime> onTimeSelected;
+  // ignore: public_member_api_docs
   final DateTime initialTime;
-
+  // ignore: public_member_api_docs
   const TimeSelector({
     this.onTimeSelected,
     this.initialTime,

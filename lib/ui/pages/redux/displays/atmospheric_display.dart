@@ -4,9 +4,12 @@ import '../../../../model/weather_state.dart';
 import '../../../../utility/constants/text_styles.dart';
 import '../../../common_widgets/weather_card.dart';
 
+///Widget which displays information about the atmosphere
+///This is a specific implementation using the Redux package
 class AtmosphericDisplay extends StatelessWidget {
   final AtmosphericData _atmosphere;
 
+  // ignore: public_member_api_docs
   const AtmosphericDisplay(
     this._atmosphere, {
     Key key,

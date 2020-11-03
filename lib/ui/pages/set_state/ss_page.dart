@@ -6,7 +6,9 @@ import '../../../utility/weather_repository.dart';
 import 'controls/weather_controls.dart';
 import 'displays/weather_displays.dart';
 
+///Page which displays the weather using no state management package
 class SSPage extends StatefulWidget {
+  // ignore: public_member_api_docs
   const SSPage({Key key}) : super(key: key);
   @override
   _SSPageState createState() => _SSPageState();
