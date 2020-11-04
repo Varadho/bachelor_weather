@@ -2,8 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:time/time.dart';
 
 import '../model/weather_state.dart';
-import 'api_helper.dart';
 import 'constants/favorite_locations.dart';
+import 'network/api_helper.dart';
 
 ///Repository which loads and caches all WeatherStates
 class WeatherRepository {

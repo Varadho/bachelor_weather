@@ -2,8 +2,9 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import '../model/weather_state.dart';
-import 'constants/api_key.dart';
+import '../../model/weather_state.dart';
+
+part 'api_key.dart';
 
 ///Class which takes care of all network traffic
 class ApiHelper {
@@ -16,7 +17,7 @@ class ApiHelper {
 
   static const String _units = '&units=metric';
 
-  static const String _keyQuery = '&appid=$apiKey';
+  static const String _keyQuery = '&appid=$_apiKey';
 
   ///Method which retrieves a five day forecast for a specific location
   static Future<List<WeatherState>> get5DayForecastFor(String location) async {
