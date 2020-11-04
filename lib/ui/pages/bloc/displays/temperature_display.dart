@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../model/weather_state.dart';
 import '../../../../utility/constants/text_styles.dart';
 import '../../../common_widgets/weather_card.dart';
+import '../state_management/weather_bloc.dart';
 
 ///Widget which displays information about temperature data
 ///This is a specific implementation using the BLoC package
 class TemperatureDisplay extends StatelessWidget {
-  final TemperatureData _temperatures;
-  final Color _temperatureColor;
-
   // ignore: public_member_api_docs
-  TemperatureDisplay(this._temperatures, {Key key})
-      : _temperatureColor =
-            _calculateColor(_temperatures?.feelsLike ?? _temperatures.max);
+  TemperatureDisplay({Key key});
 
   @override
   Widget build(BuildContext context) => WeatherCard(
@@ -29,29 +26,33 @@ class TemperatureDisplay extends StatelessWidget {
                 color: Color.fromRGBO(255, 255, 255, 0.2),
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
-                  child: Icon(
-                    FontAwesomeIcons.temperatureHigh,
-                    size: 36,
-                    color: _temperatureColor,
+                  child: BlocBuilder<WeatherBloc, WeatherState>(
+                    builder: (context, state) => Icon(
+                      FontAwesomeIcons.temperatureHigh,
+                      size: 36,
+                      color: _calculateColor(state.temperature.feelsLike),
+                    ),
                   ),
                 ),
               ),
             ),
             Column(
               children: <Widget>[
-                RichText(
-                  text: TextSpan(
-                    text: "${_temperatures?.feelsLike}°C ",
-                    style: headingStyle,
-                    children: [
-                      TextSpan(
-                        text: "(${_temperatures?.avg}°C)",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w300,
-                          fontSize: 16,
+                BlocBuilder<WeatherBloc, WeatherState>(
+                  builder: (context, state) => RichText(
+                    text: TextSpan(
+                      text: "${state.temperature.feelsLike}°C ",
+                      style: headingStyle,
+                      children: [
+                        TextSpan(
+                          text: "(${state.temperature.avg}°C)",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            fontSize: 16,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 Row(
@@ -68,9 +69,11 @@ class TemperatureDisplay extends StatelessWidget {
                             FontAwesomeIcons.longArrowAltUp,
                             color: Colors.red,
                           ),
-                          Text(
-                            "${_temperatures.max.toStringAsFixed(2)}°C ",
-                            style: dataStyle,
+                          BlocBuilder<WeatherBloc, WeatherState>(
+                            builder: (context, state) => Text(
+                              "${state.temperature.max.toStringAsFixed(2)}°C ",
+                              style: dataStyle,
+                            ),
                           ),
                         ],
                       ),
@@ -86,9 +89,11 @@ class TemperatureDisplay extends StatelessWidget {
                             FontAwesomeIcons.longArrowAltDown,
                             color: Colors.lightBlue,
                           ),
-                          Text(
-                            "${_temperatures.min.toStringAsFixed(2)}°C ",
-                            style: dataStyle,
+                          BlocBuilder<WeatherBloc, WeatherState>(
+                            builder: (context, state) => Text(
+                              "${state.temperature.min.toStringAsFixed(2)}°C ",
+                              style: dataStyle,
+                            ),
                           ),
                         ],
                       ),

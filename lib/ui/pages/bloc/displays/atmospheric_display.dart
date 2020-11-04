@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../model/weather_state.dart';
 import '../../../../utility/constants/text_styles.dart';
 import '../../../common_widgets/weather_card.dart';
+import '../state_management/weather_bloc.dart';
 
 ///Widget which displays information about atmospheric data
 ///This is a specific implementation using the BLoC package
 class AtmosphericDisplay extends StatelessWidget {
-  final AtmosphericData _atmosphere;
-
   // ignore: public_member_api_docs
-  const AtmosphericDisplay(
-    this._atmosphere, {
+  const AtmosphericDisplay({
     Key key,
   }) : super(key: key);
 
@@ -30,9 +29,11 @@ class AtmosphericDisplay extends StatelessWidget {
                         "Pressure:",
                         style: headingStyle.copyWith(fontSize: 20),
                       ),
-                      Text(
-                        "${_atmosphere.pressure} hPa",
-                        style: dataStyle,
+                      BlocBuilder<WeatherBloc, WeatherState>(
+                        builder: (context, state) => Text(
+                          "${state.atmosphere.pressure} hPa",
+                          style: dataStyle,
+                        ),
                       ),
                     ],
                   ),
@@ -42,9 +43,11 @@ class AtmosphericDisplay extends StatelessWidget {
                         "Humidity:",
                         style: headingStyle.copyWith(fontSize: 20),
                       ),
-                      Text(
-                        "${_atmosphere.humidity}%",
-                        style: dataStyle,
+                      BlocBuilder<WeatherBloc, WeatherState>(
+                        builder: (context, state) => Text(
+                          "${state.atmosphere.humidity}%",
+                          style: dataStyle,
+                        ),
                       ),
                     ],
                   ),
@@ -54,9 +57,11 @@ class AtmosphericDisplay extends StatelessWidget {
                         "Cloudiness:",
                         style: headingStyle.copyWith(fontSize: 20),
                       ),
-                      Text(
-                        "${_atmosphere.clouds}%",
-                        style: dataStyle,
+                      BlocBuilder<WeatherBloc, WeatherState>(
+                        builder: (context, state) => Text(
+                          "${state.atmosphere.clouds}%",
+                          style: dataStyle,
+                        ),
                       ),
                     ],
                   ),
@@ -64,9 +69,11 @@ class AtmosphericDisplay extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 12.0),
-                child: Text(
-                  "and ${_atmosphere.description}",
-                  style: headingStyle,
+                child: BlocBuilder<WeatherBloc, WeatherState>(
+                  builder: (context, state) => Text(
+                    "and ${state.atmosphere.description}",
+                    style: headingStyle,
+                  ),
                 ),
               ),
             ],

@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../model/weather_state.dart';
 import '../../../../utility/constants/text_styles.dart';
 import '../../../common_widgets/weather_card.dart';
+import '../state_management/weather_bloc.dart';
 import 'wind_direction_display.dart';
 
 ///Widget which displays information about wind.
 ///This is a specific implementation using the BLoC package
 class WindDisplay extends StatelessWidget {
-  final WindData _wind;
-
   // ignore: public_member_api_docs
-  WindDisplay(
-    this._wind, {
+  WindDisplay({
     Key key,
   });
 
@@ -30,20 +29,27 @@ class WindDisplay extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  WindDirectionDisplay(
-                    windDegrees: _wind.deg,
+                  BlocBuilder<WeatherBloc, WeatherState>(
+                    builder: (context, state) => WindDirectionDisplay(
+                      windDegrees: state.wind.deg,
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Column(
                       children: <Widget>[
-                        Text(
-                          "${(_wind.mpsSpeed * 3.6).toStringAsFixed(2)} km/h",
-                          style: dataStyle,
+                        BlocBuilder<WeatherBloc, WeatherState>(
+                          builder: (context, state) => Text(
+                            "${(state.wind.mpsSpeed * 3.6).toStringAsFixed(2)} "
+                            "km/h",
+                            style: dataStyle,
+                          ),
                         ),
-                        Text(
-                          "${_wind.mpsSpeed.toStringAsFixed(2)} m/s",
-                          style: dataStyle,
+                        BlocBuilder<WeatherBloc, WeatherState>(
+                          builder: (context, state) => Text(
+                            "${state.wind.mpsSpeed.toStringAsFixed(2)} m/s",
+                            style: dataStyle,
+                          ),
                         ),
                       ],
                     ),

@@ -1,4 +1,7 @@
+import 'package:bachelorweather/model/weather_state.dart';
+import 'package:bachelorweather/ui/pages/bloc/state_management/weather_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../utility/constants/text_styles.dart';
 import '../../../common_widgets/weather_card.dart';
@@ -6,13 +9,12 @@ import '../../../common_widgets/weather_card.dart';
 ///Widget which displays information about sunrise, sunset and the current time
 ///This is a specific implementation using the BLoC package
 class SunTimeDisplay extends StatelessWidget {
-  final DateTime _sunrise, _sunset;
   final String _date = "${DateTime.now().day}."
       "${DateTime.now().month}."
       "${DateTime.now().year}";
 
   // ignore: public_member_api_docs
-  SunTimeDisplay(this._sunrise, this._sunset);
+  SunTimeDisplay();
 
   @override
   Widget build(BuildContext context) => WeatherCard(
@@ -35,18 +37,20 @@ class SunTimeDisplay extends StatelessWidget {
                         size: 30,
                         color: Colors.white,
                       ),
-                      RichText(
-                        text: TextSpan(
-                          text: "Sunrise ",
-                          style: TextStyle(fontSize: 16),
-                          children: <InlineSpan>[
-                            TextSpan(
-                              style: dataStyle,
-                              text:
-                                  "${_sunrise.hour.toString().padLeft(2, "0")}:"
-                                  "${_sunrise.minute.toString().padLeft(2, "0")}",
-                            )
-                          ],
+                      BlocBuilder<WeatherBloc, WeatherState>(
+                        builder: (context, state) => RichText(
+                          text: TextSpan(
+                            text: "Sunrise ",
+                            style: TextStyle(fontSize: 16),
+                            children: <InlineSpan>[
+                              TextSpan(
+                                style: dataStyle,
+                                text:
+                                    "${state.location.sunrise.hour.toString().padLeft(2, "0")}:"
+                                    "${state.location.sunrise.minute.toString().padLeft(2, "0")}",
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -71,18 +75,20 @@ class SunTimeDisplay extends StatelessWidget {
                         size: 30,
                         color: Colors.white,
                       ),
-                      RichText(
-                        text: TextSpan(
-                          text: "Sunset ",
-                          style: TextStyle(fontSize: 16),
-                          children: <InlineSpan>[
-                            TextSpan(
-                              style: dataStyle,
-                              text:
-                                  "${_sunset.hour.toString().padLeft(2, "0")}:"
-                                  "${_sunset.minute.toString().padLeft(2, "0")}",
-                            )
-                          ],
+                      BlocBuilder<WeatherBloc, WeatherState>(
+                        builder: (context, state) => RichText(
+                          text: TextSpan(
+                            text: "Sunset ",
+                            style: TextStyle(fontSize: 16),
+                            children: <InlineSpan>[
+                              TextSpan(
+                                style: dataStyle,
+                                text:
+                                    "${state.location.sunset.hour.toString().padLeft(2, "0")}:"
+                                    "${state.location.sunset.minute.toString().padLeft(2, "0")}",
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ],
