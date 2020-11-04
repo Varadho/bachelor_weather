@@ -29,11 +29,7 @@ class WindDisplay extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  BlocBuilder<WeatherBloc, WeatherState>(
-                    builder: (context, state) => WindDirectionDisplay(
-                      windDegrees: state.wind.deg,
-                    ),
-                  ),
+                  WindDirectionDisplay(),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Column(

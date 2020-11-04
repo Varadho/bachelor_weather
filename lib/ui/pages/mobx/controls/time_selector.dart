@@ -1,24 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:time/time.dart';
 
 import '../../../../utility/constants/colors.dart';
 import '../../../../utility/constants/text_styles.dart';
 import '../../../../utility/weather_repository.dart';
 import '../../../common_widgets/expandable_controls.dart';
+import '../state_management/weather_store.dart';
 
 ///Widget which controls the time for which the weather should be displayed.
 ///This is a specific implementation using the MobX package.
 class TimeSelector extends StatefulWidget {
   // ignore: public_member_api_docs
-  final ValueChanged<DateTime> onTimeSelected;
-  // ignore: public_member_api_docs
-  final DateTime initialTime;
-
-  // ignore: public_member_api_docs
-  const TimeSelector({
-    this.onTimeSelected,
-    this.initialTime,
-  }) : super(key: const Key("ts"));
+  const TimeSelector() : super(key: const Key("ts"));
   @override
   _TimeSelectorState createState() => _TimeSelectorState();
 }
@@ -34,7 +28,7 @@ class _TimeSelectorState extends State<TimeSelector> {
   @override
   void initState() {
     super.initState();
-    _selectedTime = widget.initialTime ?? DateTime.now();
+    _selectedTime = Provider.of<WeatherStore>(context).state.time;
   }
 
   @override
@@ -87,7 +81,7 @@ class _TimeSelectorState extends State<TimeSelector> {
                     InkWell(
                       child: GestureDetector(
                         key: const Key("previous_time"),
-                        onTapDown: (details) => _decreaseRapidly(),
+                        onTapDown: (details) => _decreaseRapidly(context),
                         onTapUp: (details) => _haltChange(),
                         onTapCancel: _haltChange,
                         child: Icon(
@@ -105,7 +99,7 @@ class _TimeSelectorState extends State<TimeSelector> {
                     InkWell(
                       child: GestureDetector(
                         key: const Key("next_time"),
-                        onTapDown: (details) => _increaseRapidly(),
+                        onTapDown: (details) => _increaseRapidly(context),
                         onTapUp: (details) => _haltChange(),
                         onTapCancel: _haltChange,
                         child: Icon(
@@ -139,30 +133,30 @@ class _TimeSelectorState extends State<TimeSelector> {
       "${_selectedTime.hour.toString().padLeft(2, "0")}:"
       "${_selectedTime.minute.toString().padLeft(2, "0")}";
 
-  void _incrementTime() {
+  void _incrementTime(BuildContext context) {
     if ((_selectedTime.difference(_latest) + 3.hours).isNegative) {
       setState(() {
         _selectedTime = _selectedTime + 3.hours;
       });
-      widget.onTimeSelected(_selectedTime);
+      Provider.of<WeatherStore>(context).changeTime(_selectedTime);
     }
   }
 
-  void _decrementTime() {
+  void _decrementTime(BuildContext context) {
     if (!(_selectedTime.difference(_earliest) - 1.days).isNegative) {
       setState(() {
         _selectedTime = _selectedTime - 3.hours;
       });
-      widget.onTimeSelected(_selectedTime);
+      Provider.of<WeatherStore>(context).changeTime(_selectedTime);
     }
   }
 
-  void _increaseRapidly() async {
-    _changeRapidly(_incrementTime);
+  void _increaseRapidly(BuildContext context) async {
+    _changeRapidly(() => _incrementTime(context));
   }
 
-  void _decreaseRapidly() async {
-    _changeRapidly(_decrementTime);
+  void _decreaseRapidly(BuildContext context) async {
+    _changeRapidly(() => _decrementTime(context));
   }
 
   void _changeRapidly(VoidCallback change) async {

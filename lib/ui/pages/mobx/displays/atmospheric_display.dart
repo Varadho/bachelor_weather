@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
 
-import '../../../../model/weather_state.dart';
 import '../../../../utility/constants/text_styles.dart';
 import '../../../common_widgets/weather_card.dart';
+import '../state_management/weather_store.dart';
 
 ///Widget which displays information about the atmosphere
 ///This is a specific implementation using the MobX package
 class AtmosphericDisplay extends StatelessWidget {
-  final AtmosphericData _atmosphere;
-
   // ignore: public_member_api_docs
-  const AtmosphericDisplay(
-    this._atmosphere, {
+  const AtmosphericDisplay({
     Key key,
   }) : super(key: key);
 
@@ -30,9 +29,11 @@ class AtmosphericDisplay extends StatelessWidget {
                         "Pressure:",
                         style: headingStyle.copyWith(fontSize: 20),
                       ),
-                      Text(
-                        "${_atmosphere.pressure} hPa",
-                        style: dataStyle,
+                      Observer(
+                        builder: (context) => Text(
+                          "${Provider.of<WeatherStore>(context).state.atmosphere.pressure} hPa",
+                          style: dataStyle,
+                        ),
                       ),
                     ],
                   ),
@@ -42,9 +43,11 @@ class AtmosphericDisplay extends StatelessWidget {
                         "Humidity:",
                         style: headingStyle.copyWith(fontSize: 20),
                       ),
-                      Text(
-                        "${_atmosphere.humidity}%",
-                        style: dataStyle,
+                      Observer(
+                        builder: (context) => Text(
+                          "${Provider.of<WeatherStore>(context).state.atmosphere.humidity}%",
+                          style: dataStyle,
+                        ),
                       ),
                     ],
                   ),
@@ -54,9 +57,11 @@ class AtmosphericDisplay extends StatelessWidget {
                         "Cloudiness:",
                         style: headingStyle.copyWith(fontSize: 20),
                       ),
-                      Text(
-                        "${_atmosphere.clouds}%",
-                        style: dataStyle,
+                      Observer(
+                        builder: (context) => Text(
+                          "${Provider.of<WeatherStore>(context).state.atmosphere.clouds}%",
+                          style: dataStyle,
+                        ),
                       ),
                     ],
                   ),
@@ -64,9 +69,11 @@ class AtmosphericDisplay extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 12.0),
-                child: Text(
-                  "and ${_atmosphere.description}",
-                  style: headingStyle,
+                child: Observer(
+                  builder: (context) => Text(
+                    "and ${Provider.of<WeatherStore>(context).state.atmosphere.description}",
+                    style: headingStyle,
+                  ),
                 ),
               ),
             ],

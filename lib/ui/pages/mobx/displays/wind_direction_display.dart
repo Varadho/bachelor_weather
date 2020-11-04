@@ -1,7 +1,10 @@
 import 'dart:math';
 
+import 'package:bachelorweather/ui/pages/mobx/state_management/weather_store.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../utility/constants/colors.dart';
 
@@ -10,12 +13,11 @@ import '../../../../utility/constants/colors.dart';
 ///This is a specific implementation using the MobX package.
 class WindDirectionDisplay extends StatelessWidget {
   ///Direction of the wind in degrees
-  final double windDegrees;
   static const double _radius = 60;
   static const double _iconSize = 60;
 
   // ignore: public_member_api_docs
-  const WindDirectionDisplay({Key key, this.windDegrees}) : super(key: key);
+  const WindDirectionDisplay({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => ClipOval(
@@ -77,12 +79,18 @@ class WindDirectionDisplay extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),
-                  child: Transform.rotate(
-                    angle: (windDegrees - 90) * pi / 180,
-                    child: Icon(
-                      FontAwesomeIcons.wind,
-                      color: backgroundColor3,
-                      size: _iconSize,
+                  child: Observer(
+                    builder: (context) => Transform.rotate(
+                      angle:
+                          (Provider.of<WeatherStore>(context).state.wind.deg -
+                                  90) *
+                              pi /
+                              180,
+                      child: Icon(
+                        FontAwesomeIcons.wind,
+                        color: backgroundColor3,
+                        size: _iconSize,
+                      ),
                     ),
                   ),
                 ),

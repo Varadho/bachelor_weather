@@ -1,6 +1,8 @@
+import 'package:bachelorweather/ui/pages/mobx/state_management/weather_store.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../model/weather_state.dart';
 import '../../../../utility/constants/favorite_locations.dart';
@@ -11,13 +13,7 @@ import '../../../common_widgets/expandable_controls.dart';
 ///This is a specific implementation using the MobX package.
 class LocationSelector extends StatefulWidget {
   // ignore: public_member_api_docs
-  final ValueChanged<LocationData> onLocationSelected;
-  // ignore: public_member_api_docs
-  final LocationData initialLocation;
-
-  // ignore: public_member_api_docs
-  const LocationSelector({this.onLocationSelected, this.initialLocation})
-      : super(key: const Key("ls"));
+  const LocationSelector() : super(key: const Key("ls"));
 
   @override
   _LocationControlWidgetState createState() => _LocationControlWidgetState();
@@ -28,7 +24,7 @@ class _LocationControlWidgetState extends State<LocationSelector> {
 
   @override
   void initState() {
-    _selectedLocation = widget.initialLocation;
+    _selectedLocation = Provider.of<WeatherStore>(context).state.location;
     super.initState();
   }
 
@@ -90,7 +86,8 @@ class _LocationControlWidgetState extends State<LocationSelector> {
                           setState(() {
                             _selectedLocation = favoriteLocations[index];
                           });
-                          widget.onLocationSelected(_selectedLocation);
+                          Provider.of<WeatherStore>(context)
+                              .changeLocation(_selectedLocation);
                         },
                       ),
               ),

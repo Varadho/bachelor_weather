@@ -1,20 +1,17 @@
+import 'package:bachelorweather/ui/pages/mobx/state_management/weather_store.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
-import '../../../../model/weather_state.dart';
 import '../../../../utility/constants/text_styles.dart';
 import '../../../common_widgets/weather_card.dart';
 
 ///Widget which displays information about temperature data
 ///This is a specific implementation using the MobX package
 class TemperatureDisplay extends StatelessWidget {
-  final TemperatureData _temperatures;
-  final Color _temperatureColor;
-
   // ignore: public_member_api_docs
-  TemperatureDisplay(this._temperatures, {Key key})
-      : _temperatureColor =
-            _calculateColor(_temperatures?.feelsLike ?? _temperatures.max);
+  TemperatureDisplay({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => WeatherCard(
@@ -29,29 +26,38 @@ class TemperatureDisplay extends StatelessWidget {
                 color: Color.fromRGBO(255, 255, 255, 0.2),
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
-                  child: Icon(
-                    FontAwesomeIcons.temperatureHigh,
-                    size: 36,
-                    color: _temperatureColor,
+                  child: Observer(
+                    builder: (context) => Icon(
+                      FontAwesomeIcons.temperatureHigh,
+                      size: 36,
+                      color: _calculateColor(Provider.of<WeatherStore>(context)
+                          .state
+                          .temperature
+                          .feelsLike),
+                    ),
                   ),
                 ),
               ),
             ),
             Column(
               children: <Widget>[
-                RichText(
-                  text: TextSpan(
-                    text: "${_temperatures?.feelsLike}°C ",
-                    style: headingStyle,
-                    children: [
-                      TextSpan(
-                        text: "(${_temperatures?.avg}°C)",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w300,
-                          fontSize: 16,
+                Observer(
+                  builder: (context) => RichText(
+                    text: TextSpan(
+                      text:
+                          "${Provider.of<WeatherStore>(context).state.temperature?.feelsLike}°C ",
+                      style: headingStyle,
+                      children: [
+                        TextSpan(
+                          text:
+                              "(${Provider.of<WeatherStore>(context).state.temperature?.avg}°C)",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            fontSize: 16,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 Row(
@@ -68,9 +74,11 @@ class TemperatureDisplay extends StatelessWidget {
                             FontAwesomeIcons.longArrowAltUp,
                             color: Colors.red,
                           ),
-                          Text(
-                            "${_temperatures.max.toStringAsFixed(2)}°C ",
-                            style: dataStyle,
+                          Observer(
+                            builder: (context) => Text(
+                              "${Provider.of<WeatherStore>(context).state.temperature.max.toStringAsFixed(2)}°C ",
+                              style: dataStyle,
+                            ),
                           ),
                         ],
                       ),
@@ -86,9 +94,11 @@ class TemperatureDisplay extends StatelessWidget {
                             FontAwesomeIcons.longArrowAltDown,
                             color: Colors.lightBlue,
                           ),
-                          Text(
-                            "${_temperatures.min.toStringAsFixed(2)}°C ",
-                            style: dataStyle,
+                          Observer(
+                            builder: (context) => Text(
+                              "${Provider.of<WeatherStore>(context).state.temperature.min.toStringAsFixed(2)}°C ",
+                              style: dataStyle,
+                            ),
                           ),
                         ],
                       ),

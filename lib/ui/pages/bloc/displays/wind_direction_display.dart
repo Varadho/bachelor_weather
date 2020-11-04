@@ -1,6 +1,9 @@
 import 'dart:math';
 
+import 'package:bachelorweather/model/weather_state.dart';
+import 'package:bachelorweather/ui/pages/bloc/state_management/weather_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../utility/constants/colors.dart';
@@ -10,12 +13,11 @@ import '../../../../utility/constants/colors.dart';
 ///This is a specific implementation using the BLoC package.
 class WindDirectionDisplay extends StatelessWidget {
   ///Direction of the wind in degrees
-  final double windDegrees;
   static const double _radius = 60;
   static const double _iconSize = 60;
 
   // ignore: public_member_api_docs
-  const WindDirectionDisplay({Key key, this.windDegrees}) : super(key: key);
+  const WindDirectionDisplay({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => ClipOval(
@@ -77,12 +79,14 @@ class WindDirectionDisplay extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),
-                  child: Transform.rotate(
-                    angle: (windDegrees - 90) * pi / 180,
-                    child: Icon(
-                      FontAwesomeIcons.wind,
-                      color: backgroundColor3,
-                      size: _iconSize,
+                  child: BlocBuilder<WeatherBloc, WeatherState>(
+                    builder: (context, state) => Transform.rotate(
+                      angle: (state.wind.deg - 90) * pi / 180,
+                      child: Icon(
+                        FontAwesomeIcons.wind,
+                        color: backgroundColor3,
+                        size: _iconSize,
+                      ),
                     ),
                   ),
                 ),
