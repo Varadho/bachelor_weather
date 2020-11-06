@@ -30,10 +30,12 @@ class TemperatureDisplay extends StatelessWidget {
                     builder: (context) => Icon(
                       FontAwesomeIcons.temperatureHigh,
                       size: 36,
-                      color: _calculateColor(Provider.of<WeatherStore>(context)
-                          .state
-                          .temperature
-                          .feelsLike),
+                      color: _calculateColor(
+                        Provider.of<WeatherStore>(context)
+                            .state
+                            .temperature
+                            .feelsLike,
+                      ),
                     ),
                   ),
                 ),

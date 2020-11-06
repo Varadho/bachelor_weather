@@ -10,9 +10,7 @@ import '../state_management/weather_store.dart';
 ///This is a specific implementation using the MobX package
 class LocationDisplay extends StatelessWidget {
   // ignore: public_member_api_docs
-  const LocationDisplay({
-    Key key,
-  }) : super(key: key);
+  const LocationDisplay({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => WeatherCard(

@@ -1,4 +1,3 @@
-import 'package:bachelorweather/ui/pages/mobx/state_management/weather_store.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -8,6 +7,7 @@ import '../../../../model/weather_state.dart';
 import '../../../../utility/constants/favorite_locations.dart';
 import '../../../../utility/constants/text_styles.dart';
 import '../../../common_widgets/expandable_controls.dart';
+import '../state_management/weather_store.dart';
 
 ///Widget which controls the location for which the weather should be displayed.
 ///This is a specific implementation using the MobX package.
