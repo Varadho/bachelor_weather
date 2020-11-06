@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../utility/constants/text_styles.dart';
 import '../../../common_widgets/weather_card.dart';
+import '../state_management/weather_notifier.dart';
 
 ///Widget which displays information about sunrise, sunset and the current time
 ///This is a specific implementation using the Provider package
 class SunTimeDisplay extends StatelessWidget {
-  final DateTime _sunrise, _sunset;
   final String _date = "${DateTime.now().day}."
       "${DateTime.now().month}."
       "${DateTime.now().year}";
 
   // ignore: public_member_api_docs
-  SunTimeDisplay(this._sunrise, this._sunset);
+  SunTimeDisplay();
 
   @override
   Widget build(BuildContext context) => WeatherCard(
@@ -35,18 +36,22 @@ class SunTimeDisplay extends StatelessWidget {
                         size: 30,
                         color: Colors.white,
                       ),
-                      RichText(
-                        text: TextSpan(
-                          text: "Sunrise ",
-                          style: TextStyle(fontSize: 16),
-                          children: <InlineSpan>[
-                            TextSpan(
-                              style: dataStyle,
-                              text:
-                                  "${_sunrise.hour.toString().padLeft(2, "0")}:"
-                                  "${_sunrise.minute.toString().padLeft(2, "0")}",
-                            )
-                          ],
+                      Consumer<WeatherNotifier>(
+                        //TODO optimize using the child parameter of the builder (?)
+                        builder: (context, notifier, _) => RichText(
+                          text: TextSpan(
+                            text: "Sunrise ",
+                            style: TextStyle(fontSize: 16),
+                            children: <InlineSpan>[
+                              TextSpan(
+                                style: dataStyle,
+                                text:
+                                    "${notifier.weather.location.sunrise.hour.toString().padLeft(2, "0"
+                                        "")}:"
+                                    "${notifier.weather.location.sunrise.minute.toString().padLeft(2, "0")}",
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -71,18 +76,21 @@ class SunTimeDisplay extends StatelessWidget {
                         size: 30,
                         color: Colors.white,
                       ),
-                      RichText(
-                        text: TextSpan(
-                          text: "Sunset ",
-                          style: TextStyle(fontSize: 16),
-                          children: <InlineSpan>[
-                            TextSpan(
-                              style: dataStyle,
-                              text:
-                                  "${_sunset.hour.toString().padLeft(2, "0")}:"
-                                  "${_sunset.minute.toString().padLeft(2, "0")}",
-                            )
-                          ],
+                      Consumer<WeatherNotifier>(
+                        //TODO optimize using the child parameter of the builder (?)
+                        builder: (context, notifier, _) => RichText(
+                          text: TextSpan(
+                            text: "Sunset ",
+                            style: TextStyle(fontSize: 16),
+                            children: <InlineSpan>[
+                              TextSpan(
+                                style: dataStyle,
+                                text:
+                                    "${notifier.weather.location.sunset.hour.toString().padLeft(2, "0")}:"
+                                    "${notifier.weather.location.sunset.minute.toString().padLeft(2, "0")}",
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ],

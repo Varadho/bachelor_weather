@@ -1,22 +1,18 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../model/weather_state.dart';
 import '../../../../utility/constants/favorite_locations.dart';
 import '../../../../utility/constants/text_styles.dart';
 import '../../../common_widgets/expandable_controls.dart';
+import '../state_management/weather_notifier.dart';
 
 ///Widget which controls the location for which the weather should be displayed.
 ///This is a specific implementation using the Provider package.
 class LocationSelector extends StatefulWidget {
   // ignore: public_member_api_docs
-  final ValueChanged<LocationData> onLocationSelected;
-  // ignore: public_member_api_docs
-  final LocationData initialLocation;
-  // ignore: public_member_api_docs
-  const LocationSelector({this.onLocationSelected, this.initialLocation})
-      : super(key: const Key("ls"));
+  const LocationSelector() : super(key: const Key("ls"));
 
   @override
   _LocationControlWidgetState createState() => _LocationControlWidgetState();
@@ -27,7 +23,7 @@ class _LocationControlWidgetState extends State<LocationSelector> {
 
   @override
   void initState() {
-    _selectedLocation = widget.initialLocation;
+    _selectedLocation = Provider.of<WeatherNotifier>(context).weather.location;
     super.initState();
   }
 
@@ -71,26 +67,29 @@ class _LocationControlWidgetState extends State<LocationSelector> {
                 itemBuilder: (context, index) => index ==
                         favoriteLocations.length
                     ? Container()
-                    : ListTile(
-                        key: Key(favoriteLocations[index].name),
-                        selectedTileColor: Color.fromRGBO(255, 255, 255, 0.3),
-                        selected: _selectedLocation == favoriteLocations[index],
-                        contentPadding: EdgeInsets.zero,
-                        leading: Icon(
-                          Icons.location_on,
-                          size: 35,
-                          color: Colors.white,
+                    : Consumer<WeatherNotifier>(
+                        builder: (context, notifier, _) => ListTile(
+                          key: Key(favoriteLocations[index].name),
+                          selectedTileColor: Color.fromRGBO(255, 255, 255, 0.3),
+                          selected:
+                              _selectedLocation == favoriteLocations[index],
+                          contentPadding: EdgeInsets.zero,
+                          leading: Icon(
+                            Icons.location_on,
+                            size: 35,
+                            color: Colors.white,
+                          ),
+                          title: Text(
+                            favoriteLocations[index].cityName,
+                            style: headingStyle.copyWith(fontSize: 24),
+                          ),
+                          onTap: () {
+                            setState(() {
+                              _selectedLocation = favoriteLocations[index];
+                            });
+                            notifier.changeLocation(_selectedLocation);
+                          },
                         ),
-                        title: Text(
-                          favoriteLocations[index].cityName,
-                          style: headingStyle.copyWith(fontSize: 24),
-                        ),
-                        onTap: () {
-                          setState(() {
-                            _selectedLocation = favoriteLocations[index];
-                          });
-                          widget.onLocationSelected(_selectedLocation);
-                        },
                       ),
               ),
             )
