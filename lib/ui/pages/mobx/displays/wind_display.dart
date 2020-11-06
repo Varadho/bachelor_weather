@@ -1,10 +1,10 @@
-import 'package:bachelorweather/ui/pages/mobx/state_management/weather_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../utility/constants/text_styles.dart';
 import '../../../common_widgets/weather_card.dart';
+import '../state_management/weather_store.dart';
 import 'wind_direction_display.dart';
 
 ///Widget which displays information about wind.

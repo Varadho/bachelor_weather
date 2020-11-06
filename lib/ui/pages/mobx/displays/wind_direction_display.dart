@@ -1,12 +1,12 @@
 import 'dart:math';
 
-import 'package:bachelorweather/ui/pages/mobx/state_management/weather_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../utility/constants/colors.dart';
+import '../state_management/weather_store.dart';
 
 ///Widget which displays information about the wind direction.
 ///This widget does not move with the devices compass

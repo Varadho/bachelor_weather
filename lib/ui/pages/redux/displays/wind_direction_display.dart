@@ -1,10 +1,10 @@
 import 'dart:math';
 
-import 'package:bachelorweather/model/weather_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../../../model/weather_state.dart';
 import '../../../../utility/constants/colors.dart';
 
 ///Widget which displays information about the wind direction.

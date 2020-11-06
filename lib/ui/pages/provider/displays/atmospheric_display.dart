@@ -1,9 +1,9 @@
-import 'package:bachelorweather/ui/pages/provider/state_management/weather_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../utility/constants/text_styles.dart';
 import '../../../common_widgets/weather_card.dart';
+import '../state_management/weather_notifier.dart';
 
 ///Widget which displays information about the atmosphere
 ///This is a specific implementation using the Provider package

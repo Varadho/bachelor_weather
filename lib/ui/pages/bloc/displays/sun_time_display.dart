@@ -1,10 +1,10 @@
-import 'package:bachelorweather/model/weather_state.dart';
-import 'package:bachelorweather/ui/pages/bloc/state_management/weather_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../model/weather_state.dart';
 import '../../../../utility/constants/text_styles.dart';
 import '../../../common_widgets/weather_card.dart';
+import '../state_management/weather_bloc.dart';
 
 ///Widget which displays information about sunrise, sunset and the current time
 ///This is a specific implementation using the BLoC package
