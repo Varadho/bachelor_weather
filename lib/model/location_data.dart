@@ -5,20 +5,28 @@ part of 'weather_state.dart';
 class LocationData extends Equatable {
   ///Name of the City for which weather is displayed
   final String name;
+
   ///A getter which splits the provided Name cut unnecessarily Long desciptions
   ///e.g. "Regierungsbezirk Gießen" -> "Gießen",
   ///"Arrondisement Marseille"->Marseille",
   ///"London" -> "London"
   String get cityName => name.split(" ").last;
+
   ///Coordinates of the City
   final Coordinates coord;
+
   ///ID of the city, as provided by the API
   @JsonKey(name: "id")
   final int cityID;
+
   ///Country in which the city lies
   final String country;
+
   ///Times of sunrise and sunset for the location
   final DateTime sunrise, sunset;
+
+  ///The duration the current timezone is behind UTC
+  final Duration timezone;
 
   // ignore: public_member_api_docs
   LocationData({
@@ -29,11 +37,12 @@ class LocationData extends Equatable {
     int sunrise = 0,
     int sunset = 0,
     int timezone = 0,
-  })  : sunrise =
-            DateTime.fromMillisecondsSinceEpoch(sunrise * 1000, isUtc: true) -
+  })  : timezone = timezone.seconds,
+        sunrise =
+            DateTime.fromMillisecondsSinceEpoch(sunrise * 1000, isUtc: true) +
                 timezone.seconds,
         sunset =
-            DateTime.fromMillisecondsSinceEpoch(sunset * 1000, isUtc: true) -
+            DateTime.fromMillisecondsSinceEpoch(sunset * 1000, isUtc: true) +
                 timezone.seconds;
 
   ///Factory which allows for deserializing a JSON-Map into a

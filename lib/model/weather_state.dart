@@ -45,7 +45,7 @@ class WeatherState extends Equatable {
   ///Factory constructor which returns a WeatherState with no Data (all
   ///values set to 0 or "", depending on the Type
   factory WeatherState.empty() => WeatherState(
-        location: LocationData(),
+        location: LocationData(timezone: 0),
         time: (DateTime.now().millisecondsSinceEpoch / 1000).floor(),
         temperature: TemperatureData(),
         atmosphere: AtmosphericData(),
