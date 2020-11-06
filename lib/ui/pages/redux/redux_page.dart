@@ -7,7 +7,6 @@ import '../../../utility/constants/colors.dart';
 import '../../../utility/weather_repository.dart';
 import 'controls/weather_controls.dart';
 import 'displays/weather_displays.dart';
-import 'state_management/actions.dart';
 import 'state_management/reducer.dart';
 
 ///Page which displays the weather using the Redux package for state management
@@ -16,7 +15,7 @@ class ReduxPage extends StatelessWidget {
   const ReduxPage({Key key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => StoreProvider(
+  Widget build(BuildContext context) => StoreProvider<WeatherState>(
         store: Store<WeatherState>(
           weatherReducer,
           initialState: WeatherRepository().currentWeather,
@@ -36,56 +35,22 @@ class ReduxPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  StoreConnector<WeatherState, LocationData>(
-                    converter: (store) => store.state.location,
-                    builder: (context, location) => LocationDisplay(location),
-                  ),
-                  StoreConnector<WeatherState, LocationData>(
-                    converter: (store) => store.state.location,
-                    builder: (context, location) => SunTimeDisplay(
-                      location.sunrise,
-                      location.sunset,
-                    ),
-                  ),
-                  StoreConnector<WeatherState, TemperatureData>(
-                    converter: (store) => store.state.temperature,
-                    builder: (context, temp) => TemperatureDisplay(temp),
-                  ),
-                  StoreConnector<WeatherState, WindData>(
-                    converter: (store) => store.state.wind,
-                    builder: (context, wind) => WindDisplay(wind),
-                  ),
-                  StoreConnector<WeatherState, AtmosphericData>(
-                    converter: (store) => store.state.atmosphere,
-                    builder: (context, atm) => AtmosphericDisplay(atm),
-                  ),
+                  LocationDisplay(),
+                  SunTimeDisplay(),
+                  TemperatureDisplay(),
+                  WindDisplay(),
+                  AtmosphericDisplay(),
                   Container(),
                 ],
               ),
               //Time & Location controls
               Align(
                 alignment: Alignment.bottomLeft,
-                child: StoreConnector<WeatherState, DateTime>(
-                  converter: (store) => store.state.time,
-                  builder: (context, time) => TimeSelector(
-                      initialTime: time,
-                      onTimeSelected: (time) =>
-                          StoreProvider.of<WeatherState>(context).dispatch(
-                            ChangeTimeAction(time),
-                          )),
-                ),
+                child: TimeSelector(),
               ),
               Align(
                 alignment: Alignment.bottomRight,
-                child: StoreConnector<WeatherState, LocationData>(
-                  converter: (store) => store.state.location,
-                  builder: (context, location) => LocationSelector(
-                      initialLocation: location,
-                      onLocationSelected: (location) =>
-                          StoreProvider.of<WeatherState>(context).dispatch(
-                            ChangeLocationAction(location),
-                          )),
-                ),
+                child: LocationSelector(),
               ),
             ],
           ),

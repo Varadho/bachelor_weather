@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 
 import '../../../../model/weather_state.dart';
 import '../../../../utility/constants/text_styles.dart';
@@ -8,13 +9,8 @@ import 'wind_direction_display.dart';
 ///Widget which displays information about wind.
 ///This is a specific implementation using the Redux package
 class WindDisplay extends StatelessWidget {
-  final WindData _wind;
-
   // ignore: public_member_api_docs
-  WindDisplay(
-    this._wind, {
-    Key key,
-  });
+  WindDisplay({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => WeatherCard(
@@ -30,20 +26,24 @@ class WindDisplay extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  WindDirectionDisplay(
-                    windDegrees: _wind.deg,
-                  ),
+                  WindDirectionDisplay(),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Column(
                       children: <Widget>[
-                        Text(
-                          "${(_wind.mpsSpeed * 3.6).toStringAsFixed(2)} km/h",
-                          style: dataStyle,
+                        StoreConnector<WeatherState, double>(
+                          converter: (store) => store.state.wind.mpsSpeed,
+                          builder: (context, mpsSpeed) => Text(
+                            "${(mpsSpeed * 3.6).toStringAsFixed(2)} km/h",
+                            style: dataStyle,
+                          ),
                         ),
-                        Text(
-                          "${_wind.mpsSpeed.toStringAsFixed(2)} m/s",
-                          style: dataStyle,
+                        StoreConnector<WeatherState, double>(
+                          converter: (store) => store.state.wind.mpsSpeed,
+                          builder: (context, mpsSpeed) => Text(
+                            "${mpsSpeed.toStringAsFixed(2)} m/s",
+                            style: dataStyle,
+                          ),
                         ),
                       ],
                     ),

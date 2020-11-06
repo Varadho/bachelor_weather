@@ -1,6 +1,8 @@
 import 'dart:math';
 
+import 'package:bachelorweather/model/weather_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../utility/constants/colors.dart';
@@ -10,12 +12,11 @@ import '../../../../utility/constants/colors.dart';
 ///This is a specific implementation using the Redux package.
 class WindDirectionDisplay extends StatelessWidget {
   ///Direction of the wind in degrees
-  final double windDegrees;
   static const double _radius = 60;
   static const double _iconSize = 60;
 
   // ignore: public_member_api_docs
-  const WindDirectionDisplay({Key key, this.windDegrees}) : super(key: key);
+  const WindDirectionDisplay({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => ClipOval(
@@ -77,12 +78,15 @@ class WindDirectionDisplay extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),
-                  child: Transform.rotate(
-                    angle: (windDegrees - 90) * pi / 180,
-                    child: Icon(
-                      FontAwesomeIcons.wind,
-                      color: backgroundColor3,
-                      size: _iconSize,
+                  child: StoreConnector<WeatherState, double>(
+                    converter: (store) => store.state.wind.deg,
+                    builder: (context, windDegrees) => Transform.rotate(
+                      angle: (windDegrees - 90) * pi / 180,
+                      child: Icon(
+                        FontAwesomeIcons.wind,
+                        color: backgroundColor3,
+                        size: _iconSize,
+                      ),
                     ),
                   ),
                 ),

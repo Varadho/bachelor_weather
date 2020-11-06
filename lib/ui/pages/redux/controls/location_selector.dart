@@ -1,23 +1,19 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 
 import '../../../../model/weather_state.dart';
 import '../../../../utility/constants/favorite_locations.dart';
 import '../../../../utility/constants/text_styles.dart';
 import '../../../common_widgets/expandable_controls.dart';
+import '../state_management/actions.dart';
 
 ///Widget which controls the location for which the weather should be displayed.
 ///This is a specific implementation using the Redux package.
 class LocationSelector extends StatefulWidget {
   // ignore: public_member_api_docs
-  final ValueChanged<LocationData> onLocationSelected;
-  // ignore: public_member_api_docs
-  final LocationData initialLocation;
-
-  // ignore: public_member_api_docs
-  const LocationSelector({this.onLocationSelected, this.initialLocation})
-      : super(key: const Key("ls"));
+  const LocationSelector() : super(key: const Key("ls"));
 
   @override
   _LocationControlWidgetState createState() => _LocationControlWidgetState();
@@ -28,8 +24,8 @@ class _LocationControlWidgetState extends State<LocationSelector> {
 
   @override
   void initState() {
-    _selectedLocation = widget.initialLocation;
     super.initState();
+    _selectedLocation = StoreProvider.of<WeatherState>(context).state.location;
   }
 
   @override
@@ -90,7 +86,9 @@ class _LocationControlWidgetState extends State<LocationSelector> {
                           setState(() {
                             _selectedLocation = favoriteLocations[index];
                           });
-                          widget.onLocationSelected(_selectedLocation);
+                          StoreProvider.of<WeatherState>(context).dispatch(
+                            ChangeLocationAction(_selectedLocation),
+                          );
                         },
                       ),
               ),

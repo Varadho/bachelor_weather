@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 
+import '../../../../model/weather_state.dart';
 import '../../../../utility/constants/text_styles.dart';
 import '../../../common_widgets/weather_card.dart';
 
 ///Widget which displays information about sunrise, sunset and the current time
 ///This is a specific implementation using the Redux package
 class SunTimeDisplay extends StatelessWidget {
-  final DateTime _sunrise, _sunset;
   final String _date = "${DateTime.now().day}."
       "${DateTime.now().month}."
       "${DateTime.now().year}";
 
   // ignore: public_member_api_docs
-  SunTimeDisplay(this._sunrise, this._sunset);
+  SunTimeDisplay({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => WeatherCard(
@@ -35,18 +36,21 @@ class SunTimeDisplay extends StatelessWidget {
                         size: 30,
                         color: Colors.white,
                       ),
-                      RichText(
-                        text: TextSpan(
-                          text: "Sunrise ",
-                          style: TextStyle(fontSize: 16),
-                          children: <InlineSpan>[
-                            TextSpan(
-                              style: dataStyle,
-                              text:
-                                  "${_sunrise.hour.toString().padLeft(2, "0")}:"
-                                  "${_sunrise.minute.toString().padLeft(2, "0")}",
-                            )
-                          ],
+                      StoreConnector<WeatherState, DateTime>(
+                        converter: (store) => store.state.location.sunrise,
+                        builder: (context, sunrise) => RichText(
+                          text: TextSpan(
+                            text: "Sunrise ",
+                            style: TextStyle(fontSize: 16),
+                            children: <InlineSpan>[
+                              TextSpan(
+                                style: dataStyle,
+                                text:
+                                    "${sunrise.hour.toString().padLeft(2, "0")}:"
+                                    "${sunrise.minute.toString().padLeft(2, "0")}",
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -71,18 +75,21 @@ class SunTimeDisplay extends StatelessWidget {
                         size: 30,
                         color: Colors.white,
                       ),
-                      RichText(
-                        text: TextSpan(
-                          text: "Sunset ",
-                          style: TextStyle(fontSize: 16),
-                          children: <InlineSpan>[
-                            TextSpan(
-                              style: dataStyle,
-                              text:
-                                  "${_sunset.hour.toString().padLeft(2, "0")}:"
-                                  "${_sunset.minute.toString().padLeft(2, "0")}",
-                            )
-                          ],
+                      StoreConnector<WeatherState, DateTime>(
+                        converter: (store) => store.state.location.sunset,
+                        builder: (context, sunset) => RichText(
+                          text: TextSpan(
+                            text: "Sunset ",
+                            style: TextStyle(fontSize: 16),
+                            children: <InlineSpan>[
+                              TextSpan(
+                                style: dataStyle,
+                                text:
+                                    "${sunset.hour.toString().padLeft(2, "0")}:"
+                                    "${sunset.minute.toString().padLeft(2, "0")}",
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ],
