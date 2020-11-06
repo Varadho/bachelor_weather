@@ -23,9 +23,9 @@ class _LocationControlWidgetState extends State<LocationSelector> {
   LocationData _selectedLocation;
 
   @override
-  void initState() {
+  void didChangeDependencies() {
     _selectedLocation = BlocProvider.of<WeatherBloc>(context).state.location;
-    super.initState();
+    super.didChangeDependencies();
   }
 
   @override

@@ -26,9 +26,9 @@ class _TimeSelectorState extends State<TimeSelector> {
   final DateTime _latest = WeatherRepository().forecast.last.time;
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
     _selectedTime = BlocProvider.of<WeatherBloc>(context).state.time;
+    super.didChangeDependencies();
   }
 
   @override

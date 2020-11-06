@@ -26,10 +26,9 @@ class _TimeSelectorState extends State<TimeSelector> {
   final DateTime _latest = WeatherRepository().forecast.last.time;
 
   @override
-  void initState() {
-    super.initState();
-    //TODO: See if there is a prettier way to do that!
+  void didChangeDependencies() {
     _selectedTime = Provider.of<WeatherNotifier>(context).weather.time;
+    super.didChangeDependencies();
   }
 
   @override

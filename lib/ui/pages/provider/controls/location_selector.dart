@@ -22,9 +22,9 @@ class _LocationControlWidgetState extends State<LocationSelector> {
   LocationData _selectedLocation;
 
   @override
-  void initState() {
+  void didChangeDependencies() {
     _selectedLocation = Provider.of<WeatherNotifier>(context).weather.location;
-    super.initState();
+    super.didChangeDependencies();
   }
 
   @override

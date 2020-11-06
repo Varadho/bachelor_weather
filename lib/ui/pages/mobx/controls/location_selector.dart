@@ -23,9 +23,9 @@ class _LocationControlWidgetState extends State<LocationSelector> {
   LocationData _selectedLocation;
 
   @override
-  void initState() {
+  void didChangeDependencies() {
     _selectedLocation = Provider.of<WeatherStore>(context).state.location;
-    super.initState();
+    super.didChangeDependencies();
   }
 
   @override
@@ -86,7 +86,7 @@ class _LocationControlWidgetState extends State<LocationSelector> {
                           setState(() {
                             _selectedLocation = favoriteLocations[index];
                           });
-                          Provider.of<WeatherStore>(context)
+                          Provider.of<WeatherStore>(context, listen: false)
                               .changeLocation(_selectedLocation);
                         },
                       ),

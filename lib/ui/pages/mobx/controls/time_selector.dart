@@ -26,9 +26,9 @@ class _TimeSelectorState extends State<TimeSelector> {
   final DateTime _latest = WeatherRepository().forecast.last.time;
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
     _selectedTime = Provider.of<WeatherStore>(context).state.time;
+    super.didChangeDependencies();
   }
 
   @override
@@ -138,7 +138,8 @@ class _TimeSelectorState extends State<TimeSelector> {
       setState(() {
         _selectedTime = _selectedTime + 3.hours;
       });
-      Provider.of<WeatherStore>(context).changeTime(_selectedTime);
+      Provider.of<WeatherStore>(context, listen: false)
+          .changeTime(_selectedTime);
     }
   }
 
@@ -147,7 +148,8 @@ class _TimeSelectorState extends State<TimeSelector> {
       setState(() {
         _selectedTime = _selectedTime - 3.hours;
       });
-      Provider.of<WeatherStore>(context).changeTime(_selectedTime);
+      Provider.of<WeatherStore>(context, listen: false)
+          .changeTime(_selectedTime);
     }
   }
 
