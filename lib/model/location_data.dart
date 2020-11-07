@@ -22,14 +22,23 @@ class LocationData extends Equatable {
   ///Country in which the city lies
   final String country;
 
-  ///Times of sunrise and sunset for the location
-  final DateTime sunrise, sunset;
+  ///Time of sunrise for the location
+  DateTime get sunrise =>
+      DateTime.fromMillisecondsSinceEpoch(_sunrise * 1000, isUtc: true) +
+      timezone;
+
+  ///Time of sunset for the location
+  DateTime get sunset =>
+      DateTime.fromMillisecondsSinceEpoch(_sunset * 1000, isUtc: true) +
+      timezone;
 
   ///The duration the current timezone is behind UTC
-  final Duration timezone;
+  Duration get timezone => _timezone.seconds;
+
+  final int _sunrise, _sunset, _timezone;
 
   // ignore: public_member_api_docs
-  LocationData({
+  const LocationData({
     this.coord = const Coordinates(),
     this.country = "Nothing",
     this.name = "Nowhere",
@@ -37,13 +46,9 @@ class LocationData extends Equatable {
     int sunrise = 0,
     int sunset = 0,
     int timezone = 0,
-  })  : timezone = timezone.seconds,
-        sunrise =
-            DateTime.fromMillisecondsSinceEpoch(sunrise * 1000, isUtc: true) +
-                timezone.seconds,
-        sunset =
-            DateTime.fromMillisecondsSinceEpoch(sunset * 1000, isUtc: true) +
-                timezone.seconds;
+  })  : _timezone = timezone,
+        _sunrise = sunrise,
+        _sunset = sunset;
 
   ///Factory which allows for deserializing a JSON-Map into a
   ///[LocationData] Object
@@ -57,6 +62,5 @@ class LocationData extends Equatable {
   String toString() => "$name, $country";
 
   @override
-  List<Object> get props =>
-      [name, cityID, cityName, coord, country, sunrise, sunset];
+  List<Object> get props => [name, cityID, coord];
 }
