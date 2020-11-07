@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:time/time.dart';
 
 import '../model/weather_state.dart';
 import 'constants/favorite_locations.dart';
@@ -18,7 +17,7 @@ class WeatherRepository {
   }
 
   LocationData _currentLocation;
-  DateTime _currentTime = DateTime.now();
+  int _currentTimeIndex = 0;
   final Map<LocationData, List<WeatherState>> _weatherMap = {};
 
   ///A getter which provides a  list of WeatherStates which represent the
@@ -30,19 +29,22 @@ class WeatherRepository {
 
   ///A getter which provides a single WeatherState depending on the currently
   /// selected location and time.
-  WeatherState get currentWeather => forecast.firstWhere(
-        (w) => w.time.difference(_currentTime).abs() <= 1.5.hours,
-        orElse: () => _currentTime.difference(DateTime.now()).isNegative
-            ? forecast.first
-            : forecast.last,
-      );
+  WeatherState get currentWeather => forecast[_currentTimeIndex];
 
-  ///A method which allows to change the currentTime in the repository and
-  ///returns the corresponding [WeatherState]
-  WeatherState changeTime(DateTime newTime) {
-    if (newTime.difference(forecast.last.time).isNegative &&
-        !newTime.difference(forecast.first.time).isNegative) {
-      _currentTime = newTime;
+  ///A method which changes the current [WeatherState]
+  ///to the chronologically next one
+  WeatherState incrementTime() {
+    if (_currentTimeIndex < forecast.length - 1) {
+      _currentTimeIndex++;
+    }
+    return currentWeather;
+  }
+
+  ///A method which changes the current [WeatherState]
+  ///to the chronologically previous one
+  WeatherState decrementTime() {
+    if (_currentTimeIndex > 0) {
+      _currentTimeIndex--;
     }
     return currentWeather;
   }
@@ -70,7 +72,7 @@ class WeatherRepository {
   @override
   String toString() => 'WeatherRepository{'
       '_currentLocation: $_currentLocation, '
-      '_currentTime: $_currentTime, '
+      '_currentTime: ${currentWeather.time}, '
       '_weatherMap: $_weatherMap'
       '}';
 }
