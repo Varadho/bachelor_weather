@@ -11,8 +11,11 @@ typedef WeatherReducer = Function(WeatherState, WeatherAction);
 ///Reducer for all WeatherActions
 final WeatherReducer weatherReducer = combineReducers<WeatherState>(
   [
-    TypedReducer<WeatherState, ChangeTimeAction>(
-      (_, action) => WeatherRepository().changeTime(action.newTime),
+    TypedReducer<WeatherState, IncrementTimeAction>(
+      (_, action) => WeatherRepository().incrementTime(),
+    ),
+    TypedReducer<WeatherState, DecrementTimeAction>(
+      (_, action) => WeatherRepository().decrementTime(),
     ),
     TypedReducer<WeatherState, ChangeLocationAction>(
       (_, action) => WeatherRepository().changeLocation(action.newLocation),

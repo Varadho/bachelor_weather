@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../model/weather_state.dart';
 import '../../../../utility/constants/favorite_locations.dart';
 import '../../../../utility/constants/text_styles.dart';
 import '../../../common_widgets/expandable_controls.dart';
@@ -11,22 +10,9 @@ import '../state_management/weather_store.dart';
 
 ///Widget which controls the location for which the weather should be displayed.
 ///This is a specific implementation using the MobX package.
-class LocationSelector extends StatefulWidget {
+class LocationSelector extends StatelessWidget {
   // ignore: public_member_api_docs
   const LocationSelector() : super(key: const Key("ls"));
-
-  @override
-  _LocationControlWidgetState createState() => _LocationControlWidgetState();
-}
-
-class _LocationControlWidgetState extends State<LocationSelector> {
-  LocationData _selectedLocation;
-
-  @override
-  void didChangeDependencies() {
-    _selectedLocation = Provider.of<WeatherStore>(context).state.location;
-    super.didChangeDependencies();
-  }
 
   @override
   Widget build(BuildContext context) => ExpandableControls(
@@ -71,7 +57,9 @@ class _LocationControlWidgetState extends State<LocationSelector> {
                     : ListTile(
                         key: Key(favoriteLocations[index].name),
                         selectedTileColor: Color.fromRGBO(255, 255, 255, 0.3),
-                        selected: _selectedLocation == favoriteLocations[index],
+                        selected:
+                            Provider.of<WeatherStore>(context).state.location ==
+                                favoriteLocations[index],
                         contentPadding: EdgeInsets.zero,
                         leading: Icon(
                           Icons.location_on,
@@ -82,13 +70,9 @@ class _LocationControlWidgetState extends State<LocationSelector> {
                           favoriteLocations[index].cityName,
                           style: headingStyle.copyWith(fontSize: 24),
                         ),
-                        onTap: () {
-                          setState(() {
-                            _selectedLocation = favoriteLocations[index];
-                          });
-                          Provider.of<WeatherStore>(context, listen: false)
-                              .changeLocation(_selectedLocation);
-                        },
+                        onTap: () =>
+                            Provider.of<WeatherStore>(context, listen: false)
+                                .changeLocation(favoriteLocations[index]),
                       ),
               ),
             )

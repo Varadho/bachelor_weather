@@ -9,28 +9,15 @@ import '../../../common_widgets/expandable_controls.dart';
 
 ///Widget which controls the location for which the weather should be displayed.
 ///This is a specific implementation using no state management package.
-class LocationSelector extends StatefulWidget {
+class LocationSelector extends StatelessWidget {
   // ignore: public_member_api_docs
   final ValueChanged<LocationData> onLocationSelected;
   // ignore: public_member_api_docs
-  final LocationData initialLocation;
+  final LocationData currentLocation;
 
   // ignore: public_member_api_docs
-  const LocationSelector({this.onLocationSelected, this.initialLocation})
+  const LocationSelector({this.onLocationSelected, this.currentLocation})
       : super(key: const Key("ls"));
-
-  @override
-  _LocationControlWidgetState createState() => _LocationControlWidgetState();
-}
-
-class _LocationControlWidgetState extends State<LocationSelector> {
-  LocationData _selectedLocation;
-
-  @override
-  void initState() {
-    _selectedLocation = widget.initialLocation;
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) => ExpandableControls(
@@ -75,7 +62,7 @@ class _LocationControlWidgetState extends State<LocationSelector> {
                     : ListTile(
                         key: Key(favoriteLocations[index].name),
                         selectedTileColor: Color.fromRGBO(255, 255, 255, 0.3),
-                        selected: _selectedLocation == favoriteLocations[index],
+                        selected: currentLocation == favoriteLocations[index],
                         contentPadding: EdgeInsets.zero,
                         leading: Icon(
                           Icons.location_on,
@@ -86,12 +73,8 @@ class _LocationControlWidgetState extends State<LocationSelector> {
                           favoriteLocations[index].cityName,
                           style: headingStyle.copyWith(fontSize: 24),
                         ),
-                        onTap: () {
-                          setState(() {
-                            _selectedLocation = favoriteLocations[index];
-                          });
-                          widget.onLocationSelected(_selectedLocation);
-                        },
+                        onTap: () =>
+                            onLocationSelected(favoriteLocations[index]),
                       ),
               ),
             )

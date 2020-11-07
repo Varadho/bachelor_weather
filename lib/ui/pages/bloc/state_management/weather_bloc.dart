@@ -16,8 +16,11 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   @override
   Stream<WeatherState> mapEventToState(WeatherEvent event) async* {
     switch (event.runtimeType) {
-      case TimeChangedEvent:
-        yield _wr.changeTime((event as TimeChangedEvent).newTime);
+      case IncrementTimeEvent:
+        yield _wr.incrementTime();
+        break;
+      case DecrementTimeEvent:
+        yield _wr.decrementTime();
         break;
       case LocationChangedEvent:
         yield _wr.changeLocation((event as LocationChangedEvent).newLocation);

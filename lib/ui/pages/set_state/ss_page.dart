@@ -54,9 +54,12 @@ class _SSPageState extends State<SSPage> {
             Align(
               alignment: Alignment.bottomLeft,
               child: TimeSelector(
-                initialTime: currentWeather.time,
-                onTimeSelected: (time) => setState(() {
-                  currentWeather = wr.changeTime(time);
+                currentTime: currentWeather.time,
+                onIncrementTime: () => setState(() {
+                  currentWeather = wr.incrementTime();
+                }),
+                onDecrementTime: () => setState(() {
+                  currentWeather = wr.decrementTime();
                 }),
               ),
             ),

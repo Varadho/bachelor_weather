@@ -16,8 +16,13 @@ abstract class _WeatherStore with Store {
   WeatherState state = _weatherRepository.currentWeather;
 
   @action
-  void changeTime(DateTime newTime) {
-    state = _weatherRepository.changeTime(newTime);
+  void incrementTime() {
+    state = _weatherRepository.incrementTime();
+  }
+
+  @action
+  void decrementTime() {
+    state = _weatherRepository.decrementTime();
   }
 
   @action

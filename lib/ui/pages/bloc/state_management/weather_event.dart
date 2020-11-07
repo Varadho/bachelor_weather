@@ -6,12 +6,16 @@ abstract class WeatherEvent {
   const WeatherEvent();
 }
 
-///Event which described a change of time
-class TimeChangedEvent extends WeatherEvent {
-  ///Payload of the event
-  final DateTime newTime;
+///Event which described a change of time to the chronologically next one
+class IncrementTimeEvent extends WeatherEvent {
   // ignore: public_member_api_docs
-  const TimeChangedEvent(this.newTime);
+  const IncrementTimeEvent();
+}
+
+///Event which described a change of time to the chronologically previous one
+class DecrementTimeEvent extends WeatherEvent {
+  // ignore: public_member_api_docs
+  const DecrementTimeEvent();
 }
 
 ///Event which described a change of location

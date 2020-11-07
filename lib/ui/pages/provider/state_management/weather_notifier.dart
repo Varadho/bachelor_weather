@@ -10,9 +10,17 @@ class WeatherNotifier extends ChangeNotifier {
   WeatherState weather = WeatherRepository().currentWeather;
   final WeatherRepository _wr = WeatherRepository();
 
-  ///Method to change the time of the displayed Weather and notify all listeners
-  void changeTime(DateTime newTime) {
-    weather = _wr.changeTime(newTime);
+  ///Method to change the time of the displayed Weather to the
+  ///chronologically next and notify all listeners
+  void incrementTime() {
+    weather = _wr.incrementTime();
+    notifyListeners();
+  }
+
+  ///Method to change the time of the displayed Weather to the
+  ///chronologically previous and notify all listeners
+  void decrementTime() {
+    weather = _wr.decrementTime();
     notifyListeners();
   }
 

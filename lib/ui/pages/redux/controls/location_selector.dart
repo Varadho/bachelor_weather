@@ -11,22 +11,9 @@ import '../state_management/actions.dart';
 
 ///Widget which controls the location for which the weather should be displayed.
 ///This is a specific implementation using the Redux package.
-class LocationSelector extends StatefulWidget {
+class LocationSelector extends StatelessWidget {
   // ignore: public_member_api_docs
   const LocationSelector() : super(key: const Key("ls"));
-
-  @override
-  _LocationControlWidgetState createState() => _LocationControlWidgetState();
-}
-
-class _LocationControlWidgetState extends State<LocationSelector> {
-  LocationData _selectedLocation;
-
-  @override
-  void didChangeDependencies() {
-    _selectedLocation = StoreProvider.of<WeatherState>(context).state.location;
-    super.didChangeDependencies();
-  }
 
   @override
   Widget build(BuildContext context) => ExpandableControls(
@@ -71,7 +58,10 @@ class _LocationControlWidgetState extends State<LocationSelector> {
                     : ListTile(
                         key: Key(favoriteLocations[index].name),
                         selectedTileColor: Color.fromRGBO(255, 255, 255, 0.3),
-                        selected: _selectedLocation == favoriteLocations[index],
+                        selected: StoreProvider.of<WeatherState>(context)
+                                .state
+                                .location ==
+                            favoriteLocations[index],
                         contentPadding: EdgeInsets.zero,
                         leading: Icon(
                           Icons.location_on,
@@ -82,14 +72,12 @@ class _LocationControlWidgetState extends State<LocationSelector> {
                           favoriteLocations[index].cityName,
                           style: headingStyle.copyWith(fontSize: 24),
                         ),
-                        onTap: () {
-                          setState(() {
-                            _selectedLocation = favoriteLocations[index];
-                          });
-                          StoreProvider.of<WeatherState>(context).dispatch(
-                            ChangeLocationAction(_selectedLocation),
-                          );
-                        },
+                        onTap: () =>
+                            StoreProvider.of<WeatherState>(context).dispatch(
+                          ChangeLocationAction(
+                            favoriteLocations[index],
+                          ),
+                        ),
                       ),
               ),
             )
