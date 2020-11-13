@@ -15,8 +15,6 @@ class MobXPage extends StatelessWidget {
   Widget build(BuildContext context) => Provider(
         create: (context) => WeatherStore(),
         child: Scaffold(
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerFloat,
           body: Stack(
             children: [
               //Background Color

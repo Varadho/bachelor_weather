@@ -21,8 +21,6 @@ class ReduxPage extends StatelessWidget {
           initialState: WeatherRepository().currentWeather,
         ),
         child: Scaffold(
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerFloat,
           body: Stack(
             children: [
               //Background Color

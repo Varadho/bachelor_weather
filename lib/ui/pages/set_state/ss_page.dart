@@ -26,7 +26,6 @@ class _SSPageState extends State<SSPage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         body: Stack(
           children: [
             //Background Color

@@ -16,8 +16,6 @@ class ProviderPage extends StatelessWidget {
   Widget build(BuildContext context) => ChangeNotifierProvider(
         create: (context) => WeatherNotifier(),
         builder: (context, child) => Scaffold(
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerFloat,
           body: Stack(
             children: [
               //Background Color

@@ -16,8 +16,6 @@ class BlocPage extends StatelessWidget {
   Widget build(BuildContext context) => BlocProvider<WeatherBloc>(
         create: (context) => WeatherBloc(WeatherRepository().currentWeather),
         child: Scaffold(
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerFloat,
           body: Stack(
             children: [
               //Background Color
