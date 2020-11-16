@@ -71,8 +71,10 @@ class LocationSelector extends StatelessWidget {
                             favoriteLocations[index].cityName,
                             style: headingStyle.copyWith(fontSize: 24),
                           ),
-                          onTap: () => Provider.of<WeatherNotifier>(context)
-                              .changeLocation(favoriteLocations[index]),
+                          onTap: () => Provider.of<WeatherNotifier>(
+                            context,
+                            listen: false,
+                          ).changeLocation(favoriteLocations[index]),
                         ),
                       ),
               ),
