@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../utility/constants/colors.dart';
 import '../../../../utility/constants/text_styles.dart';
 import '../../../common_widgets/expandable_controls.dart';
 import '../state_management/weather_notifier.dart';
@@ -41,15 +40,19 @@ class TimeSelector extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Consumer<WeatherNotifier>(
-                          builder: (context, notifier, _) => Text(
-                            _generateDateString(notifier.weather.time, context),
+                        Selector<WeatherNotifier, DateTime>(
+                          selector: (context, notifier) =>
+                              notifier.weather.time,
+                          builder: (context, time, _) => Text(
+                            _generateDateString(time, context),
                             style: headingStyle.copyWith(fontSize: 24),
                           ),
                         ),
-                        Consumer<WeatherNotifier>(
-                          builder: (context, notifier, _) => Text(
-                            _generateTimeString(notifier.weather.time),
+                        Selector<WeatherNotifier, DateTime>(
+                          selector: (context, notifier) =>
+                              notifier.weather.time,
+                          builder: (context, time, _) => Text(
+                            _generateTimeString(time),
                             style: headingStyle.copyWith(fontSize: 38),
                           ),
                         ),
@@ -63,40 +66,28 @@ class TimeSelector extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    InkWell(
-                      child: GestureDetector(
-                        key: const Key("previous_time"),
-                        onTap: () =>
-                            Provider.of<WeatherNotifier>(context, listen: false)
-                                .decrementTime(),
-                        child: Icon(
-                          Icons.remove,
-                          color: Colors.white,
-                          size: 75,
-                        ),
+                    GestureDetector(
+                      key: const Key("previous_time"),
+                      onTap: () =>
+                          Provider.of<WeatherNotifier>(context, listen: false)
+                              .decrementTime(),
+                      child: Icon(
+                        Icons.fast_rewind_sharp,
+                        color: Colors.white,
+                        size: 75,
                       ),
-                      customBorder: CircleBorder(),
-                      splashColor: backgroundColor2.withOpacity(0.7),
-                      splashFactory: InkSplash.splashFactory,
-                      enableFeedback: false,
                     ),
                     Container(),
-                    InkWell(
-                      child: GestureDetector(
-                        key: const Key("next_time"),
-                        onTap: () =>
-                            Provider.of<WeatherNotifier>(context, listen: false)
-                                .incrementTime(),
-                        child: Icon(
-                          Icons.add,
-                          color: Colors.white,
-                          size: 75,
-                        ),
+                    GestureDetector(
+                      key: const Key("next_time"),
+                      onTap: () =>
+                          Provider.of<WeatherNotifier>(context, listen: false)
+                              .incrementTime(),
+                      child: Icon(
+                        Icons.fast_forward_sharp,
+                        color: Colors.white,
+                        size: 75,
                       ),
-                      customBorder: CircleBorder(),
-                      splashColor: backgroundColor2.withOpacity(0.7),
-                      splashFactory: InkSplash.splashFactory,
-                      enableFeedback: false,
                     ),
                   ],
                 ),

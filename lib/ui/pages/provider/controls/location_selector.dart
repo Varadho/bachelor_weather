@@ -53,29 +53,27 @@ class LocationSelector extends StatelessWidget {
                 itemBuilder: (context, index) => index ==
                         favoriteLocations.length
                     ? Container()
-                    : Consumer<WeatherNotifier>(
-                        builder: (context, notifier, _) => ListTile(
-                          key: Key(favoriteLocations[index].name),
-                          selectedTileColor: Color.fromRGBO(255, 255, 255, 0.3),
-                          selected: Provider.of<WeatherNotifier>(context)
-                                  .weather
-                                  .location ==
-                              favoriteLocations[index],
-                          contentPadding: EdgeInsets.zero,
-                          leading: Icon(
-                            Icons.location_on,
-                            size: 35,
-                            color: Colors.white,
-                          ),
-                          title: Text(
-                            favoriteLocations[index].cityName,
-                            style: headingStyle.copyWith(fontSize: 24),
-                          ),
-                          onTap: () => Provider.of<WeatherNotifier>(
-                            context,
-                            listen: false,
-                          ).changeLocation(favoriteLocations[index]),
+                    : ListTile(
+                        key: Key(favoriteLocations[index].name),
+                        selectedTileColor: Color.fromRGBO(255, 255, 255, 0.3),
+                        selected: Provider.of<WeatherNotifier>(context)
+                                .weather
+                                .location ==
+                            favoriteLocations[index],
+                        contentPadding: EdgeInsets.zero,
+                        leading: Icon(
+                          Icons.location_on,
+                          size: 35,
+                          color: Colors.white,
                         ),
+                        title: Text(
+                          favoriteLocations[index].cityName,
+                          style: headingStyle.copyWith(fontSize: 24),
+                        ),
+                        onTap: () => Provider.of<WeatherNotifier>(
+                          context,
+                          listen: false,
+                        ).changeLocation(favoriteLocations[index]),
                       ),
               ),
             )

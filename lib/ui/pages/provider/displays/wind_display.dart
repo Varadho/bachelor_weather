@@ -33,15 +33,19 @@ class WindDisplay extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Column(
                       children: <Widget>[
-                        Consumer<WeatherNotifier>(
-                          builder: (context, notifier, _) => Text(
-                            "${(notifier.weather.wind.mpsSpeed * 3.6).toStringAsFixed(2)} km/h",
+                        Selector<WeatherNotifier, double>(
+                          selector: (context, notifier) =>
+                              notifier.weather.wind.mpsSpeed * 3.6,
+                          builder: (context, kmhSpeed, _) => Text(
+                            "${kmhSpeed.toStringAsFixed(2)} km/h",
                             style: dataStyle,
                           ),
                         ),
-                        Consumer<WeatherNotifier>(
-                          builder: (context, notifier, _) => Text(
-                            "${notifier.weather.wind.mpsSpeed.toStringAsFixed(2)} m/s",
+                        Selector<WeatherNotifier, double>(
+                          selector: (context, notifier) =>
+                              notifier.weather.wind.mpsSpeed,
+                          builder: (context, mpsSpeed, _) => Text(
+                            "${mpsSpeed.toStringAsFixed(2)} m/s",
                             style: dataStyle,
                           ),
                         ),

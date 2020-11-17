@@ -26,9 +26,11 @@ class AtmosphericDisplay extends StatelessWidget {
                         "Pressure:",
                         style: headingStyle.copyWith(fontSize: 20),
                       ),
-                      Consumer<WeatherNotifier>(
-                        builder: (context, notifier, _) => Text(
-                          "${notifier.weather.atmosphere.pressure} hPa",
+                      Selector<WeatherNotifier, int>(
+                        selector: (context, notifier) =>
+                            notifier.weather.atmosphere.pressure,
+                        builder: (context, pressure, child) => Text(
+                          "$pressure hPa",
                           style: dataStyle,
                         ),
                       ),
@@ -40,9 +42,11 @@ class AtmosphericDisplay extends StatelessWidget {
                         "Humidity:",
                         style: headingStyle.copyWith(fontSize: 20),
                       ),
-                      Consumer<WeatherNotifier>(
-                        builder: (context, notifier, _) => Text(
-                          "${notifier.weather.atmosphere.humidity}%",
+                      Selector<WeatherNotifier, int>(
+                        selector: (context, notifier) =>
+                            notifier.weather.atmosphere.humidity,
+                        builder: (context, humidity, child) => Text(
+                          "$humidity%",
                           style: dataStyle,
                         ),
                       ),
@@ -54,9 +58,11 @@ class AtmosphericDisplay extends StatelessWidget {
                         "Cloudiness:",
                         style: headingStyle.copyWith(fontSize: 20),
                       ),
-                      Consumer<WeatherNotifier>(
-                        builder: (context, notifier, _) => Text(
-                          "${notifier.weather.atmosphere.clouds}%",
+                      Selector<WeatherNotifier, int>(
+                        selector: (context, notifier) =>
+                            notifier.weather.atmosphere.clouds,
+                        builder: (context, clouds, child) => Text(
+                          "$clouds%",
                           style: dataStyle,
                         ),
                       ),
@@ -66,9 +72,11 @@ class AtmosphericDisplay extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 12.0),
-                child: Consumer<WeatherNotifier>(
-                  builder: (context, notifier, _) => Text(
-                    "${notifier.weather.atmosphere.description}",
+                child: Selector<WeatherNotifier, String>(
+                  selector: (context, notifier) =>
+                      notifier.weather.atmosphere.description,
+                  builder: (context, description, _) => Text(
+                    description,
                     style: headingStyle,
                   ),
                 ),

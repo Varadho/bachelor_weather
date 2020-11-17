@@ -78,14 +78,16 @@ class WindDirectionDisplay extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),
-                  child: Consumer<WeatherNotifier>(
-                    builder: (context, notifier, _) => Transform.rotate(
-                      angle: (notifier.weather.wind.deg - 90) * pi / 180,
-                      child: Icon(
-                        FontAwesomeIcons.wind,
-                        color: backgroundColor3,
-                        size: _iconSize,
-                      ),
+                  child: Selector<WeatherNotifier, double>(
+                    selector: (context, notifier)=>notifier.weather.wind.deg,
+                    builder: (context, deg, child) => Transform.rotate(
+                      angle: (deg - 90) * pi / 180,
+                      child: child,
+                    ),
+                    child: Icon(
+                      FontAwesomeIcons.wind,
+                      color: backgroundColor3,
+                      size: _iconSize,
                     ),
                   ),
                 ),

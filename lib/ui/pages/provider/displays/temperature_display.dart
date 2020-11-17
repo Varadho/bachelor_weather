@@ -1,3 +1,4 @@
+import 'package:bachelorweather/model/weather_state.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -25,13 +26,13 @@ class TemperatureDisplay extends StatelessWidget {
                 color: Color.fromRGBO(255, 255, 255, 0.2),
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
-                  child: Consumer<WeatherNotifier>(
-                    builder: (context, notifier, _) => Icon(
+                  child: Selector<WeatherNotifier, double>(
+                    selector: (context, notifier) =>
+                        notifier.weather.temperature.feelsLike,
+                    builder: (context, feelsLike, child) => Icon(
                       FontAwesomeIcons.temperatureHigh,
                       size: 36,
-                      color: _calculateColor(
-                        notifier.weather.temperature.feelsLike,
-                      ),
+                      color: _calculateColor(feelsLike),
                     ),
                   ),
                 ),
@@ -39,14 +40,15 @@ class TemperatureDisplay extends StatelessWidget {
             ),
             Column(
               children: <Widget>[
-                Consumer<WeatherNotifier>(
-                  builder: (context, notifier, _) => RichText(
+                Selector<WeatherNotifier, TemperatureData>(
+                  selector: (context, notifier) => notifier.weather.temperature,
+                  builder: (context, temperature, _) => RichText(
                     text: TextSpan(
-                      text: "${notifier.weather.temperature.feelsLike}°C ",
+                      text: "${temperature.feelsLike}°C ",
                       style: headingStyle,
                       children: [
                         TextSpan(
-                          text: "(${notifier.weather.temperature.avg}°C)",
+                          text: "(${temperature.avg}°C)",
                           style: TextStyle(
                             fontWeight: FontWeight.w300,
                             fontSize: 16,
@@ -70,9 +72,11 @@ class TemperatureDisplay extends StatelessWidget {
                             FontAwesomeIcons.longArrowAltUp,
                             color: Colors.red,
                           ),
-                          Consumer<WeatherNotifier>(
-                            builder: (context, notifier, _) => Text(
-                              "${notifier.weather.temperature.max.toStringAsFixed(2)}°C ",
+                          Selector<WeatherNotifier, double>(
+                            selector: (context, notifier) =>
+                                notifier.weather.temperature.max,
+                            builder: (context, max, child) => Text(
+                              "${max.toStringAsFixed(2)}°C ",
                               style: dataStyle,
                             ),
                           ),
@@ -90,9 +94,11 @@ class TemperatureDisplay extends StatelessWidget {
                             FontAwesomeIcons.longArrowAltDown,
                             color: Colors.lightBlue,
                           ),
-                          Consumer<WeatherNotifier>(
-                            builder: (context, notifier, _) => Text(
-                              "${notifier.weather.temperature.min.toStringAsFixed(2)}°C ",
+                          Selector<WeatherNotifier, double>(
+                            selector: (context, notifier) =>
+                                notifier.weather.temperature.min,
+                            builder: (context, min, child) => Text(
+                              "${min.toStringAsFixed(2)}°C ",
                               style: dataStyle,
                             ),
                           ),

@@ -24,15 +24,19 @@ class LocationDisplay extends StatelessWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Consumer<WeatherNotifier>(
-                      builder: (context, notifier, _) => Text(
-                        notifier.weather.location.cityName,
+                    Selector<WeatherNotifier, String>(
+                      selector: (context, notifier) =>
+                          notifier.weather.location.cityName,
+                      builder: (context, cityName, _) => Text(
+                        cityName,
                         style: headingStyle,
                       ),
                     ),
-                    Consumer<WeatherNotifier>(
-                      builder: (context, notifier, _) => Text(
-                        " (${notifier.weather.location.country})",
+                    Selector<WeatherNotifier, String>(
+                      selector: (context, notifier) =>
+                          notifier.weather.location.country,
+                      builder: (context, country, _) => Text(
+                        " ($country)",
                         style: headingStyle,
                       ),
                     ),
@@ -43,20 +47,24 @@ class LocationDisplay extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Consumer<WeatherNotifier>(
-                    builder: (context, notifier, _) => Text(
-                      '${notifier.weather.location.coord.lat.abs().toStringAsFixed(2)}° '
-                      '${_northOrSouth(notifier.weather.location.coord.lat)}',
+                  Selector<WeatherNotifier, double>(
+                    selector: (context, notifier) =>
+                        notifier.weather.location.coord.lat,
+                    builder: (context, lat, _) => Text(
+                      '${lat.abs().toStringAsFixed(2)}° '
+                      '${_northOrSouth(lat)}',
                       style: subtitleStyle,
                     ),
                   ),
                   Container(
                     width: MediaQuery.of(context).size.width / 6,
                   ),
-                  Consumer<WeatherNotifier>(
-                    builder: (context, notifier, _) => Text(
-                      '${notifier.weather.location.coord.lon.abs().toStringAsFixed(2)}° '
-                      '${_eastOrWest(notifier.weather.location.coord.lon)}',
+                  Selector<WeatherNotifier, double>(
+                    selector: (context, notifier) =>
+                        notifier.weather.location.coord.lon,
+                    builder: (context, lon, _) => Text(
+                      '${lon.abs().toStringAsFixed(2)}° '
+                      '${_eastOrWest(lon)}',
                       style: subtitleStyle,
                     ),
                   )

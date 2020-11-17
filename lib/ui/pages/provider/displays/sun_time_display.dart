@@ -36,9 +36,10 @@ class SunTimeDisplay extends StatelessWidget {
                         size: 30,
                         color: Colors.white,
                       ),
-                      Consumer<WeatherNotifier>(
-                        //TODO optimize using the child parameter of the builder (?)
-                        builder: (context, notifier, _) => RichText(
+                      Selector<WeatherNotifier, DateTime>(
+                        selector: (context, notifier) =>
+                            notifier.weather.location.sunrise,
+                        builder: (context, sunrise, _) => RichText(
                           text: TextSpan(
                             text: "Sunrise ",
                             style: TextStyle(fontSize: 16),
@@ -46,9 +47,8 @@ class SunTimeDisplay extends StatelessWidget {
                               TextSpan(
                                 style: dataStyle,
                                 text:
-                                    "${notifier.weather.location.sunrise.hour.toString().padLeft(2, "0"
-                                        "")}:"
-                                    "${notifier.weather.location.sunrise.minute.toString().padLeft(2, "0")}",
+                                    "${sunrise.hour.toString().padLeft(2, "0")}:"
+                                    "${sunrise.minute.toString().padLeft(2, "0")}",
                               )
                             ],
                           ),
@@ -76,9 +76,10 @@ class SunTimeDisplay extends StatelessWidget {
                         size: 30,
                         color: Colors.white,
                       ),
-                      Consumer<WeatherNotifier>(
-                        //TODO optimize using the child parameter of the builder (?)
-                        builder: (context, notifier, _) => RichText(
+                      Selector<WeatherNotifier, DateTime>(
+                        selector: (context, notifier) =>
+                            notifier.weather.location.sunset,
+                        builder: (context, sunset, _) => RichText(
                           text: TextSpan(
                             text: "Sunset ",
                             style: TextStyle(fontSize: 16),
@@ -86,8 +87,8 @@ class SunTimeDisplay extends StatelessWidget {
                               TextSpan(
                                 style: dataStyle,
                                 text:
-                                    "${notifier.weather.location.sunset.hour.toString().padLeft(2, "0")}:"
-                                    "${notifier.weather.location.sunset.minute.toString().padLeft(2, "0")}",
+                                    "${sunset.hour.toString().padLeft(2, "0")}:"
+                                    "${sunset.minute.toString().padLeft(2, "0")}",
                               )
                             ],
                           ),
