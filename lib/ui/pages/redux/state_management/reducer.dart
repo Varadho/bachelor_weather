@@ -8,17 +8,19 @@ import 'actions.dart';
 /// and [WeatherAction] as parameters
 typedef WeatherReducer = Function(WeatherState, WeatherAction);
 
+WeatherRepository _wr = WeatherRepository();
+
 ///Reducer for all WeatherActions
 final WeatherReducer weatherReducer = combineReducers<WeatherState>(
   [
     TypedReducer<WeatherState, IncrementTimeAction>(
-      (_, action) => WeatherRepository().incrementTime(),
+      (_, action) => _wr.incrementTime(),
     ),
     TypedReducer<WeatherState, DecrementTimeAction>(
-      (_, action) => WeatherRepository().decrementTime(),
+      (_, action) => _wr.decrementTime(),
     ),
     TypedReducer<WeatherState, ChangeLocationAction>(
-      (_, action) => WeatherRepository().changeLocation(action.newLocation),
+      (_, action) => _wr.changeLocation(action.newLocation),
     ),
   ],
 );
