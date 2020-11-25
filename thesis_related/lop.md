@@ -2,13 +2,15 @@
 
 ### Grundlagen
 
-* Kapitel über verwendete Tools (Überarbeitung wärmstens empfohlen!) [WIP]
+* Kapitel über verwendete Tools
+  * [ ] Flutter Driver [überarbeiten]
+  * [ ] Dart DevTools [überarbeiten]
 
 ---
 
 ### Methodik
 
-* Für jedes Kriterium jede ZVM abarbeiten
+* Für jedes Kriterium jede ZVM abarbeiten [WIP]
   * [ ] Definition, Deklaration und Initialisierung eines Globalen Zustands
     * [ ] Store, Notifier, BLoC
     * [ ] StoreProvider, BlocProvider, ChangeNotifierProvider etc.
@@ -39,10 +41,7 @@
 
 ### Layout & Diagramme
 
-* Diagrammsoftware wählen
-* Diagramme und Schaubilder erstellen
-  * Datenfluss der einzelnen ZVM veranschaulichen
-  * Messergebnisse ordentlich darstellen
+* Messergebnisse ordentlich darstellen [ ]
 * Finale überprüfung des Layouts, nachdem alle Texte geschrieben sind
   
 ---
@@ -73,5 +72,14 @@
   * Schaubilder erstellen (201111-1220)
 
   * Verwendete Tools beschreiben [Rohfassung] (201112-1515)
+
+* Diagrammsoftware wählen (201116- 1000)
+
+* In der Providerimplementierung Selector-Widgets statt Consumer-Widgets verwenden (201117-1650)
+
+* Kapitel über verwendete Tools
+  * Schaubilder zur Applikation erstellen (201119-1400)
+  * ZVM (201123-1845)
+    * Datenfluss der einzelnen ZVM veranschaulichen
 
 * Zu viele Videospiele die mich ablenken (24/7)
