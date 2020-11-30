@@ -57,7 +57,7 @@ class LocationSelector extends StatelessWidget {
                         key: Key(favoriteLocations[index].name),
                         selectedTileColor: Color.fromRGBO(255, 255, 255, 0.3),
                         selected: Provider.of<WeatherNotifier>(context)
-                                .weather
+                                .state
                                 .location ==
                             favoriteLocations[index],
                         contentPadding: EdgeInsets.zero,

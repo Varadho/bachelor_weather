@@ -38,7 +38,7 @@ class SunTimeDisplay extends StatelessWidget {
                       ),
                       Selector<WeatherNotifier, DateTime>(
                         selector: (context, notifier) =>
-                            notifier.weather.location.sunrise,
+                            notifier.state.location.sunrise,
                         builder: (context, sunrise, _) => RichText(
                           text: TextSpan(
                             text: "Sunrise ",
@@ -78,7 +78,7 @@ class SunTimeDisplay extends StatelessWidget {
                       ),
                       Selector<WeatherNotifier, DateTime>(
                         selector: (context, notifier) =>
-                            notifier.weather.location.sunset,
+                            notifier.state.location.sunset,
                         builder: (context, sunset, _) => RichText(
                           text: TextSpan(
                             text: "Sunset ",

@@ -11,7 +11,7 @@ import '../state_management/weather_bloc.dart';
 ///This is a specific implementation using the BLoC package
 class TemperatureDisplay extends StatelessWidget {
   // ignore: public_member_api_docs
-  TemperatureDisplay({Key key});
+  TemperatureDisplay({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => WeatherCard(

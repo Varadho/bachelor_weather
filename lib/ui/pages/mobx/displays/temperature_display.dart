@@ -47,12 +47,12 @@ class TemperatureDisplay extends StatelessWidget {
                   builder: (context) => RichText(
                     text: TextSpan(
                       text:
-                          "${Provider.of<WeatherStore>(context).state.temperature?.feelsLike}°C ",
+                          "${Provider.of<WeatherStore>(context).state.temperature.feelsLike}°C ",
                       style: headingStyle,
                       children: [
                         TextSpan(
                           text:
-                              "(${Provider.of<WeatherStore>(context).state.temperature?.avg}°C)",
+                              "(${Provider.of<WeatherStore>(context).state.temperature.avg}°C)",
                           style: TextStyle(
                             fontWeight: FontWeight.w300,
                             fontSize: 16,

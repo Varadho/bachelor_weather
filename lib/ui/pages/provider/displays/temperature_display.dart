@@ -28,7 +28,7 @@ class TemperatureDisplay extends StatelessWidget {
                   padding: const EdgeInsets.all(10.0),
                   child: Selector<WeatherNotifier, double>(
                     selector: (context, notifier) =>
-                        notifier.weather.temperature.feelsLike,
+                        notifier.state.temperature.feelsLike,
                     builder: (context, feelsLike, child) => Icon(
                       FontAwesomeIcons.temperatureHigh,
                       size: 36,
@@ -41,7 +41,7 @@ class TemperatureDisplay extends StatelessWidget {
             Column(
               children: <Widget>[
                 Selector<WeatherNotifier, TemperatureData>(
-                  selector: (context, notifier) => notifier.weather.temperature,
+                  selector: (context, notifier) => notifier.state.temperature,
                   builder: (context, temperature, _) => RichText(
                     text: TextSpan(
                       text: "${temperature.feelsLike}°C ",
@@ -74,7 +74,7 @@ class TemperatureDisplay extends StatelessWidget {
                           ),
                           Selector<WeatherNotifier, double>(
                             selector: (context, notifier) =>
-                                notifier.weather.temperature.max,
+                                notifier.state.temperature.max,
                             builder: (context, max, child) => Text(
                               "${max.toStringAsFixed(2)}°C ",
                               style: dataStyle,
@@ -96,7 +96,7 @@ class TemperatureDisplay extends StatelessWidget {
                           ),
                           Selector<WeatherNotifier, double>(
                             selector: (context, notifier) =>
-                                notifier.weather.temperature.min,
+                                notifier.state.temperature.min,
                             builder: (context, min, child) => Text(
                               "${min.toStringAsFixed(2)}°C ",
                               style: dataStyle,

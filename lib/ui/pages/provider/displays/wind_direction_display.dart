@@ -79,7 +79,7 @@ class WindDirectionDisplay extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Selector<WeatherNotifier, double>(
-                    selector: (context, notifier)=>notifier.weather.wind.deg,
+                    selector: (context, notifier) => notifier.state.wind.deg,
                     builder: (context, deg, child) => Transform.rotate(
                       angle: (deg - 90) * pi / 180,
                       child: child,

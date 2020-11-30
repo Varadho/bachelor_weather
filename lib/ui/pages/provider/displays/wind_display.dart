@@ -35,7 +35,7 @@ class WindDisplay extends StatelessWidget {
                       children: <Widget>[
                         Selector<WeatherNotifier, double>(
                           selector: (context, notifier) =>
-                              notifier.weather.wind.mpsSpeed * 3.6,
+                              notifier.state.wind.mpsSpeed * 3.6,
                           builder: (context, kmhSpeed, _) => Text(
                             "${kmhSpeed.toStringAsFixed(2)} km/h",
                             style: dataStyle,
@@ -43,7 +43,7 @@ class WindDisplay extends StatelessWidget {
                         ),
                         Selector<WeatherNotifier, double>(
                           selector: (context, notifier) =>
-                              notifier.weather.wind.mpsSpeed,
+                              notifier.state.wind.mpsSpeed,
                           builder: (context, mpsSpeed, _) => Text(
                             "${mpsSpeed.toStringAsFixed(2)} m/s",
                             style: dataStyle,

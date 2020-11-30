@@ -1,27 +1,19 @@
 part of 'weather_bloc.dart';
 
 ///Abstract class which is the base for weather events.
-abstract class WeatherEvent {
-  // ignore: public_member_api_docs
-  const WeatherEvent();
-}
+abstract class WeatherEvent {}
 
 ///Event which described a change of time to the chronologically next one
-class IncrementTimeEvent extends WeatherEvent {
-  // ignore: public_member_api_docs
-  const IncrementTimeEvent();
-}
+class IncrementTimeEvent extends WeatherEvent {}
 
 ///Event which described a change of time to the chronologically previous one
-class DecrementTimeEvent extends WeatherEvent {
-  // ignore: public_member_api_docs
-  const DecrementTimeEvent();
-}
+class DecrementTimeEvent extends WeatherEvent {}
 
 ///Event which described a change of location
 class LocationChangedEvent extends WeatherEvent {
   ///Payload of the event
   final LocationData newLocation;
-  // ignore: public_member_api_docs
-  const LocationChangedEvent(this.newLocation);
+
+  ///Standard constructor, which allows to pass a LocationData payload
+  LocationChangedEvent(this.newLocation);
 }

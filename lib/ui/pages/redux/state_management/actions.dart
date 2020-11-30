@@ -4,21 +4,16 @@ import '../../../../model/weather_state.dart';
 abstract class WeatherAction {}
 
 ///Action which describes a change of time to the chronologically next Time
-class IncrementTimeAction extends WeatherAction {
-  // ignore: public_member_api_docs
-  IncrementTimeAction();
-}
+class IncrementTimeAction extends WeatherAction {}
 
 ///Action which describes a change of time to the chronologically previous time
-class DecrementTimeAction extends WeatherAction {
-  // ignore: public_member_api_docs
-  DecrementTimeAction();
-}
+class DecrementTimeAction extends WeatherAction {}
 
 ///Action which describes a change of location
 class ChangeLocationAction extends WeatherAction {
   ///Payload of this action
   final LocationData newLocation;
-  // ignore: public_member_api_docs
+
+  ///Standard constructor, which allows to pass a LocationData payload
   ChangeLocationAction(this.newLocation);
 }

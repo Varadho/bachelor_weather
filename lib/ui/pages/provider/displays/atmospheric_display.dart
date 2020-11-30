@@ -28,7 +28,7 @@ class AtmosphericDisplay extends StatelessWidget {
                       ),
                       Selector<WeatherNotifier, int>(
                         selector: (context, notifier) =>
-                            notifier.weather.atmosphere.pressure,
+                            notifier.state.atmosphere.pressure,
                         builder: (context, pressure, child) => Text(
                           "$pressure hPa",
                           style: dataStyle,
@@ -44,7 +44,7 @@ class AtmosphericDisplay extends StatelessWidget {
                       ),
                       Selector<WeatherNotifier, int>(
                         selector: (context, notifier) =>
-                            notifier.weather.atmosphere.humidity,
+                            notifier.state.atmosphere.humidity,
                         builder: (context, humidity, child) => Text(
                           "$humidity%",
                           style: dataStyle,
@@ -60,7 +60,7 @@ class AtmosphericDisplay extends StatelessWidget {
                       ),
                       Selector<WeatherNotifier, int>(
                         selector: (context, notifier) =>
-                            notifier.weather.atmosphere.clouds,
+                            notifier.state.atmosphere.clouds,
                         builder: (context, clouds, child) => Text(
                           "$clouds%",
                           style: dataStyle,
@@ -74,7 +74,7 @@ class AtmosphericDisplay extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 12.0),
                 child: Selector<WeatherNotifier, String>(
                   selector: (context, notifier) =>
-                      notifier.weather.atmosphere.description,
+                      notifier.state.atmosphere.description,
                   builder: (context, description, _) => Text(
                     description,
                     style: headingStyle,

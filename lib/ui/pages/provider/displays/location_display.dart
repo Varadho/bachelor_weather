@@ -26,7 +26,7 @@ class LocationDisplay extends StatelessWidget {
                   children: [
                     Selector<WeatherNotifier, String>(
                       selector: (context, notifier) =>
-                          notifier.weather.location.cityName,
+                          notifier.state.location.cityName,
                       builder: (context, cityName, _) => Text(
                         cityName,
                         style: headingStyle,
@@ -34,7 +34,7 @@ class LocationDisplay extends StatelessWidget {
                     ),
                     Selector<WeatherNotifier, String>(
                       selector: (context, notifier) =>
-                          notifier.weather.location.country,
+                          notifier.state.location.country,
                       builder: (context, country, _) => Text(
                         " ($country)",
                         style: headingStyle,
@@ -49,7 +49,7 @@ class LocationDisplay extends StatelessWidget {
                 children: <Widget>[
                   Selector<WeatherNotifier, double>(
                     selector: (context, notifier) =>
-                        notifier.weather.location.coord.lat,
+                        notifier.state.location.coord.lat,
                     builder: (context, lat, _) => Text(
                       '${lat.abs().toStringAsFixed(2)}° '
                       '${_northOrSouth(lat)}',
@@ -61,7 +61,7 @@ class LocationDisplay extends StatelessWidget {
                   ),
                   Selector<WeatherNotifier, double>(
                     selector: (context, notifier) =>
-                        notifier.weather.location.coord.lon,
+                        notifier.state.location.coord.lon,
                     builder: (context, lon, _) => Text(
                       '${lon.abs().toStringAsFixed(2)}° '
                       '${_eastOrWest(lon)}',

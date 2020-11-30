@@ -41,16 +41,14 @@ class TimeSelector extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Selector<WeatherNotifier, DateTime>(
-                          selector: (context, notifier) =>
-                              notifier.weather.time,
+                          selector: (context, notifier) => notifier.state.time,
                           builder: (context, time, _) => Text(
                             _generateDateString(time, context),
                             style: headingStyle.copyWith(fontSize: 24),
                           ),
                         ),
                         Selector<WeatherNotifier, DateTime>(
-                          selector: (context, notifier) =>
-                              notifier.weather.time,
+                          selector: (context, notifier) => notifier.state.time,
                           builder: (context, time, _) => Text(
                             _generateTimeString(time),
                             style: headingStyle.copyWith(fontSize: 38),
