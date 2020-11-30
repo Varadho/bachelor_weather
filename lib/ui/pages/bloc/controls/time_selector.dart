@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../model/weather_state.dart';
-import '../../../../utility/constants/colors.dart';
 import '../../../../utility/constants/text_styles.dart';
 import '../../../common_widgets/expandable_controls.dart';
 import '../state_management/weather_bloc.dart';
@@ -64,38 +63,26 @@ class TimeSelector extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    InkWell(
-                      child: GestureDetector(
-                        key: const Key("previous_time"),
-                        onTap: () => BlocProvider.of<WeatherBloc>(context)
-                            .add(DecrementTimeEvent()),
-                        child: Icon(
-                          Icons.remove,
-                          color: Colors.white,
-                          size: 75,
-                        ),
+                    IconButton(
+                      key: const Key("previous_time"),
+                      onPressed: () => BlocProvider.of<WeatherBloc>(context)
+                          .add(DecrementTimeEvent()),
+                      icon: Icon(
+                        Icons.fast_rewind_sharp,
+                        color: Colors.white,
+                        size: 75,
                       ),
-                      customBorder: CircleBorder(),
-                      splashColor: backgroundColor2.withOpacity(0.7),
-                      splashFactory: InkSplash.splashFactory,
-                      enableFeedback: false,
                     ),
                     Container(),
-                    InkWell(
-                      child: GestureDetector(
-                        key: const Key("next_time"),
-                        onTap: () => BlocProvider.of<WeatherBloc>(context)
-                            .add(IncrementTimeEvent()),
-                        child: Icon(
-                          Icons.add,
-                          color: Colors.white,
-                          size: 75,
-                        ),
+                    IconButton(
+                      key: const Key("next_time"),
+                      onPressed: () => BlocProvider.of<WeatherBloc>(context)
+                          .add(IncrementTimeEvent()),
+                      icon: Icon(
+                        Icons.fast_forward_sharp,
+                        color: Colors.white,
+                        size: 75,
                       ),
-                      customBorder: CircleBorder(),
-                      splashColor: backgroundColor2.withOpacity(0.7),
-                      splashFactory: InkSplash.splashFactory,
-                      enableFeedback: false,
                     ),
                   ],
                 ),

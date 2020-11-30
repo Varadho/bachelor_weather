@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../utility/constants/colors.dart';
 import '../../../../utility/constants/text_styles.dart';
 import '../../../common_widgets/expandable_controls.dart';
 import '../state_management/weather_store.dart';
@@ -69,40 +68,28 @@ class TimeSelector extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    InkWell(
-                      child: GestureDetector(
-                        key: const Key("previous_time"),
-                        onTap: () =>
-                            Provider.of<WeatherStore>(context, listen: false)
-                                .decrementTime(),
-                        child: Icon(
-                          Icons.remove,
-                          color: Colors.white,
-                          size: 75,
-                        ),
+                    IconButton(
+                      key: const Key("previous_time"),
+                      onPressed: () =>
+                          Provider.of<WeatherStore>(context, listen: false)
+                              .decrementTime(),
+                      icon: Icon(
+                        Icons.fast_rewind_sharp,
+                        color: Colors.white,
+                        size: 75,
                       ),
-                      customBorder: CircleBorder(),
-                      splashColor: backgroundColor2.withOpacity(0.7),
-                      splashFactory: InkSplash.splashFactory,
-                      enableFeedback: false,
                     ),
                     Container(),
-                    InkWell(
-                      child: GestureDetector(
-                        key: const Key("next_time"),
-                        onTap: () =>
-                            Provider.of<WeatherStore>(context, listen: false)
-                                .incrementTime(),
-                        child: Icon(
-                          Icons.add,
-                          color: Colors.white,
-                          size: 75,
-                        ),
+                    IconButton(
+                      key: const Key("next_time"),
+                      onPressed: () =>
+                          Provider.of<WeatherStore>(context, listen: false)
+                              .incrementTime(),
+                      icon: Icon(
+                        Icons.fast_forward_sharp,
+                        color: Colors.white,
+                        size: 75,
                       ),
-                      customBorder: CircleBorder(),
-                      splashColor: backgroundColor2.withOpacity(0.7),
-                      splashFactory: InkSplash.splashFactory,
-                      enableFeedback: false,
                     ),
                   ],
                 ),
