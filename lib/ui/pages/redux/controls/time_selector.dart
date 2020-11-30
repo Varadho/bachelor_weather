@@ -1,3 +1,4 @@
+import 'package:bachelorweather/utility/constants/icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
@@ -30,7 +31,7 @@ class TimeSelector extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Icon(
+                    child: const Icon(
                       Icons.access_time,
                       size: 75,
                       color: Colors.white,
@@ -69,22 +70,16 @@ class TimeSelector extends StatelessWidget {
                       key: const Key("previous_time"),
                       onPressed: () => StoreProvider.of<WeatherState>(context)
                           .dispatch(DecrementTimeAction()),
-                      icon: const Icon(
-                        Icons.fast_rewind_sharp,
-                        color: Colors.white,
-                        size: 75,
-                      ),
+                      icon: decrementTimeIcon,
+                      iconSize: 75,
                     ),
                     Container(),
                     IconButton(
                       key: const Key("next_time"),
                       onPressed: () => StoreProvider.of<WeatherState>(context)
                           .dispatch(IncrementTimeAction()),
-                      icon: const Icon(
-                        Icons.fast_forward_sharp,
-                        color: Colors.white,
-                        size: 75,
-                      ),
+                      icon: incrementTimeIcon,
+                      iconSize: 75,
                     ),
                   ],
                 ),
