@@ -73,7 +73,7 @@ class TimeSelector extends StatelessWidget {
                       onPressed: () =>
                           Provider.of<WeatherStore>(context, listen: false)
                               .decrementTime(),
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.fast_rewind_sharp,
                         color: Colors.white,
                         size: 75,
@@ -85,7 +85,7 @@ class TimeSelector extends StatelessWidget {
                       onPressed: () =>
                           Provider.of<WeatherStore>(context, listen: false)
                               .incrementTime(),
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.fast_forward_sharp,
                         color: Colors.white,
                         size: 75,

@@ -67,7 +67,7 @@ class TimeSelector extends StatelessWidget {
                       key: const Key("previous_time"),
                       onPressed: () => BlocProvider.of<WeatherBloc>(context)
                           .add(DecrementTimeEvent()),
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.fast_rewind_sharp,
                         color: Colors.white,
                         size: 75,
@@ -78,7 +78,7 @@ class TimeSelector extends StatelessWidget {
                       key: const Key("next_time"),
                       onPressed: () => BlocProvider.of<WeatherBloc>(context)
                           .add(IncrementTimeEvent()),
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.fast_forward_sharp,
                         color: Colors.white,
                         size: 75,

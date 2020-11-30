@@ -69,7 +69,7 @@ class TimeSelector extends StatelessWidget {
                       key: const Key("previous_time"),
                       onPressed: () => StoreProvider.of<WeatherState>(context)
                           .dispatch(DecrementTimeAction()),
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.fast_rewind_sharp,
                         color: Colors.white,
                         size: 75,
@@ -80,7 +80,7 @@ class TimeSelector extends StatelessWidget {
                       key: const Key("next_time"),
                       onPressed: () => StoreProvider.of<WeatherState>(context)
                           .dispatch(IncrementTimeAction()),
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.fast_forward_sharp,
                         color: Colors.white,
                         size: 75,
