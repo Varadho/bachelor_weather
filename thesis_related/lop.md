@@ -1,21 +1,31 @@
-# Liste offener Punkte [LOP]
+# Liste offener Punkte [LoP]
 
-### Grundlagen
+### Grundstruktur & Organisatorisches
 
-* Kapitel über verwendete Tools
-  * [ ] Flutter Driver [überarbeiten]
-  * [ ] Dart DevTools [überarbeiten]
+* Sameln von Satzfetzen die thematische Tangenten anschneiden. [kontinuierlich]
+* [ ] Bisherige "Methodik" aufteilen (in Methodik und Bearbeitung/Implementierung) [WIP]
+* [ ] Beschreibung der Methodik überarbeiten [WIP]
 
 ---
 
 ### Methodik
 
-* Für jedes Kriterium jede ZVM abarbeiten [WIP]
-  * [ ] Definition, Deklaration und Initialisierung eines Globalen Zustands
-    * [ ] Store, Notifier, BLoC
-    * [ ] StoreProvider, BlocProvider, ChangeNotifierProvider etc.
-  * [ ] Abfrage zur Darstellung
-  * [ ] Abfrage zur Änderung
+* Kapitel über verwendete Tools
+  * [ ] Flutter Driver [aufteilen & überarbeiten]
+  * [ ] Dart DevTools [aufteilen & überarbeiten]
+
+---
+
+### Bearbeitung
+
+* Für jedes Kriterium jede ZVM abarbeiten (jeweils Code Snippet erstellen und beschreiben)
+  * [x] Definition, Deklaration und Initialisierung eines Globalen Zustands (201124-1815)
+    * [x] Store, Notifier, BLoC, Actions und Events (201125-16:00)
+    * [x] StoreProvider, BlocProvider, ChangeNotifierProvider etc. (201126-1330)
+  * [x] Codeausschnitt der Abfrage zur Darstellung (201130-1130)
+  * [ ] Beschreibung der Abfrage zur Darstellung [WIP]
+  * [x] Codeausschnitt der Zustandsänderung (201130-1430)
+  * [ ] Beschreibung der Zustandsänderung [WIP]
 
 * Automatisierte Tests (Flutter Driver):
   * CPU-Taktfrequenz vereinheitlichen (CPU-Governor überbrücken, am Beispiel von Filip Hracek)
@@ -24,12 +34,10 @@
 * Händische Tests (Dart DevTools):
   * Test-Vorgehen beschreiben
 
----
-
 ### Ergebnisse
 
+* Daten sammeln
 * Datenauswertung:
-
   * Gelesene Daten verstehen/ordnen
     * Entsprechendes Kapitel verfassen
   * Daten als Datei exportieren
@@ -41,7 +49,7 @@
 
 ### Layout & Diagramme
 
-* Messergebnisse ordentlich darstellen [ ]
+* [ ] Messergebnisse ordentlich darstellen
 * Finale überprüfung des Layouts, nachdem alle Texte geschrieben sind
   
 ---
@@ -81,5 +89,6 @@
   * Schaubilder zur Applikation erstellen (201119-1400)
   * ZVM (201123-1845)
     * Datenfluss der einzelnen ZVM veranschaulichen
+  * ZVM APIs untersuchen (201124-1000)
 
 * Zu viele Videospiele die mich ablenken (24/7)
