@@ -35,6 +35,8 @@ class WindDisplay extends StatelessWidget {
                     child: Column(
                       children: <Widget>[
                         BlocBuilder<WeatherBloc, WeatherState>(
+                          buildWhen: (prev, current) =>
+                              prev.wind.mpsSpeed != current.wind.mpsSpeed,
                           builder: (context, state) => Text(
                             "${(state.wind.mpsSpeed * 3.6).toStringAsFixed(2)} "
                             "km/h",
@@ -42,6 +44,8 @@ class WindDisplay extends StatelessWidget {
                           ),
                         ),
                         BlocBuilder<WeatherBloc, WeatherState>(
+                          buildWhen: (prev, current) =>
+                              prev.wind.mpsSpeed != current.wind.mpsSpeed,
                           builder: (context, state) => Text(
                             "${state.wind.mpsSpeed.toStringAsFixed(2)} m/s",
                             style: dataStyle,

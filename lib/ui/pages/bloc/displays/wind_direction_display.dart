@@ -80,6 +80,8 @@ class WindDirectionDisplay extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: BlocBuilder<WeatherBloc, WeatherState>(
+                    buildWhen: (prev, current) =>
+                        prev.wind.deg != current.wind.deg,
                     builder: (context, state) => Transform.rotate(
                       angle: (state.wind.deg - 90) * pi / 180,
                       child: Icon(

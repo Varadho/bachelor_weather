@@ -27,6 +27,9 @@ class TemperatureDisplay extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: BlocBuilder<WeatherBloc, WeatherState>(
+                    buildWhen: (prev, current) =>
+                        prev.temperature.feelsLike !=
+                        current.temperature.feelsLike,
                     builder: (context, state) => Icon(
                       FontAwesomeIcons.temperatureHigh,
                       size: 36,
@@ -39,6 +42,8 @@ class TemperatureDisplay extends StatelessWidget {
             Column(
               children: <Widget>[
                 BlocBuilder<WeatherBloc, WeatherState>(
+                  buildWhen: (prev, current) =>
+                      prev.temperature != current.temperature,
                   builder: (context, state) => RichText(
                     text: TextSpan(
                       text: "${state.temperature.feelsLike}°C ",
@@ -70,6 +75,8 @@ class TemperatureDisplay extends StatelessWidget {
                             color: Colors.red,
                           ),
                           BlocBuilder<WeatherBloc, WeatherState>(
+                            buildWhen: (prev, current) =>
+                                prev.temperature.max != current.temperature.max,
                             builder: (context, state) => Text(
                               "${state.temperature.max.toStringAsFixed(2)}°C ",
                               style: dataStyle,
@@ -90,6 +97,8 @@ class TemperatureDisplay extends StatelessWidget {
                             color: Colors.lightBlue,
                           ),
                           BlocBuilder<WeatherBloc, WeatherState>(
+                            buildWhen: (prev, current) =>
+                                prev.temperature.min != current.temperature.min,
                             builder: (context, state) => Text(
                               "${state.temperature.min.toStringAsFixed(2)}°C ",
                               style: dataStyle,

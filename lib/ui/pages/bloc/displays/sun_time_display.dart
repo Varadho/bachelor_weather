@@ -38,6 +38,8 @@ class SunTimeDisplay extends StatelessWidget {
                         color: Colors.white,
                       ),
                       BlocBuilder<WeatherBloc, WeatherState>(
+                        buildWhen: (prev, current) =>
+                            prev.location.sunrise != current.location.sunrise,
                         builder: (context, state) => RichText(
                           text: TextSpan(
                             text: "Sunrise ",
@@ -76,6 +78,8 @@ class SunTimeDisplay extends StatelessWidget {
                         color: Colors.white,
                       ),
                       BlocBuilder<WeatherBloc, WeatherState>(
+                        buildWhen: (prev, current) =>
+                            prev.location.sunset != current.location.sunset,
                         builder: (context, state) => RichText(
                           text: TextSpan(
                             text: "Sunset ",

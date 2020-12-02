@@ -30,6 +30,9 @@ class AtmosphericDisplay extends StatelessWidget {
                         style: headingStyle.copyWith(fontSize: 20),
                       ),
                       BlocBuilder<WeatherBloc, WeatherState>(
+                        buildWhen: (prev, current) =>
+                            prev.atmosphere.pressure !=
+                            current.atmosphere.pressure,
                         builder: (context, state) => Text(
                           "${state.atmosphere.pressure} hPa",
                           style: dataStyle,
@@ -44,6 +47,9 @@ class AtmosphericDisplay extends StatelessWidget {
                         style: headingStyle.copyWith(fontSize: 20),
                       ),
                       BlocBuilder<WeatherBloc, WeatherState>(
+                        buildWhen: (prev, current) =>
+                            prev.atmosphere.humidity !=
+                            current.atmosphere.humidity,
                         builder: (context, state) => Text(
                           "${state.atmosphere.humidity}%",
                           style: dataStyle,
@@ -58,6 +64,8 @@ class AtmosphericDisplay extends StatelessWidget {
                         style: headingStyle.copyWith(fontSize: 20),
                       ),
                       BlocBuilder<WeatherBloc, WeatherState>(
+                        buildWhen: (prev, current) =>
+                            prev.atmosphere.clouds != current.atmosphere.clouds,
                         builder: (context, state) => Text(
                           "${state.atmosphere.clouds}%",
                           style: dataStyle,
@@ -70,6 +78,9 @@ class AtmosphericDisplay extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 12.0),
                 child: BlocBuilder<WeatherBloc, WeatherState>(
+                  buildWhen: (prev, current) =>
+                      prev.atmosphere.description !=
+                      current.atmosphere.description,
                   builder: (context, state) => Text(
                     "and ${state.atmosphere.description}",
                     style: headingStyle,

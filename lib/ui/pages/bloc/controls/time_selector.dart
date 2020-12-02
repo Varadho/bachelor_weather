@@ -43,12 +43,15 @@ class TimeSelector extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         BlocBuilder<WeatherBloc, WeatherState>(
+                          buildWhen: (prev, current) =>
+                              prev.time != current.time,
                           builder: (context, state) => Text(
                             _generateDateString(state.time, context),
                             style: headingStyle.copyWith(fontSize: 24),
                           ),
                         ),
                         BlocBuilder<WeatherBloc, WeatherState>(
+                          buildWhen: (prev, current) => prev != current,
                           builder: (context, state) => Text(
                             _generateTimeString(state.time),
                             style: headingStyle.copyWith(fontSize: 38),

@@ -28,12 +28,16 @@ class LocationDisplay extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     BlocBuilder<WeatherBloc, WeatherState>(
+                      buildWhen: (prev, current) =>
+                          prev.location.cityName != current.location.cityName,
                       builder: (context, state) => Text(
                         state.location.cityName,
                         style: headingStyle,
                       ),
                     ),
                     BlocBuilder<WeatherBloc, WeatherState>(
+                      buildWhen: (prev, current) =>
+                          prev.location.country != current.location.country,
                       builder: (context, state) => Text(
                         " (${state.location.country})",
                         style: headingStyle,
@@ -47,6 +51,8 @@ class LocationDisplay extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   BlocBuilder<WeatherBloc, WeatherState>(
+                    buildWhen: (prev, current) =>
+                        prev.location.coord.lat != current.location.coord.lat,
                     builder: (context, state) => Text(
                       '${state.location.coord.lat.abs().toStringAsFixed(2)}° '
                       '${_northOrSouth(state.location.coord.lat)}',
@@ -57,6 +63,8 @@ class LocationDisplay extends StatelessWidget {
                     width: MediaQuery.of(context).size.width / 6,
                   ),
                   BlocBuilder<WeatherBloc, WeatherState>(
+                    buildWhen: (prev, current) =>
+                        prev.location.coord.lon != current.location.coord.lon,
                     builder: (context, state) => Text(
                       '${state.location.coord.lon.abs().toStringAsFixed(2)}° '
                       '${_eastOrWest(state.location.coord.lon)}',
