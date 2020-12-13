@@ -1,8 +1,8 @@
-import 'package:bachelorweather/utility/constants/icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 import '../../../../model/weather_state.dart';
+import '../../../../utility/constants/icons.dart';
 import '../../../../utility/constants/text_styles.dart';
 import '../../../common_widgets/expandable_controls.dart';
 import '../state_management/actions.dart';

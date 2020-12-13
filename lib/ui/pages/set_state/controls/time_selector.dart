@@ -7,8 +7,11 @@ import '../../../common_widgets/expandable_controls.dart';
 ///Widget which controls the time for which the weather should be displayed.
 ///This is a specific implementation using no state management package.
 class TimeSelector extends StatelessWidget {
+  // ignore: public_member_api_docs
   final VoidCallback onIncrementTime;
+  // ignore: public_member_api_docs
   final VoidCallback onDecrementTime;
+  // ignore: public_member_api_docs
   final DateTime currentTime;
 
   // ignore: public_member_api_docs
