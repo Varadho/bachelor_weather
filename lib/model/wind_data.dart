@@ -14,7 +14,7 @@ class WindData extends Equatable {
   String toString() => 'Wind{speed: $mpsSpeed, deg: $deg}';
 
   // ignore: public_member_api_docs
-  WindData({
+  const WindData({
     this.mpsSpeed = 0,
     this.deg = 0,
   });

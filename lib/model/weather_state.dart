@@ -43,7 +43,7 @@ class WeatherState extends Equatable {
   }) : time = DateTime.fromMillisecondsSinceEpoch(time * 1000, isUtc: true);
 
   ///Factory constructor which returns a WeatherState with no Data (all
-  ///values set to 0 or "", depending on the Type
+  ///values set to 0 or "", depending on the Type, time is set to "now"
   factory WeatherState.empty() => WeatherState(
         location: LocationData(timezone: 0),
         time: (DateTime.now().millisecondsSinceEpoch / 1000).floor(),
