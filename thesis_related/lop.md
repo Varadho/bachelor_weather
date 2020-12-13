@@ -3,7 +3,6 @@
 ### Grundstruktur & Organisatorisches
 
 * Sameln von Satzfetzen die thematische Tangenten anschneiden. [kontinuierlich]
-* [ ] Bisherige "Methodik" aufteilen (in Methodik und Bearbeitung/Implementierung) [WIP]
 * [ ] Beschreibung der Methodik überarbeiten [WIP]
 
 ---
@@ -11,21 +10,12 @@
 ### Methodik
 
 * Kapitel über verwendete Tools
-  * [ ] Flutter Driver [aufteilen & überarbeiten]
-  * [ ] Dart DevTools [aufteilen & überarbeiten]
+  * [ ] Flutter Driver [überarbeiten]
+  * [ ] Dart DevTools [überarbeiten]
 
 ---
 
 ### Bearbeitung
-
-* Für jedes Kriterium jede ZVM abarbeiten (jeweils Code Snippet erstellen und beschreiben)
-  * [x] Definition, Deklaration und Initialisierung eines Globalen Zustands (201124-1815)
-    * [x] Store, Notifier, BLoC, Actions und Events (201125-16:00)
-    * [x] StoreProvider, BlocProvider, ChangeNotifierProvider etc. (201126-1330)
-  * [x] Codeausschnitt der Abfrage zur Darstellung (201130-1130)
-  * [ ] Beschreibung der Abfrage zur Darstellung [WIP]
-  * [x] Codeausschnitt der Zustandsänderung (201130-1430)
-  * [ ] Beschreibung der Zustandsänderung [WIP]
 
 * Automatisierte Tests (Flutter Driver):
   * CPU-Taktfrequenz vereinheitlichen (CPU-Governor überbrücken, am Beispiel von Filip Hracek)
@@ -90,5 +80,18 @@
   * ZVM (201123-1845)
     * Datenfluss der einzelnen ZVM veranschaulichen
   * ZVM APIs untersuchen (201124-1000)
+
+* Für jedes Kriterium jede ZVM abarbeiten (jeweils Code Snippet erstellen und beschreiben)(20121-1915)
+  * [x] Definition, Deklaration und Initialisierung eines Globalen Zustands (201124-1815)
+    * [x] Store, Notifier, BLoC, Actions und Events (201125-16:00)
+    * [x] StoreProvider, BlocProvider, ChangeNotifierProvider etc. (201126-1330)
+  * [x] Codeausschnitt der Abfrage zur Darstellung (201130-1130)
+  * [x] Codeausschnitt der Zustandsänderung (201130-1430)
+  * [x] Beschreibung der Abfrage zur Darstellung (20121-1530)
+  * [x] Beschreibung der Zustandsänderung (20121-1915)
+  
+* buildWhen-Bedingung für alle BlocBuilder implementieren (201202-1515)
+
+* [x] Bisherige "Methodik" aufteilen (in Methodik und Bearbeitung/Implementierung) (201201-1820)
 
 * Zu viele Videospiele die mich ablenken (24/7)
