@@ -1,6 +1,6 @@
+import 'package:bachelorweather/utility/constants/icons.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../utility/constants/colors.dart';
 import '../../../../utility/constants/text_styles.dart';
 import '../../../common_widgets/expandable_controls.dart';
 
@@ -68,36 +68,14 @@ class TimeSelector extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    InkWell(
-                      child: GestureDetector(
-                        key: const Key("previous_time"),
-                        onTap: onDecrementTime,
-                        child: Icon(
-                          Icons.remove,
-                          color: Colors.white,
-                          size: 75,
-                        ),
-                      ),
-                      customBorder: CircleBorder(),
-                      splashColor: backgroundColor2.withOpacity(0.7),
-                      splashFactory: InkSplash.splashFactory,
-                      enableFeedback: false,
+                    IconButton(
+                      onPressed: onDecrementTime,
+                      icon: decrementTimeIcon,
                     ),
                     Container(),
-                    InkWell(
-                      child: GestureDetector(
-                        key: const Key("next_time"),
-                        onTap: onIncrementTime,
-                        child: Icon(
-                          Icons.add,
-                          color: Colors.white,
-                          size: 75,
-                        ),
-                      ),
-                      customBorder: CircleBorder(),
-                      splashColor: backgroundColor2.withOpacity(0.7),
-                      splashFactory: InkSplash.splashFactory,
-                      enableFeedback: false,
+                    IconButton(
+                      onPressed: onIncrementTime,
+                      icon: incrementTimeIcon,
                     ),
                   ],
                 ),
