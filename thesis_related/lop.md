@@ -3,35 +3,25 @@
 ### Grundstruktur & Organisatorisches
 
 * Sameln von Satzfetzen die thematische Tangenten anschneiden. [kontinuierlich]
-* [ ] Beschreibung der Methodik überarbeiten [WIP]
-
----
-
-### Methodik
-
-* Kapitel über verwendete Tools
-  * [ ] Flutter Driver [überarbeiten]
-  * [ ] Dart DevTools [überarbeiten]
-
----
+* Farbschema für Diagramme festlegen & diese vereinheitlichen
 
 ### Bearbeitung
 
 * Automatisierte Tests (Flutter Driver):
-  * CPU-Taktfrequenz vereinheitlichen (CPU-Governor überbrücken, am Beispiel von Filip Hracek)
-  * Test-Code beschreiben
+  * ~~CPU-Taktfrequenz vereinheitlichen (CPU-Governor überbrücken, am Beispiel von Filip Hracek)~~ [evtl. irrelevant geworden!]
+  * Test-Code beschreiben [WIP]
   
-* Händische Tests (Dart DevTools):
-  * Test-Vorgehen beschreiben
+* Händische Tests (Dart-DevTools):
+  * Test-Vorgehen beschreiben [WIP]
 
 ### Ergebnisse
 
 * Daten sammeln
+  * Dart-DevTools
 * Datenauswertung:
   * Gelesene Daten verstehen/ordnen
     * Entsprechendes Kapitel verfassen
-  * Daten als Datei exportieren
-  * Analyse-Skript erstellen
+  * ~~Analyse-Skript erstellen~~
   * aussagekräftige Graphiken erstellen
     * Entsprechende Software finden
 
@@ -40,7 +30,7 @@
 ### Layout & Diagramme
 
 * [ ] Messergebnisse ordentlich darstellen
-* Finale überprüfung des Layouts, nachdem alle Texte geschrieben sind
+* [ ] Finale überprüfung des Layouts, nachdem alle Texte geschrieben sind
   
 ---
 
@@ -93,5 +83,15 @@
 * buildWhen-Bedingung für alle BlocBuilder implementieren (201202-1515)
 
 * [x] Bisherige "Methodik" aufteilen (in Methodik und Bearbeitung/Implementierung) (201201-1820)
+
+* [x] Beschreibung der Methodik überarbeiten (201210-0100)
+
+* Kapitel über verwendete Tools
+  * [x] Flutter Driver (201214-1600)
+  * [x] Dart DevTools (201214-1900)
+
+* Daten sammeln
+  * Flutter Driver (201212-1400)
+    * [x] Daten als Datei exportieren (201212-1400)
 
 * Zu viele Videospiele die mich ablenken (24/7)
