@@ -19,7 +19,9 @@ void main() {
     // Connect to the Flutter driver before running any tests.
     setUpAll(() async {
       driver = await FlutterDriver.connect();
-      await Future.delayed(4.seconds);
+      //delay running driver tests by 3 seconds,
+      // to ensure network data is loaded
+      await Future.delayed(3.seconds);
     });
 
     // Close the connection to the driver after the tests have completed.
@@ -28,6 +30,7 @@ void main() {
         driver.close();
       }
     });
+
     test('app health', () async {
       var health = await driver.checkHealth();
       expect(health.status, HealthStatus.ok);
