@@ -71,6 +71,8 @@ class TimeSelector extends StatelessWidget {
                       onPressed: () => StoreProvider.of<WeatherState>(context)
                           .dispatch(DecrementTimeAction()),
                       icon: decrementTimeIcon,
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
                       iconSize: 75,
                     ),
                     Container(),
@@ -79,6 +81,8 @@ class TimeSelector extends StatelessWidget {
                       onPressed: () => StoreProvider.of<WeatherState>(context)
                           .dispatch(IncrementTimeAction()),
                       icon: incrementTimeIcon,
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
                       iconSize: 75,
                     ),
                   ],

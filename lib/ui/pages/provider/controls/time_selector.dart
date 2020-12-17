@@ -71,6 +71,8 @@ class TimeSelector extends StatelessWidget {
                           Provider.of<WeatherNotifier>(context, listen: false)
                               .decrementTime(),
                       icon: decrementTimeIcon,
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
                       iconSize: 75,
                     ),
                     Container(),
@@ -80,6 +82,8 @@ class TimeSelector extends StatelessWidget {
                           Provider.of<WeatherNotifier>(context, listen: false)
                               .incrementTime(),
                       icon: incrementTimeIcon,
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
                       iconSize: 75,
                     ),
                   ],

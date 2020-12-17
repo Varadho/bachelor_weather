@@ -15,7 +15,6 @@ void main() {
 ///A [NavigatorObserver] must be provided, to allow custom commands to the
 ///[Navigator] from the testing suite.
 void mainTest(NavigatorObserver navigatorObserver) {
-  WeatherRepository();
   _main(navigatorObserver);
 }
 

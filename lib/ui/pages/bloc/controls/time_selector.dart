@@ -72,6 +72,8 @@ class TimeSelector extends StatelessWidget {
                       onPressed: () => BlocProvider.of<WeatherBloc>(context)
                           .add(DecrementTimeEvent()),
                       icon: decrementTimeIcon,
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
                       iconSize: 75,
                     ),
                     Container(),
@@ -80,6 +82,8 @@ class TimeSelector extends StatelessWidget {
                       onPressed: () => BlocProvider.of<WeatherBloc>(context)
                           .add(IncrementTimeEvent()),
                       icon: incrementTimeIcon,
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
                       iconSize: 75,
                     ),
                   ],
