@@ -67,18 +67,24 @@ class TimeSelector extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    GestureDetector(
+                    IconButton(
                       key: const Key("previous_time"),
-                      onTap: () => BlocProvider.of<WeatherBloc>(context)
+                      onPressed: () => BlocProvider.of<WeatherBloc>(context)
                           .add(DecrementTimeEvent()),
-                      child: decrementTimeIcon,
+                      icon: decrementTimeIcon,
+                      iconSize: 75,
+                      highlightColor: Colors.transparent,
+                      splashColor: Colors.transparent,
                     ),
                     Container(),
-                    GestureDetector(
+                    IconButton(
                       key: const Key("next_time"),
-                      onTap: () => BlocProvider.of<WeatherBloc>(context)
+                      onPressed: () => BlocProvider.of<WeatherBloc>(context)
                           .add(IncrementTimeEvent()),
-                      child: incrementTimeIcon,
+                      icon: incrementTimeIcon,
+                      iconSize: 75,
+                      highlightColor: Colors.transparent,
+                      splashColor: Colors.transparent,
                     ),
                   ],
                 ),
