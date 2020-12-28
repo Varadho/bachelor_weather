@@ -42,7 +42,7 @@ extension Utility on StateMethod {
       case StateMethod.REDUX:
         return "Redux";
       case StateMethod.BLOC:
-        return "Bussines Logic Components";
+        return "Business Logic Components";
       default:
         return "Homepage???";
     }

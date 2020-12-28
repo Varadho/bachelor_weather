@@ -10,7 +10,7 @@ void main() {
       'MobX',
       'Providers',
       'Redux',
-      'Bussines Logic Components',
+      'Business Logic Components',
     ];
     final dynamic dateAbrv = '${DateTime.now().day}.${DateTime.now().month}'
         '.${DateTime.now().year % 2000}';
