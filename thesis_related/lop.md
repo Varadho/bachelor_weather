@@ -3,38 +3,30 @@
 ### Grundstruktur & Organisatorisches
 
 * Sameln von Satzfetzen die thematische Tangenten anschneiden. [kontinuierlich]
-* Farbschema für Diagramme festlegen & diese vereinheitlichen
+* Farbschema für Diagramme festlegen & diese vereinheitlichen [WIP]
 
 ### Bearbeitung
 
-* Automatisierte Tests (Flutter Driver):
-  * ~~CPU-Taktfrequenz vereinheitlichen (CPU-Governor überbrücken, am Beispiel von Filip Hracek)~~ [evtl. irrelevant geworden!]
-  * Test-Code beschreiben [WIP]
-  
 * Händische Tests (Dart-DevTools):
-  * Test-Vorgehen beschreiben [WIP]
+  * Test-Vorgehen aufschreiben [WIP]
 
 ### Ergebnisse
 
 * Daten sammeln
   * Dart-DevTools
 * Datenauswertung:
-  * Gelesene Daten verstehen/ordnen
     * Entsprechendes Kapitel verfassen
-  * ~~Analyse-Skript erstellen~~
-  * aussagekräftige Graphiken erstellen
-    * Entsprechende Software finden
-
----
+  * aussagekräftige Graphiken erstellen [WIP]
 
 ### Layout & Diagramme
 
 * [ ] Messergebnisse ordentlich darstellen
+* [ ] Inhaltlicher Feinschliff (Grammatik, Rechtschreibung, etc.)
 * [ ] Finale überprüfung des Layouts, nachdem alle Texte geschrieben sind
   
 ---
 
-## Abgearbeitete Punkte: (in chronologischer Reihenfolge)
+## Abgearbeitete Punkte:
 
 * Die jeweiligen ZVM implementieren (201021-1155)
   * [x] setState
@@ -90,8 +82,19 @@
   * [x] Flutter Driver (201214-1600)
   * [x] Dart DevTools (201214-1900)
 
+* Automatisierte Tests (Flutter Driver):
+  * ~~CPU-Taktfrequenz vereinheitlichen (CPU-Governor überbrücken, am Beispiel von Filip Hracek)~~ [evtl. irrelevant geworden!]
+  
 * Daten sammeln
   * Flutter Driver (201212-1400)
-    * [x] Daten als Datei exportieren (201212-1400)
+    * Daten als Datei exportieren (201212-1400)
+    * Test-Code beschreiben (201227-1530)
 
+  
+Darstellung der gesammelten Daten:
+  * Gelesene Daten verstehen/ordnen (201221-1920)
+  * Entsprechende Software finden (PyPlot Bibliothek & Libre Office Calc) (201226-2230)
+
+* Sicherstellen, dass die CPU immer im gleichen takt arbeitet (201228-1400)
+  
 * Zu viele Videospiele die mich ablenken (24/7)
