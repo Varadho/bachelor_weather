@@ -96,5 +96,7 @@ Darstellung der gesammelten Daten:
   * Entsprechende Software finden (PyPlot Bibliothek & Libre Office Calc) (201226-2230)
 
 * Sicherstellen, dass die CPU immer im gleichen takt arbeitet (201228-1400)
+
+* README.md des Projekts angepasst (201229-1700)
   
 * Zu viele Videospiele die mich ablenken (24/7)
