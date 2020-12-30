@@ -35,6 +35,6 @@ All other files are either all used equally by the state management libraries or
 2. Attach a device (It is not advised to test performance on an emulator.)
 2. Run ```flutter doctor``` from the command line to make sure everything is set up properly
 1. Navigate to the root folder of this project from the command line
-2. Run ```flutter drive --target=test_driver/app.dart``` to start the automated Tests
+2. Run ```flutter drive --target=test_driver/app.dart --profile``` to start the automated Tests
 3. Enjoy the show. 
 4. Gathered data can be found inside the build-Folder 
