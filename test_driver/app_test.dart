@@ -12,8 +12,7 @@ void main() {
       'Redux',
       'Business Logic Components',
     ];
-    final dynamic dateAbrv = '${DateTime.now().day}.${DateTime.now().month}'
-        '.${DateTime.now().year % 2000}';
+    final dynamic dateAbrv = DateTime.now().toIso8601String();
     final timeSelector = find.byValueKey("ts");
     final incrementTimeButton = find.byValueKey('next_time');
     final decrementTimeButton = find.byValueKey('previous_time');
@@ -55,23 +54,20 @@ void main() {
           //Assume starting position
           await driver.waitUntilFirstFrameRasterized();
           //Trace changes and store them in timeline object
-          final timeline = await driver.traceAction(() async {
-            for (var i = 0; i < 3; i++) {
-              for (var j = 0; j < 39; j++) {
+          for (var i = 0; i < 4; i++) {
+            final timeline = await driver.traceAction(() async {
+              for (var j = 0; j < 40; j++) {
                 await driver.tap(incrementTimeButton);
               }
-              for (var j = 0; j < 39; j++) {
+              for (var j = 0; j < 40; j++) {
                 await driver.tap(decrementTimeButton);
               }
-            }
-          });
+            });
 
-          final summary = TimelineSummary.summarize(timeline);
+            final summary = TimelineSummary.summarize(timeline);
+            await summary.writeSummaryToFile('$method$dateAbrv', pretty: true);
+          }
 
-          await summary.writeSummaryToFile('$method$dateAbrv\_summary',
-              pretty: true);
-          await summary.writeTimelineToFile('$method$dateAbrv\_timeline',
-              pretty: true);
           //Access custom navigation API
           await driver.requestData('navigator_pop');
         },
