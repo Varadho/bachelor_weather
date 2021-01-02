@@ -1,6 +1,6 @@
-import 'package:bachelorweather/utility/constants/icons.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../utility/constants/icons.dart';
 import '../../../../utility/constants/text_styles.dart';
 import '../../../common_widgets/expandable_controls.dart';
 
@@ -68,20 +68,16 @@ class TimeSelector extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    IconButton(
+                    GestureDetector(
                       key: const Key("previous_time"),
-                      icon: decrementTimeIcon,
-                      onPressed: onDecrementTime,
-                      highlightColor: Colors.transparent,
-                      splashColor: Colors.transparent,
+                      child: decrementTimeIcon,
+                      onTap: onDecrementTime,
                     ),
                     Container(),
-                    IconButton(
+                    GestureDetector(
                       key: const Key("next_time"),
-                      onPressed: onIncrementTime,
-                      icon: incrementTimeIcon,
-                      highlightColor: Colors.transparent,
-                      splashColor: Colors.transparent,
+                      onTap: onIncrementTime,
+                      child: incrementTimeIcon,
                     ),
                   ],
                 ),
