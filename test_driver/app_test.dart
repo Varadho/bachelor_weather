@@ -12,7 +12,6 @@ void main() {
       'Redux',
       'Business Logic Components',
     ];
-    final dynamic dateAbrv = DateTime.now().toIso8601String();
     final timeSelector = find.byValueKey("ts");
     final incrementTimeButton = find.byValueKey('next_time');
     final decrementTimeButton = find.byValueKey('previous_time');
@@ -57,15 +56,19 @@ void main() {
           for (var i = 0; i < 4; i++) {
             final timeline = await driver.traceAction(() async {
               for (var j = 0; j < 40; j++) {
+                await Future.delayed(100.milliseconds);
                 await driver.tap(incrementTimeButton);
               }
               for (var j = 0; j < 40; j++) {
+                await Future.delayed(100.milliseconds);
                 await driver.tap(decrementTimeButton);
               }
             });
 
             final summary = TimelineSummary.summarize(timeline);
-            await summary.writeSummaryToFile('$method$dateAbrv', pretty: true);
+            await summary.writeSummaryToFile(
+                '$method${DateTime.now().toIso8601String()}',
+                pretty: true);
           }
 
           //Access custom navigation API
