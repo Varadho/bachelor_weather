@@ -21,7 +21,7 @@ class ExpandableControls extends StatefulWidget {
 
 class _ExpandableControlsState extends State<ExpandableControls>
     with SingleTickerProviderStateMixin {
-  final Duration animationDuration = Duration(milliseconds: 300);
+  final Duration _animationDuration = Duration(milliseconds: 300);
 
   bool _isExpanded = false;
 
@@ -32,7 +32,7 @@ class _ExpandableControlsState extends State<ExpandableControls>
           radius: _isExpanded ? 30 : 60,
           child: AnimatedSize(
             vsync: this,
-            duration: animationDuration,
+            duration: _animationDuration,
             child: Padding(
               padding: const EdgeInsets.all(6.0),
               child: _isExpanded
