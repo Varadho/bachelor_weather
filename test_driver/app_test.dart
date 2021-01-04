@@ -53,23 +53,21 @@ void main() {
           //Assume starting position
           await driver.waitUntilFirstFrameRasterized();
           //Trace changes and store them in timeline object
-          for (var i = 0; i < 4; i++) {
-            final timeline = await driver.traceAction(() async {
-              for (var j = 0; j < 40; j++) {
-                await Future.delayed(100.milliseconds);
-                await driver.tap(incrementTimeButton);
-              }
-              for (var j = 0; j < 40; j++) {
-                await Future.delayed(100.milliseconds);
-                await driver.tap(decrementTimeButton);
-              }
-            });
+          final timeline = await driver.traceAction(() async {
+            for (var j = 0; j < 40; j++) {
+              await Future.delayed(100.milliseconds);
+              await driver.tap(incrementTimeButton);
+            }
+            for (var j = 0; j < 40; j++) {
+              await Future.delayed(100.milliseconds);
+              await driver.tap(decrementTimeButton);
+            }
+          });
 
-            final summary = TimelineSummary.summarize(timeline);
-            await summary.writeSummaryToFile(
-                '$method${DateTime.now().toIso8601String()}',
-                pretty: true);
-          }
+          final summary = TimelineSummary.summarize(timeline);
+          await summary.writeSummaryToFile(
+              '$method${DateTime.now().toIso8601String()}',
+              pretty: true);
 
           //Access custom navigation API
           await driver.requestData('navigator_pop');
