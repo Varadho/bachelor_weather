@@ -3,24 +3,18 @@
 ### Grundstruktur & Organisatorisches
 
 * Sameln von Satzfetzen die thematische Tangenten anschneiden. [kontinuierlich]
-* Farbschema für Diagramme festlegen & diese vereinheitlichen [WIP]
 
 ### Bearbeitung
 
-* Händische Tests (Dart-DevTools):
-  * Test-Vorgehen aufschreiben [WIP]
-
 ### Ergebnisse
 
-* Daten sammeln
-  * Dart-DevTools
-* Datenauswertung:
-    * Entsprechendes Kapitel verfassen
-  * aussagekräftige Graphiken erstellen [WIP]
+* Kapitel zu Speicherauslastung verfassen [WIP]
+* [ ] Fazit verfassen [WIP]
+* [ ] Ausblick verfassen [WIP]
 
 ### Layout & Diagramme
 
-* [ ] Messergebnisse ordentlich darstellen
+* [ ] Diagramme farblich vereinheitlichen
 * [ ] Inhaltlicher Feinschliff (Grammatik, Rechtschreibung, etc.)
 * [ ] Finale überprüfung des Layouts, nachdem alle Texte geschrieben sind
   
@@ -90,13 +84,29 @@
     * Daten als Datei exportieren (201212-1400)
     * Test-Code beschreiben (201227-1530)
 
-  
 Darstellung der gesammelten Daten:
-  * Gelesene Daten verstehen/ordnen (201221-1920)
-  * Entsprechende Software finden (PyPlot Bibliothek & Libre Office Calc) (201226-2230)
+
+* Gelesene Daten verstehen/ordnen (201221-1920)
+* Entsprechende Software finden (PyPlot Bibliothek & Libre Office Calc) (201226-2230)
 
 * Sicherstellen, dass die CPU immer im gleichen takt arbeitet (201228-1400)
 
 * README.md des Projekts angepasst (201229-1700)
   
+* Händische Tests (Dart-DevTools):
+  * Test-Vorgehen aufschreiben (201230-1600)
+
+* Daten sammeln
+  * Dart-DevTools (210102-1630)
+* Datenauswertung:
+  * aussagekräftige Graphiken erstellen / Messergebnisse ordentlich darstellen (210103-1430)
+  * gesammelte Daten in Tabellen in LaTeX darstellen (210104-1330)
+  * Kapitel zu Performancedaten verfassen (210104-1700)
+
+* Farbschema für Diagramme festlegen (210104-1720)
+  * 0x004586
+  * 0xffd320
+  * 0xff420e
+  * 0x007021
+
 * Zu viele Videospiele die mich ablenken (24/7)
