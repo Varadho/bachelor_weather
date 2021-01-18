@@ -24,6 +24,15 @@ All other files are either all used equally by the state management libraries or
 ## How to Install the application:
 1. Install the flutter framework as described [here](https://flutter.dev/docs/get-started/install)
 2. Attach a device or start an emulator
+2. Get an API-Key from www.openweathermap.org
+2. create a File called ```api_key.dart``` in the lib/utlity/network directory
+2. Paste:
+```
+part of 'api_helper.dart';
+
+const String _apiKey = "YOUR API KEY HERE";
+```
+into your file.
 2. Run ```flutter doctor``` from the command line to make sure everything is set up properly
 3. Navigate to the root folder of this project from the command line
 3. Run ```flutter pub get``` to ensure all dependencies are met
