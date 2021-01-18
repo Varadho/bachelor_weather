@@ -34,7 +34,7 @@ const String _apiKey = "YOUR API KEY HERE";
 ```
 into your file.
 
-2. Run ```flutter doctor``` from the command line to make sure everything is set up properly
+6. Run ```flutter doctor``` from the command line to make sure everything is set up properly
 3. Navigate to the root folder of this project from the command line
 3. Run ```flutter pub get``` to ensure all dependencies are met
 3. Start the application using ```flutter run``` (or use the built-in way depending on your IDE)
