@@ -14,10 +14,6 @@ enum StateMethod {
   // ignore: constant_identifier_names
   PROVIDERS,
 
-  ///Inherited Widget
-  // ignore: constant_identifier_names
-  MOBX,
-
   ///Redux package
   // ignore: constant_identifier_names
   REDUX,
@@ -25,6 +21,10 @@ enum StateMethod {
   ///Bussines Logic Components
   // ignore: constant_identifier_names
   BLOC,
+
+  ///Inherited Widget
+  // ignore: constant_identifier_names
+  MOBX,
 }
 
 ///An Extension on the [StateMethod] enumeration to provide extra utility for

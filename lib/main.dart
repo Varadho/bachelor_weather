@@ -1,3 +1,10 @@
+//This Project and the corresponding code are
+//the intellectual property of Mateusz Czajkowski
+
+//Anyone interested in the continuation of this work may do so without
+//the need for an explicit permission to do so.
+
+//Version 1.12 as of 02.01.2021
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
